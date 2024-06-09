@@ -1,0 +1,128 @@
+\usepackage[none]{hyphenat}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\nnot}{\mathrm{NOT}}
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\aand}{\,\,\mathrm{AND}\,\,}
+\newcommand{\oor}{\,\,\mathrm{OR}\,\,}
+\newcommand{\iimplies}{\,\,\mathrm{IMPLIES}\,\,}
+\newcommand{\xor}{\,\,\mathrm{XOR}\,\,}
+\newcommand{\iif}{\,\,\mathrm{IFF}\,\,}
+\newcommand{\explain}[1]{{\color{blue} #1}}
+\newcommand{\ints}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rats}{\mathbb{Q}}
+\newcommand{\comp}{\mathbb{C}}
+\newcommand{\basis}{\mathcal{B}}
+\newcommand{\cee}{\mathcal{C}}
+\newcommand{\eff}{\mathcal{F}}
+\newcommand{\pow}{\mathcal{P}}
+\newcommand{\topo}{\mathcal{T}}
+
+%%% function restriction (thank you Faith Ellen)
+%%% To restrict f to a subset I, write \restr{f}{I}.
+\newcommand\restr[2]{{
+  \left.\kern-\nulldelimiterspace
+  #1
+  \vphantom{\big|} 
+  \right|_{#2}
+}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% LOGISTICS %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath, amsthm, amssymb} % must have math p
+\usepackage{cancel} % Allows for the use of \cancel{}
+\usepackage{enumitem} % Lists
+\usepackage{bm} % Bold math with \bm{}
+\usepackage{graphicx} % images
+\usepackage{bbm} % bold blackboard math
+\usepackage{physics} % various physics related changes
+\usepackage{xcolor} % more colors
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc} % better font quality
+\usepackage{palatino} % font
+\usepackage{parskip} % automatically skip paragraphs
+\setlength\parindent{0pt} % no indent
+\everymath{\displaystyle} % automatically display style
+\usepackage{makeidx} % used to make indexes
+
+% Fancy Header
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+
+% hyperlinking
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=magenta,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% GRAPHICS %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz} % Drawing capabilities
+\usetikzlibrary{shapes,arrows}
+\usepackage{pgfplots} % Plotting capabilities
+\pgfplotsset{compat=1.16}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% definition
+\definecolor{my-blue}{RGB}{37, 99, 207}
+
+% theorem
+\definecolor{my-yellow}{RGB}{237, 147, 50}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% BOXES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[breakable,many]{tcolorbox}
+% Math
+
+\tcbset{one-sided-color/.style={
+    breakable,
+    enhanced,
+    boxrule=0pt,
+    frame hidden,
+    borderline west={2pt}{0pt}{#1},
+    colback=#1!10,
+    coltitle=#1!200,
+    after title={: },
+    sharp corners,
+    attach title to upper,
+    }
+}
+
+\newtcolorbox[auto counter, number within=section]{theorem}{
+    one-sided-color=my-yellow,
+    title=\textbf{Theorem \thetcbcounter},
+}
+
+\newtcolorbox[use counter from=theorem]{definition}{
+    one-sided-color=my-blue,
+    title=\textbf{Definition \thetcbcounter},
+}
+
+\newtcolorbox[use counter from=theorem]{corollary}{
+    one-sided-color=my-yellow,
+    title=\textbf{Corollary \thetcbcounter},
+}
+
+\newtcolorbox[use counter from=theorem]{lemma}{
+    one-sided-color=my-yellow,
+    title=\textbf{Lemma \thetcbcounter},
+}
