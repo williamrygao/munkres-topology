@@ -1,0 +1,462 @@
+\section{Set Theory and Logic}
+\begin{center}
+    {\it ``I need that. We need that."}
+    
+    -- Pep Guardiola on his players showing a more profound understanding of set theory
+\end{center}
+\vspace{10pt}
+
+This first chapter serves to introduce the required background knowledge of set theory. Readers desiring a more enlightening construction of these axioms ($\varnothing$) may consult Kenneth Kunen's {\it Set Theory}. Notation for sets and functions will be omitted; a first-year course in calculus should have provided sufficient familiarity with these conventions.
+
+\subsection{Relations}
+\begin{definition}\label{1.1}
+    A {\it relation} on a set $A$ is a subset $C$ of $A \times A$. We use the notation $xCy$ to mean $x \times y \in C$.
+\end{definition}
+
+We see that relations generalize functions: a relation is a function if for any $x \in A,$ there is a unique $y \in A$ such that $(x, y) \in C$. However, this definition proves too general for our purposes. The following additional properties define another special kind of relation.
+\begin{definition}\label{1.2}
+    An {\it equivalence relation} on a set $A$ is a relation $C$ having the three following properties:
+    \begin{enumerate}
+        \item[(1)] (Reflexivity) -- for any $x \in A,$ $xCx$.
+        \item[(2)] (Symmetry) -- if $xCy$, then $yCx$.
+        \item[(3)] (Transitivity) -- if $xCy$ and $yCz$, then $xCz$.
+    \end{enumerate}
+    For such $C$, we use $x \sim y$ to denote $xCy$.
+\end{definition}
+Given an equivalence relation $\sim$ on a set $A$ and an element $x \in A$, we define the equivalence class $E_x \subseteq A$ of $x$ by $E_x = \{y : y \sim x\}.$ In particular, $x \in E_x$ by reflexivity. Moreover,
+\begin{theorem}\label{1.3}
+    For any $x, y \in A$, $E_x$ and $E_y$ are either disjoint or equal.
+\end{theorem}
+Given an equivalence relation $\sim$ on a set $A$, the collection $\varepsilon$ of all equivalence classes is a partition of $A$, or a collection of disjoint nonempty subsets of $A$ whose union is $A$. In fact for any partition $\mathcal{D}$ of A, there is exactly one equivalence relation on $A$ such that $\varepsilon = \mathcal{D}$.
+
+Anyone having completed a first year calculus course will understand that equivalence is often far less powerful than inequality, which we define according to the following:
+\begin{definition}\label{1.4}
+    An {\it order relation} on a set $A$ is a relation $C$ having the three following properties:
+    \begin{enumerate}
+        \item[(1)] (Comparability) -- for any $x \neq y \in A$, exactly one of $xCy$ or $yCx$ holds.
+        \item[(2)] (Nonreflexitivity) -- for any $x \in A$, $xCx$ does not hold.
+        \item[(3)] (Transitivity) -- if $xCy$ and $yCz$, then $xCz$.
+    \end{enumerate} 
+    We denote $xCy$ by $x < y$.
+\end{definition}
+Given two sets $A, B$ ordered by $<_A, <_B$, we say $A$ and $B$ have the same order type if there is a bijection $f : A \rightarrow B$ such that for any $a_1, a_2 \in A,$
+$$a_1 <_A a_2 \implies f(a_1) <_B f(a_2).$$
+Given two ordered sets, we may define the dictionary order relation $<$ on $A \times B$ by $a_1 \times b_1 < a_2 \times b_2$ if $a_1 < a_2$ or $a_1 = a_2$ and $b_1 < b_2$.
+
+\subsection{The Integers and the Real Numbers}
+
+We now generalize the supremum axiom of the real numbers to any ordered set $A$.
+
+\begin{definition}\label{1.5}
+    For any subset $A_0 \subseteq A$, we say $b$ is the largest element of $A_0$ is $x \leq b$ for all $x \in A_0$, and similarly for the smallest element.
+    \vspace{10pt}
+    $A_0$ is bounded above if there is a $b \in A$ such that $x \leq b$ for all $x \in A_0$; $b$ is called an upper bound for $A_0$. If the set of all upper bounds for $A_0$ has a smallest element $\alpha$, $\alpha$ is the least upper bound, or {\it supremum} of $A_0$. If $\alpha \in A_0$, then it is the largest element of $A_0$.
+    \vspace{10pt}
+
+    The definition of a greatest lower bound, or infimum, is symmetrical.
+    \vspace{10pt}
+
+    An ordered set $A$ has the {\it supremum property} if every nonempty $A_0 \subseteq A$ that is bounded above has a supremum, and similarly for the infimum property. In fact, $A$ has the supremum property if and only if it has the infimum property.
+\end{definition}
+
+We will use the following axioms for the real numbers:
+\begin{enumerate}
+    \item[(1)] (Associativity) $(x+y) + z = x + (y+z), (x \cdot y) \cdot z = x \cdot (y \cdot z)$ for all $x, y, z \in \reals$
+    \item[(2)] (Commutativity) $x+y = y+x, x \cdot y = y \cdot x$ for all $x, y \in \reals$
+    \item[(3)] (Identity) there exists a unique additive identity $0$ and a unique multiplicative identity $1$, distinct from one another.
+    \item[(4)] (Inverses) for every $x \in \reals,$ there exists a unique $y \in \reals$ such that $x + y = 0$, and if $x \neq 0$, then there exists a unique $z \in \reals$ such that $x \cdot z = 1$.
+    \item[(5)] (Distributivity) $x\cdot (y+z) = (x \cdot y) + (x \cdot z)$ for all $x, y, z \in \reals.$
+    \item[(6)] (Algebraic Order) if $x < y$, then $x +z < y+z$. If $x < y$ and $z > 0,$ then $x \cdot z < y \cdot z$.
+    \item[(7)] (Supremum Property) $\reals$ has the supremum property with respect to $<$.
+    \item[(8)] (Completeness) if $x < y$, then there exists a $z \in \reals$ such that $x < z< y$.
+\end{enumerate}
+
+For a sanity check that a set satisfying these axioms in fact exists--and moreover contains $\rats$, which is comparably easy to construct--see Chapter 29 of Michael Spivak's {\it Calculus} (which uses slightly different axioms, but it is straightforward to show that they are equivalent).
+
+The integers, an important subset of $\reals$ for the purposes of topology, are defined below:
+\begin{definition}\label{1.6}
+    $A \subseteq \reals$ is inductive if $1 \in A$, and for any $n \in A$, $n+1 \in A$. Let $\mathcal{A}$ denote the collection of all inductive subsets of $\reals.$ We define the set of positive integers by
+    $$\ints^+ = \bigcap_{A \in \mathcal{A}} A.$$
+    We see that $\ints^+$ is inductive, and moreover if $A$ is an inductive set of positive integers, then $A = \ints^+.$
+\end{definition}
+The most important property of the integers is the following:
+\begin{theorem}\label{1.7}
+    Well-Ordering Principle.
+    \vspace{10pt}
+    
+    Every nonempty subset of $\ints^+$ has a smallest element.
+\end{theorem}
+
+The following is in fact equivalent, and often easier to communicate:
+
+\begin{theorem}\label{1.8}
+    Principle of Strong Induction.
+    \vspace{10pt}
+    
+    Suppose $A \subseteq \ints^+$ is such that for each $n \in \ints^+,$ if $\{1, \cdots, n-1\} \subseteq A$, then $n \in A$. Then $A = \ints^+$.
+\end{theorem}
+
+\subsection{Cartesian Products}
+In this chapter, we generalize the concept of Cartesian products.
+
+Suppose $\mathcal{A}$ is a nonempty collection of sets. An indexing function for $\mathcal{A}$ is a surjection $f: J \rightarrow \mathcal{A}$. Given $\alpha \in J$, we denote $f(\alpha)$ by $A_\alpha$, and we denote the indexed family of sets by $\{A_\alpha\}_{\alpha \in J}$.
+
+Given a set $X$ and any positive integer $m$, we define an $m$-tuple of elements in $X$ as a function $\mathbf{x}: \{1, \cdots, m\} \rightarrow X$. We may denote $\mathbf{x}(i)$ by $x_i$, and the function $\mathbf{x}$ by $(x_1, \cdots, x_m)$.
+
+Now, given an indexed family of sets $\{A_1, \cdots, A_m\},$ we define the Cartesian product $A_1 \times \cdots \times A_m$ as the set of all $m$-tuples $(x_1, \cdots, x_m)$ of elements in $\bigcup_{i \in J} A_i$ such that $x_i \in A_i$ for each $i$.
+
+Cartesian products need not even be finite: given a set $X$, we define an $\omega$-tuple of elements in $X$ to be a function
+$$\mathbf{x}: \ints^+ \rightarrow X.$$
+Similarly, the notation $(x_1, x_2, \cdots)$ or $\{x_i\}_{i \in \ints^+}$ may be used. It follows that given an indexed family of sets $\{A_1, A_2, \cdots \}$, the Cartesian product $A_1 \times A_2 \times \cdots$ is the set of all $\omega$-tuples $(x_1, x_2, \cdots)$ of elements in $\bigcup_{i \in \ints^+} A_i$ such that $x_i \in A_i$ for each $i \in \ints^+$.
+
+\subsection{Finite Sets}
+A set $A$ is {\it finite} if it is empty or if there is a bijection $f: A \rightarrow \{1, \cdots, n\}$ for some $n \in \ints^+.$ If $A$ is empty, its cardinality is 0; in the latter case, its cardinality is $n.$
+
+The following lemma will be useful in proving many useful properties of finite sets.
+\begin{lemma}\label{1.9}
+    Suppose $n \in \ints^+$ and $A$ is a set, of which $a_0$ is an element. Then there exists a bijection $f: A \rightarrow \{1, \cdots, n+1\}$ if and only if there exists a bijection $g: A - \{a_0\} \rightarrow \{1, \cdots, n\}$.
+\end{lemma}
+We now explore the consequences of this lemma.
+\begin{theorem}\label{1.10}
+    Suppose $A$ is a nonempty finite set, and $B \subsetneq A$. Then there exists no bijection $g: B \rightarrow \{1, \cdots, n\}$ but if $B \neq \varnothing$, there exists a bijection $h: B \rightarrow \{1, \cdots, m\}$ for some $m< n$.
+\end{theorem}
+
+{\it Proof.} By induction. If $A$ has cardinality 1, its only proper subset is $\varnothing$. Trivially, there exists no bijection of the empty set $B$ with the nonempty set $\{1, \cdots, n\}$.
+
+Assume that the theorem is true for sets of cardinality $n$; we prove it true for $n+1$. Suppose that $f: A \rightarrow \{1, \cdots, n+1\}$ is a bijection and $B \subsetneq A$ is nonempty (the empty case is trivial, as above). Let $a_0 \in B$, $a_1 \in A - B$. By the lemma, there exists a bijection $g: A- \{a_0\} \rightarrow \{1, \cdots, n\}$. $B-\{a_0\}$ is a proper subset of $A - \{a_0\}$ which has cardinality $n$, so by the induction hypothesis there is no bijection $B-\{a_0\} \rightarrow \{1, \cdots, n\}$. By the lemma, there is no bijection $B \rightarrow \{1, \cdots, n\}$, proving the first part of the result.
+
+For the second part, the induction hypothesis states that if $B-\{a_0 \} \neq \varnothing$, there is a bijection $h: B - \{a_0\} \rightarrow \{1, \cdots, p\}$ for some $p < n$. In the case that $B - \{a_0\} = \varnothing$, there is a bijection $k: B \rightarrow \{1\}$ defined by $k(a_0) = 1$. Otherwise, the lemma shows that there is a bijection $B \rightarrow \{1, \cdots, p+1\}$ and $p+1 < n+1$. $\Box$
+
+\begin{corollary}\label{1.11}
+    If $A$ is finite and $B \subsetneq A$, there is no bijection $A \rightarrow B$.
+\end{corollary}
+
+{\it Proof.} Assume $f: A \rightarrow B$ is bijective. Since $A$ is finite and nonempty, there exists a bijection $A \rightarrow \{1, \cdots, n\}$ for some $n$. Then $g \circ f^{-1}: B \rightarrow \{1, \cdots, n\}$ is bijective, contradicting \hyperref[1.10]{1.10}. $\Box$
+
+\begin{corollary}\label{1.12}
+    $\ints^+$ is not finite.
+\end{corollary}
+{\it Proof}. Assume $\ints^+$ is finite. We define a bijection $f: \ints^+ \rightarrow \ints^+ - \{1\}$ by $f(n) = n+1$. As $\ints^+ - \{1\} \subsetneq \ints^+$, this contradicts \hyperref[1.11]{1.11}. $\Box$
+\begin{corollary}\label{1.13}
+    The cardinality of a finite set is unique.
+\end{corollary}
+{\it Proof.} Let $A$ be a finite set. Let $m< n$. Suppose there are bijections
+\begin{align*}
+    f&: A \rightarrow \{1, \cdots, n\}, \\
+    g&: A \rightarrow \{1, \cdots, m\}.
+\end{align*}
+Then 
+$$g \circ f^{-1}: \{1, \cdots, n\} \rightarrow \{1, \cdots, m\}$$
+is a bijection of a finite set with a proper subset of itself, contradicting \hyperref[1.11]{1.11}. $\Box$
+\begin{corollary}\label{1.14}
+    If $B \subseteq A$ where $A$ is finite, then $B$ is finite. If moreover $B \neq A$, then the cardinality of $B$ is less than the cardinality of $A$.
+\end{corollary}
+{\it Proof.} This follows directly from \hyperref[1.10]{1.10}. $\Box$
+\begin{corollary}\label{1.15}
+    Let $B$ be nonempty. Then the following are equivalent:
+    \begin{enumerate}
+        \item[(1)] $B$ is finite.
+        \item[(2)] There is a surjection from $\{1, \cdots, n\}$ for some $n \in \ints^+$ onto $B$.
+        \item[(3)] There exists an injection from $B$ onto $\{1, \cdots, n\}$ for some $n \in \ints^+$.
+    \end{enumerate}
+\end{corollary}
+{\it Proof.} $(1) \implies (2).$ Since $B \neq \varnothing,$ there is a bijection $f: B \rightarrow \{1, \cdots, n\}$ for some $n$. In particular, $f^{-1}$ is surjective.
+
+$(2) \implies (3).$ Given a surjection $f: \{1, \cdots, n\} \rightarrow B$, define $g: B \rightarrow \{1, \cdots, n\}$ by
+$$g(b) = \text{ smallest element of } f^{-1}(\{b\}).$$
+$f$ is surjective, so $f^{-1}(\{b\})$ is nonempty. By well-ordering property, $g(b)$ is well-defined. Moreover if $b \neq b'$, then $f^{-1}(\{b\}) \cap f^{-1}(\{b'\}) = \varnothing$, so $g$ is injective.
+
+$(3) \implies (1).$ Given an injection $g: B \rightarrow \{1, \cdots, n\}$, changing the codomain of $g$ gives a bijection $B \rightarrow \{1, \cdots, m\}$ for some $m \leq n$. By \hyperref[1.14]{1.14}, $B$ is finite. $\Box$
+\begin{corollary}\label{1.16}
+    Finite unions and finite Cartesian products of finite sets are finite.
+\end{corollary}
+
+{\it Proof.} Suppose $A, B$ are finite. If $A$ or $B$ is empty, then $A \cup B = A$ or $B$ and the result is trivial. Otherwise there exist bijections
+\begin{align*}
+    f&: \{1, \cdots, m\} \rightarrow A, \\
+    g&: \{1, \cdots, n\} \rightarrow B.
+\end{align*}
+Define a surjection $h: \{1, \cdots, m+n\} \rightarrow A\cup B$ by $h(i) = f(i)$ for $i = 1,\cdots, m$ and $h(i) = g(i-m)$ for $i = m+1 , \cdots, m+n$. By \hyperref[1.15]{1.15}, $A \cup B$ is finite. By induction, it is possible to show that any finite union of finite sets is finite.
+
+To show that $A \times B$ is finite, we remark that there exists a bijection of $\{a\} \times B$ with $B$ for each $a \in A$. $A \times B$ is simply the union of these sets across all $a \in A$, hence it is a finite union of finite sets and thus finite. $\Box$
+
+\subsection{Countable and Uncountable Sets}
+Sets which are not finite may be categorized as either countable or uncountable. Note that all finite sets are countable by default.
+\begin{definition}\label{1.17}
+    A set $A$ is infinite if it is not finite. $A$ is {\it countably infinite} if there exists a bijection
+    $$f: A \rightarrow \ints^+,$$
+    otherwise $A$ is {\it uncountable}.
+\end{definition}
+
+First, we prove a lemma that will aid in proving our next theorem.
+\begin{lemma}\label{1.18}
+    If $C$ is a subset of $\ints^+,$ then $C$ is countable.
+\end{lemma}
+
+{\it Proof.} Clearly the result holds if $C$ is finite. Thus suppose $C$ is an infinite subset of $\ints^+;$ we wish to show that $C$ is countably infinite.
+
+Define a bijection $h: \ints^+ \rightarrow C$ by induction:
+\begin{align*}
+    h(1) &= \text{ smallest element of } C, \\
+    h(n) &= \text{ smallest element of } C - h(\{1, \cdots, n-1\}).
+\end{align*}
+To show injectivity, given $m<n$, we remark that $h(m) \in h(\{1, \cdots, n-1\})$ while $h(n) \notin h(\{1, \cdots, n-1\})$, hence $h(n) \neq h(m)$.
+
+To show surjectivity, let $c \in C$ be arbitrary. Since $h(\ints^+)$ is infinite by injectivity, $h(\ints^+)$ is not contained in $\{1, \cdots, c\}$; that is, there is an $n \in \ints^+$ with $h(n) > c$. By well-ordering, let $m$ be the smallest element of $\ints^+$ such that $h(m) \geq c.$ For all $i< m$, $h(i) < c$, so $c \notin C- h(\{1, \cdots, m-1\})$. By definition of $h(m)$, $h(m) \leq c$, and thus $h(m) = c$. $\Box$
+
+The proof of this lemma relied on the principle of recursive definition: There is a unique $h: \ints^+ \rightarrow A$ defined by a unique $h(1) \in A$, and for $i>1$, a unique $h(i) \in A$ in terms of $h(\{1, \cdots, i-1\})$. 
+
+A more useful criterion for countability is the following:
+\begin{theorem}\label{1.19}
+    Let $B$ be a nonempty set. Then the following are equivalent:
+    \begin{enumerate}
+        \item[(1)] $B$ is countable.
+        \item[(2)] There exists a surjection $\ints^+ \rightarrow B$.
+        \item[(3)] There exists an injection $B \rightarrow \ints^+$.
+    \end{enumerate}
+\end{theorem}
+{\it Proof.} $(1) \implies (2)$. Suppose $B$ is countable. If $B$ is countably infinite, then there is a bijection $f: \ints^+ \rightarrow B$ by definition, and this is also a surjection. Otherwise $B$ is finite, and there is a bijection $h: \{1, \cdots, n\} \rightarrow B$. Extend $h$ to a surjection $f: \ints^+ \rightarrow B$ by
+$$f(i) = \begin{cases}
+    h(i) &\text{for }1 \leq i \leq n, \\
+    h(1) &\text{for }i > n.
+\end{cases}$$
+$(2) \implies (3)$. Given a surjection $f: \ints^+ \rightarrow B$, define $g: B \rightarrow \ints^+$ by
+$$g(b) = \text{ smallest element of } f^{-1}(\{b\}).$$
+$g$ is well-defined for the same reasons as in \hyperref[1.15]{1.15}.
+
+$(3) \implies (1)$. Given an injection $g: B \rightarrow \ints^+$, we may change the codomain of $g$ to obtain a bijection from $B$ to a subset of $\ints^+$. Since every subset of $\ints^+$ is countable, $B$ is countable. $\Box$
+
+This criterion yields several important corollaries:
+\begin{corollary}\label{1.20}
+    A subset of a countable set is countable.
+\end{corollary}
+
+{\it Proof.} Suppose $A \subseteq B$, where $B$ is countable. There is an injection $f: B \rightarrow \ints^+$; restricting $f$ to $A$ is an injection $A \rightarrow \ints^+.$ $\Box$
+
+\begin{corollary}\label{1.21}
+    $\ints^+ \times \ints^+$ is countably infinite.
+\end{corollary}
+{\it Proof}. By \hyperref[1.19]{1.19}, it suffices to construct an injection $f: \ints^+ \times \ints^+ \rightarrow \ints^+$. We define
+$$f(n, m) = 2^n3^n.$$
+If $2^n 3^n = 2^p 3^q$ and $n < p$, then $3^m = 2^{p-n}3^q$, contradicting the fact that $3^m$ is odd. Thus $n = p$, and similarly, $m = q$. $\Box$
+
+\begin{theorem}\label{1.22}
+    A countable union of countable sets is countable.
+\end{theorem}
+{\it Proof.} Let $\{A_n\}_{n \in J}$ be an indexed family of countable sets, where each $A_n$ is nonempty. For each $n$, each $A_n$ is countable, so there exists a surjection $f_n: \ints^+ \rightarrow A_n$. Similarly, there exists a surjection $g: \ints^+ \rightarrow J$. We define a surjection
+$$h: \ints^+ \times \ints^+ \rightarrow \bigcup_{n \in J} A_n$$
+by
+$$h(k, m) = f_{g(k)}(m).$$
+By \hyperref[1.19]{1.19}, $\bigcup_{n \in J} A_n$ is countable. $\Box$
+
+\begin{theorem}\label{1.23}
+    A finite product of countable sets is countable.
+\end{theorem}
+{\it Proof.} First we show that if $A, B$ are nonempty countable sets, then $A \times B$ is countable. There exist surjections $f: \ints^+ \rightarrow A$ and $g: \ints^+ \rightarrow B$. Then we define a surjection $h: \ints^+ \times \ints^+ \rightarrow A \times B$ by
+$$h(n, m) = (f(n), g(m)),$$
+showing that $A \times B$ is countable. By induction, a finite Cartesian product of countable sets is countable. $\Box$
+
+Although it may be tempting to extend this to countable products, this result is in fact false, as stated in the next theorem.
+
+\begin{theorem}\label{1.24}
+    $\{0, 1\}^\omega$ is uncountable.
+\end{theorem}
+{\it Proof.} Given $g: \ints^+ \rightarrow X^\omega$, we denote $g(n)$ by $(x_{n1}, x_{n2}, \cdots )$, where each $x_{ij}$ is either $0$ or $1$. Let $y = (y_1, y_2, \cdots) \in \{0, 1\}^\omega$ by defined by
+$$y_n = \begin{cases}
+    0 &\text{if } x_{nn} = 1, \\
+    1 &\text{if } x_{nn} = 0.
+\end{cases}$$
+Since $y$ differs from every $g(n)$ in the $n$th coordinate, $y$ does not lie in the image of $g$, so $g$ is not surjective.
+
+\begin{theorem}\label{1.25}
+    For any set $A$, there is no injection $f: \pow (A) \rightarrow A$, and no surjection $g: A \rightarrow \pow (A)$.
+\end{theorem}
+{\it Proof.} Given $g: A \rightarrow \pow (A)$, define
+$$B = \{a : a \in A-g(a)\}.$$
+Suppose, for the sake of contradiction, that $a_0 \in A$ is such that $g(a_0) = B$. Then
+$$a_0 \in B \iff a_0 \in A - g(a_0) \iff a_0 \in A - B,$$
+which is absurd. $\Box$
+
+\subsection{The Principle of Recursive Definition}
+Given an infinite subset $C$ of $\ints^+$, let $h: \ints^+ \rightarrow C$ be defined by:
+\begin{align*}
+    h(1) &= \text{ smallest element of }C, &(*)\\
+    h(i) &= \text{ smallest element of }C - h(\{1, \cdots, i-1\}).
+\end{align*}
+
+We wish to show that the above formula defines a unique function $h: \ints^+ \rightarrow C$. First, we prove two lemmas.
+\begin{lemma}\label{1.26}
+    Given $n \in \ints^+$, there exists a function $f: \{1, \cdots, n\} \rightarrow C$ that satisfies the above formula for all $i \in \{1, \cdots, n\}$.
+\end{lemma}
+{\it Proof.} By induction. For $n = 1,$ $f:\{1 \} \rightarrow C$ defined by $f(1) =$ smallest element of $C$ indeed satisfies the recursion.
+
+Suppose the lemma is true for $n-1$; that is, there exists a function $f': \{1, \cdots, n-1\} \rightarrow C$ satisfying the recursion for all $i \in \{1, \cdots, n-1\}$. Define $f: \{1, \cdots, n\} \rightarrow C$ by
+\begin{align*}
+    f(i) &= f'(i) \text{ for } i \in \{1, \cdots, n-1\}, \\
+    f(n) = \text{ smallest element of } C - f'(\{1, \cdots, n-1\}).
+\end{align*}
+Since $C$ is finite while $\{1, \cdots, n-1\}$ is not, $f'$ is not surjective, meaning $C - f'(\{1, \cdots, n-1\})$ is nonempty, and thus $f(n)$ is well-defined. Moreover, $f$ clearly satisfies the recursion. $\Box$
+
+\begin{lemma}\label{1.27}
+    Suppose $m<n$ and $f: \{1,\cdots, n\} \rightarrow C$ and $g: \{1, \cdots, m\} \rightarrow C$ both satisfy (*). Then $f(i) = g(i)$ for all $i \in \{1, \cdots, m\}$.
+\end{lemma}
+{\it Proof}. Suppose the result is false. Let $i \in \ints^+$ be minimally such that $f(i) \neq g(i)$. In particular, $i > 1$. For all $j < i$, $f(j) = g(j)$. Then by (*),
+$$f(i) = \text{ smallest element of }C - f(\{1, \cdots, i-1\}) = \text{ smallest element of }C - g(\{1, \cdots, i-1\}) = g(i),$$
+a contradiction. $\Box$
+
+We are now sufficiently equipped to prove our theorem.
+\begin{theorem}\label{1.28}
+    There exists a unique functions $h: \ints^+ \rightarrow C$ satisfying (*) for all $i \in \ints^+$.
+\end{theorem}
+{\it Proof.} By \hyperref[1.26]{1.26}, there exists for each $n$ a function $f_n:\{1, \cdots, n\} \rightarrow C$ that satisfies (*), and by \hyperref[1.27]{1.27}, $f_n$ is unique. Let $h: \ints^+ \rightarrow C$ be defined by
+$$h = \bigcup_{n \in \ints^+} f_n,$$
+where each function $f_n$ is viewed as a subset of $\{1, \cdots, n\} \times C$. It follows that $h \subseteq \ints^+ \times C$. $h$ is well-defined by \hyperref[1.27]{1.27}, $h$ satisfies (*) by definition of $f_n$, and $h$ is unique by uniqueness of $f_n$. $\Box$
+
+In fact we never actually used the definition given in (*) itself; we only require that the recursion formula assigns a unique element to a function $\{1, \cdots, n\} \rightarrow A$. This gives us:
+\begin{theorem}\label{1.29}
+    (Principle of recursive definition).\\
+
+    Let $a_0 \in A$. Suppose $\rho$ is a function that assigns to each function $f: \{1, \cdots, n\} \rightarrow A$ an element of $A$. Then there exists a unique function $h: \ints^+ \rightarrow A$ such that
+    \begin{align*}
+        h(1) &= a_0, \\
+        h(i) &= \rho(h\{1, \cdots, i-1\}).
+    \end{align*}
+\end{theorem}
+
+\subsection{Infinite Sets and the Axiom of Choice}
+The following provides more useful criteria for infinite sets.
+\begin{theorem}\label{1.30}
+    The following statements about a set $A$ are equivalent:
+    \begin{enumerate}
+        \item[(1)] $A$ is finite.
+        \item[(2)] There exists an injection $f: \ints^+ \rightarrow A$.
+        \item[(3)] There exists a bijection of $A$ with a proper subset of itself.
+    \end{enumerate}
+\end{theorem}
+{\it Proof.}
+$(1) \implies (2)$. We recursively define an injection $f: \ints^+ \rightarrow A$ by
+\begin{align*}
+    f(1) &\in A, \\
+    f(n) &\in A- f(\{1, \cdots , n-1\}).
+\end{align*}
+Suppose $m< n$. Then $f(m) \in f(\{1, \cdots, n-1\})$ while $f(n) \notin f(\{1, \cdots, n-1\})$ by definition. Thus $f(m) \neq f(n)$.
+
+$(2) \implies (3).$ Given an injection $f: \ints^+ \rightarrow A$, let $B = f(\ints^+)$ and let $a_n = f(n)$. By injectivity, $n \neq m$ implies $a_n \neq a_m$. Define a bijection $g: A \rightarrow A - \{a_1\}$ by
+\begin{align*}
+    g(a_n) = a_{n+1} &\text{for } a_n \in B, \\
+    g(x) = x &\text{for } x \in A - B.
+\end{align*}
+$(3) \implies (1).$ This is simply the contrapositive of \hyperref[1.11]{1.11}. $\Box$
+
+The proof of the first implication used a function defined by recursion, but it should be remarked that this recursion does not define a unique element $f(i).$ Thus \hyperref[1.29]{1.29} actually cannot be invoked; instead we need a somewhat more abstract axiom:
+\begin{definition}\label{1.31}
+    (Axiom of choice).
+    \vspace{10pt}
+
+    Given a collection $\mathcal{A}$ of disjoint nonempty sets, there exists a set $C$ consisting of exactly one element from each element in $\mathcal{A}$; that is, a set $C$ such that $C \subseteq \bigcup_{A \in \mathcal{A}} A$ and for each $A \in \mathcal{A}$, $C \cap A$ contains a single element.
+\end{definition}
+
+The axiom of choice has several powerful (and controversial) consequences:
+\begin{lemma}\label{1.32}
+    Suppose $\mathcal{B}$ is a collection of nonempty sets. Then there exists a function
+    $$c: \mathcal{B} \rightarrow \bigcup_{B \in \mathcal{B}}B$$
+    such that $c(B) \in B$ for each $B \in \mathcal{B}$.
+\end{lemma}
+{\it Proof.} Given $B \in \mathcal{B}$, define 
+$$B' = \{(B, x) : x \in B\}.$$
+We remark that $B' \subseteq \mathcal{B} \times \bigcup{B \in \mathcal{B}} B,$ hence $B'$ is nonempty.
+
+Given two distinct sets $B_1, B_2 \in \mathcal{B}$, $B_1' \cap B_2' = \varnothing$, as every pair of elements differ in the first coordinate. From this, we define the collection
+$$\mathcal{C} = \{B': B \in \mathcal{B}\}$$
+of disjoint nonempty subsets of $\mathcal{B} \times \bigcup_{B\in \mathcal{B}}B$. By the axiom of choice, there exists a set $C$ consisting of exactly one element from each element of $\mathcal{C}$. $C \subseteq \mathcal{B} \times \bigcup{B \in \mathcal{B}} B$ contains exactly one element from each set $B'$; that is, exactly one ordered pair $(B, x)$ with first coordinate $B$. Thus $C$ is the rule for a function $c: \mathcal{B} \rightarrow \bigcup_{B \in \mathcal{B}}B$. This is precisely the choice function as $(B, x) \in C$ implies $x = c(B) \in B$. $\Box$
+
+Using \hyperref[1.32]{1.32}, we may prove the implication $(1) \implies (2)$ in \hyperref[1.30]{1.30}.
+{\it Proof of \hyperref[1.30]{1.30}}. Given an infinite set $A$, let $\mathcal{B}$ be the collection of all nonempty subsets of $A$. By $\hyperref[1.32]{1.32}$, there exists a choice function
+$$c: \mathcal{B} \rightarrow \bigcup_{B \in \mathcal{B}}B = A$$
+such that $c(B) \in B$ for each $B \in \mathcal{B}$. We define an injection $f: \ints^+ \rightarrow A$ by
+\begin{align*}
+    f(1) &= c(A), \\
+    f(i) &= c(A - f(\{1, \cdots, i-1\})).
+\end{align*}
+Since $c$ is a well-defined function, the principle of recursive definition applies. Injectivity was shown in the earlier proof. $\Box$
+
+\subsection{Well-Ordered Sets}
+We saw that $\ints^+$ had a very nice property of well-ordering. We generalize this in the following:
+\begin{definition}\label{1.33}
+    A set $A$ with an order relation $<$ is {\it well-ordered} if every nonempty subset of $A$ has a smallest element.
+\end{definition}
+Common constructions of well-ordered sets include taking a subset of a well-ordered set with the restricted order relation, or taking a Cartesian product of well-ordered sets with the dictionary order.
+
+Given a set $A$ without an order relation, we turn to the question of constructing an order relation with respect to which $A$ is well-ordered. In fact, the finite case is easy: given a bijection
+$$f: A\rightarrow \{1, \cdots, n\},$$
+we may define an order relation $f^{-1}(1) < \cdots < f^{-1}(n)$ of the same order type has $\{1, \cdots, n\}$. In general, every order relation on a finite set $A$ follows this pattern.
+\begin{theorem}\label{1.34}
+    Every nonempty finite ordered set $A$ has the order type of $\{1,\cdots, n\} \subseteq \ints^+$, hence is well-ordered.
+\end{theorem}
+{\it Proof.} First, we show by induction that $A$ has a maximal element. This is trivial if $A$ has one element. Assuming the result is true for sets of $n-1$ elements, suppose $A$ has $n$ elements and $a_0 \in A.$ By the induction hypothesis, let $a_1$ be the maximal element of $A- \{a_0\}$. Then $\max \{a_0, a_1\}$ is the maximal element of $A$.
+
+Next, we show by induction that there exists an order-preserving bijection $A \rightarrow \{1, \cdots, n\}$. The base case is trivial; suppose the result is true for sets of $n-1$ elements, and let $b$ be the maximal element in $A$. By the hypothesis, there exists an order-preserving bijection
+$$f': A- \{b\} \rightarrow \{1, \cdots, n-1\}.$$
+We define an order-preserving bijection $f: A \rightarrow \{1, \cdots, n\}$ by
+\begin{align*}
+    f(x) &= f'(x) \text{ for } x \neq b, \\
+    f(b) &= n.
+\end{align*}
+$\Box$
+
+The infinite case is much more ambiguous. Dictionary order does not generalize well to uncountable sets, and in general, it is exceedingly difficult to construct a well-ordering of uncountable sets. However, the following theorem states that a well-ordering in fact exists.
+\begin{theorem}\label{1.35}
+    (Well-ordering theorem).
+    \vspace{10pt}
+
+    For any set $A$, there exists an order relation on $A$ that is a well-ordering.
+\end{theorem}
+An easy corollary turns out to be quite important:
+\begin{corollary}\label{1.36}
+    There exists an uncountable well-ordered set.
+\end{corollary}
+To understand the full importance of \hyperref[1.36]{1.36}, we need some preparation:
+\begin{definition}\label{1.37}
+    Given a well-ordered set $X$ and $\alpha \in X$, let the section $S_\alpha$ of $X$ by $\alpha$ be defined by
+    $$S_\alpha = \{x: x \in X, x < \alpha\}.$$
+\end{definition}
+
+\begin{lemma}\label{1.38}
+    There exists a well-ordered set $A$ with a maximal element $\Omega$ such that $S_\Omega$ is uncountable but every other section of $A$ is countable.
+\end{lemma}
+    {\it Proof.} By \hyperref[1.36]{1.36}, let $B$ be an uncountable well-ordered set. Let $C$ be the well-ordered set $\{1, 2\} \times B$ by the dictionary order. Some section of $C$ is uncountable; let $\Omega \in C$ be minimally such that the section $S_\Omega$ of $C$ is uncountable. Let $A = S_\Omega \cup\{\Omega\} = \overline{S}_\Omega$. By construction, $S_\Omega$ is uncountable but every other section of $A$ is countable by minimality of $\Omega$. $\Box$
+
+\begin{theorem}\label{1.39}
+    If $A$ is a countable subset of $S_\Omega$, then $A$ has an upper bound in $S_\Omega$.
+\end{theorem}
+
+{\it Proof.} For each $a \in A$, $S_a$ is countable. Thus $B = \bigcup_{a \in A} S_a$ is countable, so $B \subsetneq S_\Omega$. Taking $x \in S_\Omega - B$, $x$ is an upper bound for $A$, because if $x< a$ for some $a$, then $a \in S_a \subseteq B$, contradicting the choice of $x \notin B$. $\Box$
+
+\subsection{The Maximum Principle}
+To see another equivalent statement to the axiom of choice and the well-ordering theorem, we must first define a new kind of relation.
+\begin{definition}\label{1.40}
+    Given a set $A$, a relation $\prec$ on $A$ is a {\it strict partial order} if it has the following properties:
+    \begin{enumerate}
+        \item[(1)] (Nonreflexivity) $a \prec a$ never holds.
+        \item[(2)] (Transitivity) if $a \prec b$ and $b \prec c$, then $a \prec c$.
+    \end{enumerate}
+\end{definition}
+We see that these are the second and third properties of simple order (\hyperref[1.4]{1.4}), with comparability omitted. However it may occur that every pair of elements in some $B \subseteq A$ is comparable, then $B$ is simply ordered by $\prec$. This leads to our next principle.
+\begin{theorem}\label{1.41}
+    (Hausdorff maximality principle).
+    \vspace{10pt}
+
+    Suppose $A$ is a set with a strict partial order $\prec$. Then there exists a maximal simply ordered subset $B$ of $A.$
+\end{theorem}
+
+Another equivalent statement will follow from the next definition.
+\begin{definition}\label{1.42}
+    Given a set $A$ with a strict partial order $\prec,$ and $B \subseteq A$, an {\it upper bound} on $B$ is a $c \in A$ such that for every $b \in B$, either $b = c$ or $b \prec c$. A {\it maximal element} of $A$ is an $m \in A$ such that for no $a \in A$, $m \prec a$.
+\end{definition}
+\begin{theorem}\label{1.43}
+    (Zorn's Lemma).
+    \vspace{10pt}
+
+    Suppose $A$ is a set with a strict partial ordering $\prec.$ If every simply ordered subset of $A$ has an upper bound in $A$, then $A$ has a maximal element.
+\end{theorem}
+We now have the adequate preparation to introduce our first concepts in topology.
