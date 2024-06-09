@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 13 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item Let $\topo$ be a topology on a set $X$, and $A \subseteq X$. Suppose for each $x \in A$ there exists $U \in \topo$ containing $x$ such that $U \subseteq A$. Show that $A \in \topo$.
+
+    {\bf SOLUTION.} For each $x \in A$, let $U_x \in \topo$ be such that $x \in U_x \subseteq A$. We claim that
+    $$A = \bigcup_{x\in A} U_x.$$
+    If $x \in A$, then $x \in U_x \subseteq \bigcup_{x\in A} U_x$. Conversely, if $w \in \bigcup_{x\in A} U_x,$ then for some $x,$ $w \in U_x \subseteq A$. Thus $A$ is a union of open sets, hence it is also open. $\Box$
+
+    \item Compare the 9 topologies on $X = \{a, b, c\}$ in Example 1. 
+
+    {\bf SOLUTION.} We index the 9 topologies in the order that they are read (left to right; top to bottom).
+
+    $\topo_1$ is coarser than every other topology, and $\topo_9$ is finer than every other topology.
+
+    $\topo_2$ is not comparable to $\topo_3, \topo_4, \topo_5, \topo_6,$ finer than $\topo_7$ and coarser than $\topo_8$.
+
+    $\topo_3$ is finer than $\topo_4, \topo_7$, coarser than $\topo_6$, and not comparable to $\topo_5, \topo_8$.
+
+    $\topo_4$ is not comparable to $\topo_5, \topo_7$, coarser than $\topo_6, \topo_8$.
+
+    $\topo_5$ is not comparable with $\topo_6, \topo_7, \topo_8$.
+
+    $\topo_6$ is finer than $\topo_7$ and not comparable with $\topo_8$.
+
+    $\topo_7$ is coarser than $\topo_8$. $\Box$
+    
+    \item Show that $\topo_C = \{U: X - U \text{ is countable or is all of } X\}$ is a topology on $X$. Is $T_\infty = \{U : X - U \text{ is infinite or empty or all of } X\}$ a topology on $X$?
+
+    {\bf SOLUTION.} Clearly, $\varnothing \in \topo_C$ and $X \in \topo_C$ as $X - \varnothing = X$ and $X - X = \varnothing$, which is countable. Given an indexed family $\{U_\alpha\}$ of nonempty elements of $\topo_C$, we see that
+    $$X - \bigcup U_\alpha = \bigcap (X - U_\alpha),$$
+    and since each $X - U_\alpha$ is countable, so is their intersection, hence $\bigcup U_\alpha \in \topo_C$, as desired. Given nonempty elements $U_1, \cdots, U_n \in \topo_C$, we see that
+    $$X - \bigcap_{i=1}^n U_i = \bigcup_{i=1}^n (X - U_i),$$
+    and since each $X-U_i$ is countable, so is their finite union. This means $\bigcap_{i=1}^n U_i \in \topo_C$.
+
+    It is not necessarily true that given an indexed family $\{U_\alpha\}$ of nonempty elements of $\topo_\infty$, $\bigcup U_\alpha \in \topo_\infty$. As a counterexample, let $X = \reals$, and consider the open intervals $(-\infty, 0)$ and $(0, \infty)$. Clearly
+    $$\reals - (-\infty, 0) = [0, \infty) \text{ and } \reals - (0, \infty) = (-\infty, 0]$$
+    are both infinite, hence $(-\infty, 0),(0, \infty) \in \topo_\infty$. However, $X - ((-\infty, 0) \cup (0, \infty)) = \{0\}$, which is not infinite, so $(-\infty, 0) \cup (0, \infty) \notin \topo_\infty$. Thus $\topo_\infty$ is not a topology. $\Box$
+
+    \item \begin{enumerate}
+        \item If $\{\topo_\alpha\}$ is a family of topologies on $X$, show that $\bigcap \topo_\alpha$ is a topology on $X$. Is $\bigcup \topo_\alpha$  a topology on $X$?
+
+        {\bf SOLUTION.} Since $\varnothing, X \in \topo_\alpha$ for every $\alpha$, $\varnothing, X \in \bigcap \topo_\alpha$. Given an indexed family $\{U_\beta\}$ of nonempty elements of $\bigcap \topo_\alpha$, every element in $\{U_\beta\}$ is in every topology in $\{\topo_\alpha\}$, hence $\bigcup U_\beta \in \topo_\alpha$ for every $\alpha$, and thus $\bigcup U_\beta \in \bigcap \topo_\alpha.$ Similarly, given $U_1, \cdots, U_n \in \bigcap \topo_\alpha$, each $U_i$ is in every topology in $\{\topo_\alpha\}$, hence $\bigcap_{i=1}^n U_i$ is in every topology, and thus $\bigcap_{i=1}^nU_i \in \bigcap \topo_\alpha$. Thus $\bigcap \topo_\alpha$ is a topology on $X$.
+
+        It is not necessarily true that given an indexed family $\{U_\beta\}$ of nonempty elements of $\bigcup \topo_\alpha$, $\bigcup U_\beta \in \bigcup \topo_\alpha.$ As a counterexample, consider $X = \{a, b, c\}$ and the topologies 
+        $$\topo_1 = \{\varnothing, \{a\}, X\} \text{ and } \topo_2 = \{\varnothing, \{b\}, X\}.$$
+        $\{a\}, \{b\} \in \topo_1 \cup \topo_2,$ but $\{a, b\} \notin \topo_1 \cup \topo_2$, hence $\topo_1 \cup \topo_2$ is not a topology on $X$. $\Box$
+        
+        \item Show that there is a unique coarsest topology on $X$ finer than every $\topo_\alpha$, and a unique finest topology on $X$ coarser than every $\topo_\alpha$.
+
+        {\bf SOLUTION.} Since $X \in \bigcup \topo_\alpha$, $\bigcup \topo_\alpha$ is a subbasis for some topology $\topo$ finer than every $\topo_\alpha$. Moreover, a topology  containing every $\topo_\alpha$ must contain arbitrary unions of finite intersections of elements in $\bigcup \topo_\alpha$, and thus must be finer than $\topo.$ Thus $\topo$ is the unique coarsest topology on $X$ finer than every $\topo_\alpha$.
+
+        We know $\bigcap \topo_\alpha$ is a topology coarser than every $\topo_\alpha.$ Moreover, any topology contained by every $\topo_\alpha$ is coarser than $\bigcap \topo_\alpha$. Thus the intersection topology is the unique finest topology on $X$ coarser than every $\topo_\alpha$. $\Box$ 
+        
+        \item If $X =\{a, b, c\}$, let $\topo_1 = \{\varnothing, X, \{a\}, \{a, b\}\}, \topo_2 = \{\varnothing, X, \{a\}, \{b, c\}\}.$ Find the coarsest topology finer than $\topo_1, \topo_2$, and the finest topology coarser than $\topo_1, \topo_2$.
+
+        {\bf SOLUTION.} Firstly, we have $\topo_1 \cup \topo_2 = \{\varnothing, X, \{a\}, \{a, b\}, \{b, c\}\}$. This subbasis generates the topology
+        $$\topo = \{\varnothing, X, \{a\}, \{b\}, \{a, b\}, \{b, c\}\}.$$
+        Next, we have $\topo_1 \cap \topo_2 = \{ \varnothing, X, \{a\} \}$ as the desired topology. $\Box$
+    \end{enumerate}
+
+    \item Show that if $\mathcal{A}$ is a basis for a topology on $X$, then the topology generated by $\mathcal{A}$ is the intersection of all topologies on $X$ that contain $\mathcal{A}$. Prove the same if $\mathcal{A}$ is a subbasis.
+
+    {\bf SOLUTION.} Let $\topo$ denote the topology generated by $\mathcal{A}$. Any topology $\topo'$ containing $\mathcal{A}$ must also contain arbitrary unions of elements in $\mathcal{A}$, hence $\topo'$ is finer than $\topo$. Then, the intersection of all topologies containing $\mathcal{A}$ is finer than $\topo$. Conversely, since $\topo$ contains $\mathcal{A}$, the intersection is contained in $\topo$, and thus $\topo$ is the intersection of all topologies containing $\mathcal{A}.$
+    
+    Similarly, if $\mathcal{A}$ is a subbasis for $\topo$, then any topology $\topo'$ containing $\mathcal{A}$ must contain arbitrary unions of finite intersections of elements in $\mathcal{A}$, hence $\topo' \supseteq \topo$, meaning $\bigcap \topo' \supseteq \topo$. Then as $\topo$ contains $\mathcal{A}$ by definition, $\bigcap \topo' \subseteq \topo$, and thus $\bigcap \topo' = \topo$. $\Box$
+
+    \item Show that $\reals_\ell$ and $\reals_K$ are not comparable.
+
+    {\bf SOLUTION.} For any $x \in \reals$, consider some basis element $[x, b) \in \topo_\ell$ containing $x$. There is no open interval containing $x$ that is contained in $[x, b)$, hence $\topo_\ell$ is not coarser than $\topo_K$.
+    
+    Conversely, consider $0 \in \reals$, and the basis element $(-1, 1) - K \in \topo_K$ containing $0$. Any basis element $[a, \varepsilon) \in \topo_\ell$ containing $0$ satisfies $a \leq 0$ and $\varepsilon > 0$. Then there exists $N \in \nats$ with $\frac{1}{N} < \varepsilon$, meaning $[a, \varepsilon)$ is not contained in $(-1, 1) - K$. Thus $\topo_\ell$ is not finer than $\topo_K$. $\Box$
+
+    \item Let 
+    \begin{align*}
+        \topo_1 &= \text{ the standard topology}, \\
+        \topo_2 &= \reals_K, \\
+        \topo_3 &= \text{ the finite complement topology}, \\
+        \topo_4 &= \text{ the upper limit topology, having all sets }(a, b] \text{ as basis}, \\
+        \topo_5 &= \text{ the topology having all sets } (-\infty, a) \text{ as basis}.
+    \end{align*}
+    Determine, for each of these topologies, which of the others it contains.
+
+    {\bf SOLUTION.} Clearly $\topo_1 \subseteq \topo_2$, since every basis element in $\topo_1$ is also a basis element in $\topo_2$. However, consider $0 \in (-1, 1) - K$. For any basis element $(a, b) \in \topo_1$ containing zero, there exists $\varepsilon > 0$ such that $0 \in (-\varepsilon, \varepsilon) \subseteq (a, b)$. Then there exists $N \in \nats$ such that $\frac{1}{N} < \varepsilon$, hence $(a, b)$ is not contained in $(-1, 1) - K$. Therefore $\topo_1 \subsetneq \topo_2$.
+
+    Given a basis element $\reals - \{a_1, \cdots, a_n\}$ in $\topo_3$, $\reals - \{a_1, \cdots, a_n\}$ is also in $\topo_1$ as it may be written as $(-\infty, a_1) \cup (a_1, a_2) \cup \cdots, \cup (a_{n-1}, a_n) \cup (a_n, \infty)$, assuming without loss of generality that $a_1, \cdots, a_n$ are in increasing order. Conversely, the basis element $(a, b) \in \topo_1$ is not in $\topo_3$, as $(a, b)$ is bounded while any element in $\topo_3$ is unbounded. Thus $\topo_3 \subsetneq \topo_1$.
+
+    Given a basis element $(a, b) \in \topo_1$ and any $x \in (a, b)$, $(a, x] \in \topo_4$ is a basis element such that $x \in (a, x] \subseteq (a, b).$ However, given $b \in (a, b] \in \topo_4$, there is no basis element in $\topo_1$ that contains $b$ and is contained by $(a, b]$. Thus $\topo_1 \subsetneq \topo_4$.
+
+    Given any basis element $(-\infty, a) \in \topo_5$ and any $x \in (-\infty, a)$, there exists a basis element $(x-1, a) \in \topo_1$ such $x \in (x-1, a) \subseteq (-\infty, a)$. Conversely, every basis element $(a, b) \in \topo_1$ is bounded while every basis element $(-\infty, a) \in \topo_5$ is not, hence no basis element of $\topo_5$ may be contained in a basis element of $\topo_1$. Thus $\topo_5 \subsetneq \topo_1$.
+
+    From this, $\topo_3 , \topo_5 \subsetneq \topo_1 \subsetneq \topo_2 \subsetneq \topo_4$.
+    
+    For any basis element $(a, b) \in \topo_2$ and $x \in (a, b)$, $(a, x] \in \topo_4$ is such that $x \in (a, x] \subseteq (a, b)$. Otherwise for any basis element $(a, b) - K \in \topo_2$ and $x \in (a, b) - K$, in the case where $(a, b) \cap K \neq \varnothing$, we have $x \in \left(\frac{1}{n+1}, \frac{1}{n} \right) \subseteq (a, b) - K$ for some $n$. Conversely, consider $x \in (a, x]$. There is no open interval $(a, b)$ such that $x \in (a, b) \subseteq (a, x]$ or $x \in (a,b) - K \subseteq (a, x]$. Thus $\topo_2 \subsetneq \topo_4$.
+        
+    $\topo_3$ and $\topo_5$ are not comparable. Consider the basis element $\reals - \{a_1, a_2 \} \in \topo_3$ and $x \in (a_1, a_2)$. There is no basis element $(-\infty, a)$ containing $x$ that is contained in $\reals - \{a_1, a_2 \}$, since any such interval containing $x$ must contain $a_1$ as $a_1 < x$. Moreover, consider the basis element $(-\infty, a) \in \topo_5$, with any $x \in (-\infty, a)$. Since $(-\infty, a)$ is bounded above while every basis element of $\topo_3$ is unbounded, there exists no basis element of $\topo_3$ contained in $(-\infty, a)$. $\Box$
+
+    \item \begin{enumerate}
+        \item Apply Lemma 2.4 to show that the countable collection $\mathcal{B} = \{(p, q) : p<q \text{ and } p, q \in \rats\}$ is a basis for the standard topology on $\reals$.
+
+        {\bf SOLUTION.} Clearly for every $x \in \reals$, there exist $p, q \in \rats$ with $p < a <q$; that is, $a \in (p, q)$.
+        
+        Given any $(a, b) \in \topo$ and any $x \in (a, b)$, there exists $p, q \in \rats$ such that $a < p< x< q< b$, by the density of $\rats$ in $\reals$. Thus $(p, q) \in \mathcal{B}$ is such that $x \in (p, q) \subseteq (a, b)$. By Lemma 2.4, $\mathcal{B}$ is a basis for $\reals.$ $\Box$
+        
+        \item Show that $\cee = \{[a, b) : a<b, a, b \in \rats\}$ is a basis that generates a topology different from $\topo_\ell.$
+
+        {\bf SOLUTION.} To show that $\cee$ is a basis, we remark that $\bigcup_{U \in \cee} U = \reals$, satisfying the first property, and if $x \in (a, b) \cap (c, d)$ where $(a, b), (c, d) \in \cee$, then $(c, b) \in \cee$ is such that $x \in (c, b) \subseteq (a, b) \cap (c, d)$.
+
+        Now, to show that $\cee$ does not generate $\topo_\ell$, consider some irrational $x \in \reals$ and the basis element $[x, b) \in \topo_\ell$. $\topo$, generated by $\cee$, is the collection of all arbitrary unions in $\cee$. However, $[x, b)$ is not an arbitrary union of intervals in the form $[a, b)$ for $a, b \in \rats$, so $\topo \neq \topo_\ell$. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}

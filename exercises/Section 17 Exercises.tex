@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 17 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item Let $\mathcal{C}$ be a collection of subsets of a set $X$ such that $\varnothing, X \in \mathcal{C}$, and finite unions and arbitrary intersections in $\mathcal{C}$ are in $\mathcal{C}$. Show that $\topo = \{X - C: C \in \mathcal{C}\}$ is a topology on $X$.
+
+    {\bf SOLUTION.} $\varnothing, X \in \topo$ since they are the complements of $X, \varnothing \in \mathcal{C}$, respectively. Given a family $\{X - C_\alpha\}_{\alpha \in J}$ of elements in $\topo$, their union
+    $$\bigcup_{\alpha \in J} (X - C_\alpha) = X - \bigcap_{\alpha \in J} C_\alpha$$
+    is in $\topo$ since $\bigcap_{\alpha \in J} C_\alpha \in \mathcal{C}$. Similarly, given $X-C_1, \cdots, X-C_n \in \mathcal{C}$, their intersection
+    $$\bigcap_{i=1}^n (X-C_i) = X - \bigcup_{i=1}^n C_i$$
+    is in $\topo$ as $\bigcup_{i=1}^n C_i \in \mathcal{C}$. $\Box$
+
+    \item Show that if $A$ is closed in $Y$ and $Y$ is closed in $X$, then $A$ is closed in $X$.
+
+    {\bf SOLUTION.} See Theorem 2.22. 
+
+    \item Show that if $A$ is closed in $X$ and $B$ is closed in $Y$, then $A \times B$ is closed in $X \times Y$. 
+
+    {\bf SOLUTION.} $X-A$ is open in $X$ and $Y-B$ is open in $Y$, so $(X-A) \times (Y-B)$ is open in $X \times Y$. Thus $X \times Y - (X-A) \times (Y-B) = A \times B$ is closed in $X \times Y$. $\Box$
+
+    \item Show that if $U$ is open in $X$ and $A$ is closed in $X$, then $U-A$ is open in $X$ and $A - U$ is closed in $X$. 
+
+    {\bf SOLUTION.} $X-A$ is open in $X$, meaning $U \cap (X-A) = U - A$ is open in $X$. Similarly, $X-U$ is closed in $X$, meaning $(X-U) \cap A = A - U$ is closed in $X$. $\Box$
+
+    \item Let $X$ be an ordered set in the order topology. Show that $\overline{(a, b)} \subseteq [a, b]$. Under what conditions does equality hold? 
+
+    {\bf SOLUTION.} Suppose $x \in \overline{(a, b)}$. By Theorem 2.25, every open set containing $x$ intersects $(a, b)$. Thus $x \in [a,b]$; otherwise the open set $(-\infty, a) \cup (b, \infty)$ contains $x$ but does not intersect $(a, b)$. Since $\overline{(a, b)} = (a, b) \cup A' \subseteq [a, b]$, we see that $\overline{(a, b)} = [a, b]$ if and only if $A' = \{a, b\}$; that is, $a, b$ are limit points of $(a, b)$. $\Box$
+
+    \item Let $A, B, A_\alpha$ denote subsets of $X$. Prove that
+    \begin{enumerate}
+        \item If $A \subseteq B$, then $\overline{A} \subseteq \overline{B}$.
+
+        {\bf SOLUTION.} Suppose $x \in \overline{A}$. Then by Theorem 2.25, every open set containing $x$ intersects $A$, and since $A \subseteq B$, every open set containing $x$ intersects $B$; thus $x \in \overline{B}$. $\Box$
+        
+        \item $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+
+        {\bf SOLUTION.} If $x \in \overline{A} \cup \overline{B},$ then every open set containing $x$ intersects $A$ or every open set containing $x$ intersects $B$, so surely every open set containing $x$ intersects $A \cup B$. Thus $x \in \overline{A \cup B}$. Conversely, $\overline{A} \cup \overline{B}$ is a closed set containing $A \cup B$, and since $\overline{A \cup B}$ is the intersection of all closed sets containing $A \cup B, \overline{A \cup B} \subseteq \overline{A} \cup \overline{B}$. $\Box$
+        
+        \item $\overline{\bigcup A_\alpha} \supseteq \bigcup \overline{A_\alpha}$; with an example where equality fails.
+
+        {\bf SOLUTION.} If $x \in \bigcup \overline{A_\alpha}$, then $x \in \overline{A_\alpha}$ for some $\alpha$, hence every open set containing $x$ intersects $A_\alpha$, so every open set containing $x$ must intersect $\bigcup A_\alpha$, and thus $x \in \overline{\bigcup A_\alpha}$.
+
+        Consider $X = \reals$, and the family of subsets $A_\alpha = \{\alpha\}$ for $\alpha \in \rats$. Each $A_\alpha$ is a finite point set in a Hausdorff space $\reals$, and thus is closed. Then $\bigcup \overline{A_\alpha} = \bigcup A_\alpha = \rats$, while $\overline{\bigcup A_\alpha} = \overline{\rats} = \reals$. $\Box$
+    \end{enumerate}
+
+    \item Criticize the following 'proof' that $\overline{\bigcup A_\alpha} \subseteq \bigcup \overline{A_\alpha}$: if $\{A_\alpha\}$ is a collection of sets in $X$ and $x \in \overline{\bigcup A_\alpha}$, then every neighbourhood of $x$ intersects $\bigcup A_\alpha$, and thus intersects some $A_\alpha$, so that $x$ must belong to the closure of some $A_\alpha$. Thus $x \in \bigcup \overline{A_\alpha}$.
+
+    {\bf SOLUTION.} While it is true that every neighbourhood of $x$ intersects some $A_\alpha$, this is insufficient to conclude that $x \in \overline{A_\alpha}$ for some $\alpha$, which would require that every neighbourhood of $x$ intersects a particular $A_\alpha$. $\Box$
+
+    \item Let $A, B, A_\alpha$ be subsets of $X$. Determine whether the following equations hold; if an equality fails, determine whether one of the inclusions holds.
+    \begin{enumerate}
+        \item $\overline{A \cap B} = \overline{A} \cap \overline{B}$.
+
+        {\bf SOLUTION.} If $x \in \overline{A \cap B}$, then every neighbourhood of $x$ intersects $A \cap B$, and thus intersects both $A$ and $B$. Thus $x \in \overline{A} \cap \overline{B}$. The converse is not true since a neighbourhood of $x$ may intersect $A$ and $B$ without intersecting $A \cap B$; as a counterexample, consider the subsets $A = (-1, 0), B = (0, 1)$ of $\reals$. We have $\overline{(-1, 0) \cap (0, 1)} = \overline{\varnothing} = \varnothing$, while $\overline{(-1, 0)} \cap \overline{(0, 1)} = [-1, 0] \cap [0, 1] = \{0\}$. $\Box$
+        
+        \item $\overline{\bigcap A_\alpha} = \bigcap \overline{A_\alpha}$.
+
+        {\bf SOLUTION.} If $x \in \overline{\bigcap A_\alpha}$, then every neighbourhood of $x$ intersects $\bigcap A_\alpha$, and thus intersects each $A_\alpha$. Then $x \in \bigcap \overline{A_\alpha}$. Conversely, equality does not hold as in (a). As a counterexample, consider the family of subsets $(0, \frac1n)$ of $\reals$ for $n \in \ints^+$. We have $\overline{\bigcap_{n \in \ints^+} (0, \frac1n)} = \overline{\varnothing} = \varnothing$, while $\bigcap_{n \in \ints^+} \overline{(0, \frac1n)} = \bigcap_{n \in \ints^+} [0, \frac1n] = \{0\}$. $\Box$
+        
+        \item $\overline{A - B} = \overline{A} - \overline{B}$.
+
+        {\bf SOLUTION.} If $x \in \overline{A} - \overline{B}$, then every neighbourhood of $x$ intersects $A$, and there exists a neighbourhood $U$ of $x$ which does not intersect $B$. Given any neighbourhood $V$ of $x$, $U \cap V$ is a neighbourhood of $x$, and thus intersects $A$ but not $B$. Thus $V \cap (A - B) \supseteq U \cap V \cap (A -B) \neq \varnothing$ is nonempty, so $x \in \overline{A - B}$. The converse is not necessarily true; as a counterexample, consider the subsets $A = (-1, 1), B = (-1, 0)$ of $\reals$. $\overline{(-1, 1) - (-1, 0)} = \overline{(0, 1)} = [0, 1]$, while $\overline{(-1, 1)} - \overline{(-1, 0)} = [-1, 1] - [-1, 0] = (0, 1]$. $\Box$
+    \end{enumerate}
+
+    \item Let $A \subseteq X, B \subseteq Y$. Show that in $X \times Y$, $\overline{A \times B} = \overline{A} \times \overline{B}$.
+
+    {\bf SOLUTION.} If $x \times y \in \overline{A \times B}$, then every neighbourhood of $x \times y$ intersects $A \times B$. Given a neighbourhood $U$ of $x$, $\pi_1^{-1}(U) = U \times Y$ is a neighbourhood of $x \times y$. Let $a \times b \in (U \times Y) \cap (A \times B)$. In particular, $a \in U \cap A$, so that $x \in \overline{A}$. Symmetrically, $y \in \overline{B}$, hence $x \times y \in \overline{A} \times \overline{B}$.
+    
+    Conversely, if $x \times y \in \overline{A} \times \overline{B}$, then every neighbourhood of $x$ intersects $A$ and every neighbourhood of $y$ intersects $B$. Consider any neighbourhood $U \times V$ of $x \times y$. Let $a \in U \cap A, b \in V \cap B$. Then $(U \times V) \cap (A \times B)$ contains $a \times b$, so it is nonempty. Thus $x \times y \in \overline{A \times B}$. $\Box$
+
+    \item Show that every order topology is Hausdorff.
+
+    {\bf SOLUTION.} See Theorem 2.33.
+    
+    \item Show that the product of two Hausdorff spaces is Hausdorff.
+
+    {\bf SOLUTION.} See Theorem 2.33.
+
+    \item Show that a subspace of a Hausdorff space is Hausdorff.
+
+    {\bf SOLUTION.} See Theorem 2.33.
+
+    \item Show that $X$ is Hausdorff if and only if the diagonal $\Delta = \{x \times x : x \in X\}$ is closed in $X \times X$.
+
+    {\bf SOLUTION.} Suppose $X$ is Hausdorff. Consider a limit point $x \times y \in \Delta'$; assume $x \neq y$. By the Hausdorff condition, let $U, V$ be disjoint neighbourhoods of $x, y$. $U \times V$ is a neighbourhood of $x \times y$, so it must intersect $\Delta$ at some point $z \times z \neq x \times y$. But this means $z \in U \cap V$, a contradiction. Since all limit points of $\Delta$ must be in the form $x \times x$, $\Delta' \subseteq \Delta$, meaning $\Delta$ is closed in $X \times X$.
+
+    Conversely, suppose $\Delta$ is closed in $X \times X$. Then given distinct points $x$ and $y$, $x \times y \notin \Delta = \overline{\Delta}$, so there must exist a neighbourhood $U \times V$ of $x \times y$ that does not intersect $\Delta$. We see that $U, V$ are disjoint neighbourhoods of $x, y$ because if there exists $z \in U \cap V$, then $z \times z \in (U \times V) \cap \Delta$, a contradiction. $\Box$
+
+    \item In the finite complement topology on $\reals$, to what point or points does $x_n = \frac1n$ converge?
+
+    {\bf SOLUTION.} Recall the definition of sequence convergence: a sequence $x_n$ converges to $x$ if for every neighbourhood $U$ of $x$, there exists $N \in \ints^+$ such that $x_n \in U$ for all $n>N$. Given any $x \in X$ and any neighbourhood $U$ of $x$, $\reals - U$ is finite by definition. Then there must exist $N \in \ints^+$ such that $\frac1n \notin \reals - U$ for all $n > N$, or equivalently, $\frac1n \in U$ for all $n > N$. This means $x_n$ converges to $x$; since $x$ was arbitrary, $x_n$ converges to every point in $\reals.$ $\Box$
+
+    \item Show the $T_1$ axiom is equivalent to the condition that in each pair of points in $X$, each points has a neighbourhood not containing the other.
+
+    {\bf SOLUTION.} Assume $X$ is $T_1$. Given a pair of points $x, y \in X$, $\{x\}, \{y\}$ are closed. Then $x$ is not a limit point of $\{y\}$, and vice versa, so there exists some neighbourhood $U$ of $x$ that does not intersect $\{y\}$, and thus $y \notin U$. Similarly, there exists a neighbourhood of $y$ not containing $x$.
+
+    Conversely, suppose that for each pair of points of $X$, each has a neighbourhood not containing the other. It suffices to show that every one-point set $\{x\}$ is closed. Given any $y \neq x$, let $U$ be a neighbourhood of $y$ such that $x \notin U$. Then $U \cap \{x\} = \varnothing$, so $y \notin \overline{\{x\}}$. Thus $\overline{\{x\}} = \{x\}$, showing that $\{x\}$ is closed. $\Box$
+
+    \item Let 
+    \begin{align*}
+        \topo_1 &= \text{ the standard topology}, \\
+        \topo_2 &= \reals_K, \\
+        \topo_3 &= \text{ the finite complement topology}, \\
+        \topo_4 &= \text{ the upper limit topology, having all sets }(a, b] \text{ as basis}, \\
+        \topo_5 &= \text{ the topology having all sets } (-\infty, a) \text{ as basis}.
+    \end{align*}
+    \begin{enumerate}
+        \item Determine the closure of $K$ under each of these topologies.
+
+        {\bf SOLUTION.} In the standard topology, if $x \in (-\infty, 0)$ then $(-\infty, 0)$ is a neighbourhood of $x$ that does not intersect $K$, and similarly for $x \in (1, \infty)$. If $x \in (0, 1) - K$, then let $m, n$ be consecutive natural numbers such that $\frac1n < x < \frac1m$. Then $(\frac1n, \frac1m)$ is a neighbourhood of $x$ that does not intersect $K$. However, every basis element containing $0$ contains $\frac1n$ for all $n$ greater than some $N$, so $0$ is the unique limit point of $K$, and thus $\overline{K} = \{0\} \cup K$.
+        
+        $K$ is closed in $\reals_K$ since its complement $\reals - K$ is open. Thus $\overline{K} = K$.
+
+        Given any $x \in \reals$ in the finite complement topology and any neighbourhood $U$ of $x$, $\reals - U$ is finite by definition. Thus $\reals - U$ cannot contain $K$, meaning $K$ intersects $U$. Thus every neighbourhood of any point intersects $K$, and thus $\overline{K} = \reals$.
+
+        For $\topo_4,$ by similar reasoning as $\topo_1$, $(-\infty, 0) \cup( (0, 1) - K )\cup (1, \infty) \notin \overline{K}$. For $0$, we now have a neighbourhood $(-\infty, 0]$ of $0$ that does not intersect $K$, hence $\overline{K} = K$.
+
+        For any $x \in (-\infty, 0)$, $(-\infty, 0)$ is a neighbourhood of $x$ in $\topo_5$ that does not intersect $K$. However, for any $x \in [0, \infty)$, any basis element $(-\infty, a)$ containing $x$ must satisfy $0 < a$, and thus intersects $K$. Therefore $\overline{K} = [0, \infty)$. $\Box$
+        
+        \item Which of these topologies are Hausdorff? $T_1$?
+
+        {\bf SOLUTION.} $\topo_1$ is the order topology on $\reals,$ so it is Hausdorff.
+
+        $\topo_2$ is finer than $\topo_1$, thus for any distinct points their disjoint neighbourhoods are also open in $\topo_2$, so $\topo_2$ is Hausdorff.
+
+        For $\topo_3$, we saw in Exercise 14 that the sequence $x_n = \frac1n$ does not converge to a unique point, so it cannot be Hausdorff. In fact, there exist no disjoint nonempty open sets in $\topo_3$, since $U \cap V = \varnothing$ would imply $\reals - (U \cap V) =( \reals - U) \cup (\reals - V) = \reals$, but $\reals - U$ and $\reals - V$ are both finite. $\topo_3$ is clearly $T_1$ because given any finite point set $U$, $X - U$ is open, so that $U$ is closed.
+
+        For $\topo_4$, suppose $x < y \in \reals$. There exists $z \in \reals$ with $x < z < y$, from which we obtain disjoint neighbourhoods $(-\infty, z], (z, \infty)$ of $x, y$. Thus $\topo_4$ is Hausdorff.
+
+        For $\topo_5$, given $x < y \in \reals$, we see that any neighbourhood $U$ of $y$ must contain all numbers less than $y$, including $x$. Thus $U$ cannot be disjoint from any neighbourhood of $x$. Moreover, for any $x \in \reals$ consider the finite point set $\{x\}$. $\reals - \{x\} = (-\infty, x) \cup (x, \infty)$ is not open since any open set containing numbers greater than $x$ must also contain $x$. Thus $\topo_5$ is not $T_1$. $\Box$
+    \end{enumerate}
+
+    \item Consider $\reals_\ell$ and $\topo$ generated by $\cee = \{[a, b) : a<b, a, b \in \rats\}$. Determine the closures of $A = (0, \sqrt2)$ and $B = (\sqrt2, 3)$ in these two topologies.
+
+    {\bf SOLUTION.} In the lower limit topology, $\overline{A} = [0, \sqrt2), \overline{B} = [\sqrt2, 3)$. Every neighbourhood containing $0$ must intersect $A$, while $[\sqrt2, 2)$ is a neighbourhood of $\sqrt2$ that does not intersect $A$. Since any number in $(-\infty, 0) \cup (\sqrt2, \infty)$ clearly has a neighbourhood disjoint from $A$, $0$ is the unique limit point of $A$. Similarly, every neighbourhood containing $\sqrt2$ intersects $B$, while $[3, 4)$ is a neighbourhood of $3$ that does not intersect $B$, showing that $\sqrt2$ is the unique limit point of $B$.
+
+    In $\topo, \overline{A} = [0, \sqrt2], \overline{B} = [\sqrt2, 3).$ Similarly as with $\reals_\ell$, $0$ is a limit point of $A$ and $\sqrt2$ is a limit point of $B$. Moreover, since $[\sqrt2, b)$ is not open in $\topo$, $\sqrt2$ is also a limit point of $A$. However, $[3, 4)$ is open in $\topo$, so $3$ is not a limit point of $B$. $\Box$
+
+    \item Determine the closures of the following subsets of $[0, 1] \times [0, 1]$ in the dictionary order:
+    \begin{align*}
+        A &= \{(\frac1n) \times 0: n \in \ints^+\}, \\
+        B &= \{(1 - \frac1n) \times \frac12: n \in \ints^+\}, \\
+        C &= \{x \times 0: 0 < x < 1\}, \\
+        D &= \{x \times \frac12 : 0 < x < 1\}, \\
+        E &= \{\frac12 \times y : 0 < y < 1 \}.
+    \end{align*}
+
+    {\bf SOLUTION.} $\overline{A} = \{0 \times 1\} \cup A$. To show that $0 \times 1 \in \overline{A}$, consider any basis neighbourhood $U = (a \times b, c \times d)$ of $0 \times 1$. In particular, since $a \times b < 0 \times 1 < c \times d$, we must have $a = 0, b < 1, c > 0$. Let $n \in \nats$ be such that $\frac1n < c$. Then $\frac1n \times 0 \in U \cap A$, so $0 \times 1 \in \overline{A}$. Now consider any point $x \times y \neq 0 \times 1$ that is not in $A$ and let $n$ be such that $\frac{1}{n+1} \leq x < \frac1n$. We remark that if the first equality holds, then $y > 0$ because $x \times y \notin A$. Thus $(\frac{1}{n+1} \times 0, \frac1n \times 0)$ is a neighbourhood of $x \times y$ disjoint from $A$, so $x \times y \notin \overline{A}$.
+    
+    $\overline{B} = \{1 \times 0\} \cup B$. To show that $1 \times 0 \in \overline{B}$, consider any basis neighbourhood $U = (a \times b, c \times d)$ of $1 \times 0$. We must have $a < 1, c = 1, d > 0$. Let $n \in \nats$ be such that $a < 1 - \frac1n$, then $\left(1 - \frac1n \right) \times \frac12 \in U \cap B$, showing that $1 \times 0 \in \overline{B}$. If $x \times y \neq 1 \times 0$ is not in $B$, then let $n$ be such that $\frac{1}{n+1} \leq x < \frac1n$ and let $m$ be such that $\frac{1}{m+1} < x \leq \frac1m$. If either equality holds then $y \neq \frac12$ since $x \times y \notin B$, thus either $(\frac{1}{n+1} \times \frac12, \frac1n \times \frac12)$ or $(\frac{1}{m+1} \times \frac12, \frac1m \times \frac12)$ is a neighbourhood of $x \times y$ disjoint from $B$, determined by whether $y > \frac12$ or $y < \frac12$, respectively. Otherwise the inequalities are strict, so both intervals contain $x \times y$, showing that $x \times y \notin \overline{B}$.
+
+    $\overline{C} = (0, 1] \times \{0\} \cup [0, 1) \times \{1\}$. Consider any basis element $U = (a \times b, c \times d)$ containing $1 \times 0$, meaning $a < 1, c = 1, d > 0.$ Let $p \in \reals$ be such that $a < p < 1$. Then $p \times 0 \in U \cap C$, so $1 \times 0 \in \overline{C}$. Now consider any $z \in [0, 1)$, and let $V = (a \times b, c \times d)$ be a basis element containing $z \times 1$. We must have $a \leq z < c$, so there exists $q \in \reals$ such that $a \leq z < q < c$. Then $q \times 0 \in V \cap C$, so $[0, 1) \times \{1\} \subseteq \overline{C}$. To show that the closure of $C$ contains no other points, we see that $1 \times 1 \notin \overline{C}$ from its neighbourhood $(1 \times 0, 1 \times 1]$, $0 \times 0 \notin \overline{C}$ from its neighbourhood $[0 \times 0, 0 \times 1)$, and for $0 < y < 1$ and any $x$, $x \times y \notin \overline{C}$ from its neighbourhood $(x \times 0, x \times 1)$.
+
+    $\overline{D} = D \cup (0, 1] \times \{0\} \cup [0, 1) \times \{1\}$. Consider any $s \in (0, 1]$ and let $U = (a \times b, c \times d)$ be a basis element containing $s \times 0$, so that $0 \leq a < s$. Let $p$ be such that $0 \leq a < p < s$, and thus $p \times \frac12 \in U \cap D$ shows that $(0, 1] \times \{0\} \subseteq \overline{D}$. Similarly, for any $t \in [0, 1)$ and any $V = (a \times b, c\times d)$ containing $t \times 1$, $t < c \leq 1,$ so there exists $q$ with $t < q < c \leq 1$, and $q \times \frac12 \in V \cap D$ shows that $[0, 1) \times \{1\} \subseteq \overline{D}$. To show that every other point is not in $\overline{D}$, it suffices to consider the neighbourhoods $[0 \times 0, 0 \times 1)$ of $0 \times 0$, $(1 \times 0, 1\times 1]$ of $1\times 1$, $(x \times 0, x \times \frac12)$ of $x \times y$ with $0 < y < \frac12$, and $(x \times \frac12, x \times 1)$ of $x \times y$ with $1 > y > \frac12$.
+
+    $\overline{E} = [\frac12 \times 0, \frac12 \times 1]$. Consider any basis element $U = (a \times b, c \times d)$ containing $\frac12 \times 0$, and let $p$ be such that $0 < p < d$. Then $\frac12 \times p \in U \cap E$, so that $\frac12 \times 0 \in \overline{E}$. Similarly, consider any $V = (e \times f, g \times h)$ containing $\frac12 \times 1$; there exists $q $ with $f < q < 1$, and thus $\frac12 \times q \in V \cap E$, showing that $\frac12 \times 1 \in \overline{E}$. If $x \in [0, \frac12)$ and $y\in [0, 1]$, then $[0 \times 0, \frac12 \times 0)$ is a neighbourhood of $x \times y$ disjoint from $E$, and otherwise if $x\in (\frac12, 1]$, then $(\frac12 \times 1, 1 \times 1]$ is such a neighbourhood. $\Box$
+    
+    \item If $A \subseteq X$, we define the {\it boundary} of $A$ by the equation Bd $A = \overline{A} \cap \overline{X-A}$.
+        \begin{enumerate}
+            \item Show that Int $A$ and Bd $A$ are disjoint and $\overline{A} = $ Int $A \cup $ Bd $A$.
+
+            {\bf SOLUTION.} Suppose $x \in $ Int $A.$ Then there exists a neighbourhood $U$ of $x$ contained in $A$. This means $U \cap (X-A) = \varnothing$, so $x \notin \overline{X-A}$, and thus $x \notin$ Bd $A$. Thus Int $A$ and Bd $A$ are disjoint.
+
+            If $x \in \overline{A}$, suppose $x \notin$ Int $A$. Then no neighbourhood of $x$ is contained in $A$, so every neighbourhood of $x$ intersects $X-A$, and thus $x \in \overline{X-A}$, so that $x \in$ Bd $A$.
+
+            Conversely, if $x \in $ Int $A$, then $x\in A \subseteq \overline{A}$, and if $x \in $ Bd $A$, then $x \in \overline{A}.$ Thus $\overline{A} = $ Int $A\cap $ Bd $A$. $\Box$
+            
+            \item Show that Bd $A = \varnothing \iff A$ is both open and closed.
+
+            {\bf SOLUTION.} Suppose Bd $A$ is empty. Then by (a), $\overline{A} = $ Int $A$, and we know that Int $A \subseteq A \subseteq \overline{A}$ with equality if $A$ is open and closed, respectively. Thus $A$ is both open and closed. Conversely, suppose $A$ is both open and closed. Then Int $A = \overline{A}$, so by (a), Bd $A \subseteq $ Int $A$. Since the interior and boundary are disjoint, Bd $A$ is empty. $\Box$
+            
+            \item Show that $U$ is open $\iff$ Bd $U = \overline{U} - U$.
+
+            {\bf SOLUTION.} Suppose $U$ is open. Then $X-U$ is closed, so Bd $U = \overline{U} \cap (X-U) = \overline{U} - U$. Conversely, if Bd $U = \overline{U} - U$, then $\overline{U} - U = \overline{U} \cap (X-U) = \overline{U} \cap \overline{X-U}$, so that $X-U$ is closed, and thus $U$ is open. $\Box$
+            
+            \item If $U$ is open, is it true that $U = $ Int$(\overline{U})$?
+
+            {\bf SOLUTION.} No, as a counterexample, consider $U = (-1, 0) \cup (0, 1) \subseteq \reals$. $\overline{U} = [-1, 1]$ so that Int $\overline{U} = (-1, 1) \neq U$. $\Box$
+        \end{enumerate}
+
+    \item Find the boundary and interior of each of the following subsets of $\reals^2$:
+        \begin{enumerate}
+            \item $A = \{x \times y: y = 0\}$
+
+            {\bf SOLUTION.} Since $X-A = (-\infty, \infty) \times (-\infty, 0) \cup (-\infty, \infty) \times (0, \infty)$ is clearly open, $A$ is closed, so $\overline{A} = A$ and $\overline{X-A} = \reals$. Thus Bd $A = A$. There are no open sets contained in $A$, hence Int $A = \varnothing$. $\Box$
+            
+            \item $B = \{x \times y: x > 0, y \neq 0\}$
+
+            {\bf SOLUTION.} $B = (0, \infty) \times (-\infty, 0) \cup (0, \infty) \times (0, \infty)$ is clearly open, so Bd $B = \overline{B} - B$. $\overline{B} = \{x \times y: x > 0\}$, so Bd $B = \{x \times y: x > 0, y = 0\}$. Moreover, Int $B = B$. $\Box$
+
+            \item $C = A \cup B$
+
+            {\bf SOLUTION.} $C = \{x \times y: x>0\} \cup \{x \times 0: x \in \reals\}$. Since $\overline{C} = A \cup \{x \times y: x \geq 0\}$ and $\overline{X - C} = \{x \times y: x \leq 0\}$, Bd $C = \{x \times 0:x < 0\} \cup \{0 \times y: y\in \reals\}$. Int $C = \overline{C} - $ Bd $C = \{x \times y: x > 0\}$. $\Box$
+
+            \item $D = \{x \times y: x \in \rats\}$
+
+            {\bf SOLUTION.} Consider any $x \times y$ with $x$ irrational and any neighbourhood $U = (a, b) \times (c,d)$ of $x \times y$. By density of the rationals in the reals, $(a, b)$ contains some rational number $p$, and thus $p \times y \in D \cap U$, so that $x \times y \in \overline{D}.$ Thus $\overline{D} = \reals^2$. Symmetrically, $\overline{X-D} = \reals^2$, so that Bd $D = \reals^2$. Since every open set contains some $x \times y$ with $x$ irrational, no open set is contained in $D$, and thus Int $D = \varnothing.$ $\Box$
+                        
+            \item $E = \{x \times y: 0 < x^2-y^2 \leq 1\}$
+
+            {\bf SOLUTION.} $\overline{E} = \{x\times y: 0 \leq x^2-y^2 \leq 1\}$. Consider $x\times y$ with $x^2=y^2$ and any neighbourhood $U = (a,b) \times (c,d)$ of $x \times y$. If $x \geq 0$, then let $z$ be such that $x < z < b$ and $z^2-x^2 \leq 1$, otherwise let $z$ be such that $a < z< x$ and $z^2-x^2 \leq 1$. In either case, $z^2 > x^2$, so $1 \geq z^2-y^2 > x^2-y^2 \geq 0$, and thus $z \times y \in E \cap U$, showing that $x \times y \in \overline{E}$. If $x \times y$ is such that $x^2-y^2 < 0$, then by continuity $a^2 - b^2 < 0$ for all $a, b$ in some neighbourhood of $x \times y$, so $x \times y \notin \overline{E}$. Similarly, $x \times y \notin \overline{E}$ whenever $x^2-y^2 > 1$.
+
+            $\overline{X-E} = \{x \times y: x^2-y^2 \leq 0 \text{ or } x^2 - y^2 \geq 1\}$. If $x^2 - y^2 = 1$, then every neighbourhood of $x \times y$ contains some $z \times y$ with $z^2-y^2 > 1$, showing that $x \times y \in \overline{X-E}$. However, if $0 < x^2-y^2 < 1$, then there exists a neighbourhood $U$ of $x \times y$ such that $0 < a^2-b^2 < 1$ for all $a\times b\in U$ by continuity, so that $x \times y \notin \overline{X-E}.$ Thus Bd $E = \{x\times y: x^2 -y^2 = 0 \text{ or } 1\}$. Furthermore, Int $E = \overline{E} -$ Bd $E = \{x \times y: 0<x^2 - y^2<1\}$. $\Box$
+            
+            \item $F = \{x \times y: x \neq 0, y \leq \frac1x\}$
+
+            {\bf SOLUTION.} $\overline{F} = F \cup \{0 \times y: y \in \reals\}$. Consider any neighbourhood $U = (a, b) \times (c, d)$ of $0 \times y$. Let $z$ be such that $c < z< d$, and let $w$ be such that $a < 0 < w < \min\{\frac1z, b\}$. Then $z < \frac1w$ means $w \times z \in F \cap U$, and thus $0 \times y \in \overline{F}$. If $x \times y \notin F$ and $x \neq 0$, then $y > \frac1x$, so there exists a neighbourhood $U$ of $x \times y$ such that $b > \frac1a$ for all $a \times b \in U$ by continuity. Thus $x \times y \notin \overline{F}$.
+
+            $\overline{X-F} = \{0 \times y: y \in \reals\} \cup \{x \times y: y \geq \frac1x\}$ similarly. Thus Bd $F = \{x \times y: y = \frac1x \text{ or } x = 0 \}$, and then Int $F = \overline{F} - $ Bd $F = \{x \times y: x \neq 0, y < \frac1x \}$. $\Box$
+        \end{enumerate}
+
+    \item (Kuratowski) Consider the collection of all subsets $A$ of the topological space $X$. The operations of closure $A \rightarrow \overline{A}$ and complementation $A \rightarrow X - A$ are functions from this collection to itself.
+        \begin{enumerate}
+            \item Show that starting with a given set $A$, one can form no more than 14 distinct sets by applying these two operations successively.
+
+            {\bf SOLUTION.} Let $f, g$ denote closure and complementation, respectively. We observe for any $A$, $f^2(A) = f(A)$ since $f(A)$ is closed, and $g^2 A = A$. We further claim that $(fg)^4 (A) = (fg)^2 (A)$. To show this, let $h$ denote the interior operation $A \rightarrow A^0$. Since $A^0 = \overline{A} - \overline{X-A} = X - \overline{X-A}$ by exercise 19(a), $h(A) = gfg(A)$.
+
+            By definition, $\overline{A^0}^0 \subseteq \overline{A^0}$. Taking closures, $\overline{\overline{A^0}^0} \subseteq \overline{A^0}$. Conversely, $A^0 \subseteq \overline{A^0}$, so taking interiors gives $A^0 \subseteq \overline{A^0}^0$ and thus taking closures, $\overline{A^0} \subseteq \overline{\overline{A^0}^0}$. Thus $(fgfg)^2 = (fh)^2 = fh = fgfg$.
+            
+            It follows that 14 distinct sets may be generated by $f, g$: $A, fA, gfA, fgfA, gfgfA, fgfgfA,$ $ gfgfgfA, gA, fgA, gfgA, fgfgA, gfgfgA, fgfgfgA, gfgfgfg$, since any word in $f, g$ containing consecutive $f$ or $g$ is contained in this list, and so is any word containing more than 7 letters. $\Box$
+            
+            \item Find a subset $A$ of $\reals$ for which the maximum of 14 is obtained.
+
+            {\bf SOLUTION.} Let $A = (0, 1) \cup (1, 2) \cup \{3\} \cup ([4, 5] \cap \rats)$. We have
+            \begin{enumerate}
+                \item $A$,
+                \item $fA = [0, 2] \cup \{3\} \cup [4, 5]$,
+                \item $gfA = (-\infty, 0) \cup (2, 3) \cup (3, 4) \cup (5, \infty)$,
+                \item $fgfA = (-\infty, 0] \cup [2, 4] \cup [5, \infty)$,
+                \item $gfgfA = (0, 2) \cup (4, 5)$,
+                \item $fgfgfA = [0, 2] \cup [4, 5]$,
+                \item $gfgfgfA = (-\infty, 0) \cup (2, 4) \cup (5, \infty)$,
+                \item $gA = (-\infty, 0) \cup \{1\} \cup [2, 3) \cup (3, 4) \cup ((4, 5) - \rats) \cup (5, \infty)$,
+                \item $fgA = (-\infty, 0] \cup \{1\} \cup [2, \infty)$,
+                \item $gfgA = (0, 1) \cup (1, 2)$,
+                \item $fgfgA = [0, 2]$,
+                \item $gfgfgA = (-\infty, 0) \cup (2, \infty)$,
+                \item $fgfgfgA = (-\infty, 0] \cup [2, \infty)$,
+                \item $gfgfgfgA = (0, 2)$. $\Box$
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+
+\end{document}
