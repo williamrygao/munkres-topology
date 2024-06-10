@@ -1,0 +1,147 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 18 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item Prove that for $f: \reals \rightarrow \reals$, the $\varepsilon$-$\delta$ definition of continuity implies the open set definition.
+
+    {\bf SOLUTION.} See page 22 of the general notes.
+
+    \item Suppose that $f: X \rightarrow Y$ is continuous. If $x$ is a limit point of $A \subseteq X$, is it necessarily true that $f(x)$ is a limit point of $f(A)$?
+
+    {\bf SOLUTION.} Suppose $x \in A'$. Let $V$ be a neighbourhood of $f(x)$. Then $f^{-1}(V)$ is a neighbourhood of $x$, and thus must intersect $A$ at some $y \neq x$. Then $f(y) \in V \cap f(A)$, but it is not necessarily true that $f(y) \neq f(x)$. As a counterexample, consider the constant real-valued function $f(x) = 0$ and the subset $A = (-1, 1)$ with limit point $x = 1$. $f(1) = 0$ is not a limit point of $f(A) = \{0\}$ since every neighbourhood of $0$ intersects $\{0\}$ uniquely at $0$. $\Box$
+
+    \item Let $\topo, \topo'$ be topologies on the same set $X, X'$. Let $i: X' \rightarrow X$ be the identity function.
+    \begin{enumerate}
+        \item Show that $i$ is continuous if and only if $\topo'$ is finer than $\topo$.
+
+        {\bf SOLUTION.} $i$ is continuous $\iff \forall U \in \topo, f^{-1}(U) = U' \in \topo' \iff \topo' \supseteq \topo.$ $\Box$
+
+        \item Show that $i$ is a homeomorphism if and only if $\topo' = \topo$. The inverse of $i$ is the identity function $j: X \rightarrow X'$, which by (a) is continuous if and only if $\topo \supseteq \topo'$, meaning $\topo' = \topo$. $\Box$
+    \end{enumerate}
+
+    \item Given $x_0 \in X, y_0 \in Y$, show that $f: X \rightarrow X \times Y, g: Y \rightarrow X \times Y$ defined by $f(x) = x \times y_0, g(y) = x_0 \times y$ are imbeddings. 
+    
+    {\bf SOLUTION.} We wish to show that $f': X \rightarrow X \times \{y_0\}$ and $g': Y \rightarrow \{x_0\} \times Y$ obtained from $f$ and $g$ are homeomorphisms. They are clearly bijective, and their inverses are the projection functions which are continuous. $f(x) = f_1(x) \times f_2(x)$ and $g(y) = g_1(y) \times g_2(y)$ where $f_1, g_2$ are constant and $f_2, g_1$ are the identity functions, hence by Theorem 2.40 $f$ and $g$ are continuous. $\Box$
+
+    \item Show that the subspace $(a, b)$ of $\reals$ is homeomorphic with $(0, 1)$ and the subspace $[a, b]$ of $\reals$ is homeomorphic with $[0, 1]$.
+
+    {\bf SOLUTION.} Let $f: (a, b) \rightarrow (0, 1)$ by defined as $f(x) = \frac{x-a}{b-a}$. $f(x)$ and $f^{-1}(x) = (b-a)x+a$ are both $\varepsilon$-$\delta$ continuous, so $f$ is a homeomorphism. Similarly, $g: [a, b] \rightarrow [0, 1]$ defined by $g(x) = \frac{x-a}{b-a}$ is a homeomorphism. $\Box$
+
+    \item Find a function $f: \reals \rightarrow \reals$ that is continuous at precisely one point.
+
+    {\bf SOLUTION.} We define
+    $$f(x) = \begin{cases}
+        x &\text{if } x \in \rats, \\
+        0 &\text{if } x \in \reals - \rats.
+    \end{cases}$$
+    $f$ is continuous only at $0$, which we easily find from the $\varepsilon$-$\delta$ definition by density of rationals/irrationals in the reals. $\Box$
+
+    \item 
+    \begin{enumerate}
+        \item Suppose that $f: \reals \rightarrow \reals$ is continuous from the right, or $\lim_{x \rightarrow a^+} f(x) = f(a)$ for each $a \in \reals$. Show that $f$ is continuous when considered as a function $\reals_\ell \rightarrow \reals$.
+
+        {\bf SOLUTION.} Given any basis element $(a, b) \in \reals$ and any $x_0 \in f^{-1}(a, b)$, let $\varepsilon = \min \{f(x_0) - a, b - f(x_0)\}$. There exists $\delta > 0$ such that $x - x_0 < \delta$ implies $|f(x) - f(x_0)| < \varepsilon$, meaning $[x_0, x_0 + \delta) \subseteq f^{-1}(a, b)$. Thus
+        $$f^{-1}(a, b) = \bigcup_{x \in f^{-1}(a, b)} [x, x+\delta_x),$$
+        which is open in $\reals_\ell$. $\Box$
+
+        \item Can you conjecture what functions $f: \reals \rightarrow \reals$ are continuous when considered as maps from $\reals$ to $\reals_\ell$? As maps from $\reals_\ell$ to $\reals_\ell$?
+
+        {\bf SOLUTION.} If $f: \reals \rightarrow \reals_\ell$ is continuous, then given $x_0 \in \reals$, $U = f^{-1}[f(x_0), \infty)$ must be open in $\reals$. Suppose $y_0 \in U'$ and $f(y_0) < f(x_0)$. Then $f^{-1}[f(y_0), f(x_0))$ is open in $\reals$ and contains $y_0$ but is disjoint from $U$, a contradiction. Thus any limit point $y_0$ of $U$ satisfies $f(y_0) \geq f(x_0)$, or $y_0 \in U$. Since $U$ is open, closed, and nonempty, $U = \reals$. Conversely, if $f$ is constant, say $f(x) = c$, then the preimage of any $[a, b) \in \reals_\ell$ is empty if $c \notin [a, b)$ or all of $\reals$ if $c \in [a, b)$. In either case, $f^{-1}[a, b)$ is open in $\reals$.
+
+        Suppose $f: \reals_\ell \rightarrow \reals_\ell$ is continuous. Given $x_0 \in \reals$ and $\varepsilon > 0$, $V = [f(x_0), f(x_0) + \varepsilon)$ is a neighbourhood of $f(x_0)$, so that $f^{-1}(V)$ is a neighbourhood of $x_0$. Thus there must exist a basis element $[x_0, x_0 + \delta) \subseteq f^{-1}(V)$, so that $x \in [x_0, x_0 + \delta)$ implies $f(x) \in V$, or equivalently $x - x_0 < \delta$ implies $f(x) - f(x_0) < \varepsilon$.
+
+        Conversely, suppose $f: \reals_\ell \rightarrow \reals_\ell$ is such that for any $x_0 \in \reals$ and any $\varepsilon > 0$, there exists $\delta > 0$ such that $x - x_0 < \delta$ implies $f(x) - f(x_0) < \varepsilon$. Then given any $x_0 \in \reals$ and any neighbourhood $V$ of $f(x_0)$, there exists a basis element $B = [f(x_0), f(x_0) + \varepsilon) \subseteq V$. Then there exists $\delta > 0$ such that $f(x) \in B$ for $x \in U = [x_0, x_0 + \delta)$. This means $U$ is a neighbourhood of $x_0$ such that $f(U) \subseteq V$, and thus $f$ is continuous by the second criterion in Theorem 2.35.
+
+        To summarize, $f: \reals \rightarrow \reals_\ell$ is continuous if and only if it is constant and $f: \reals_\ell \rightarrow \reals_\ell$ is continuous if and only if for any $x_0 \in \reals$ and any $\varepsilon > 0$, there exists $\delta > 0$ such that $x - x_0 < \delta$ implies $f(x) - f(x_0) < \varepsilon$. $\Box$
+    \end{enumerate}
+
+    \item Let $Y$ be an ordered set in the order topology. Let $f, g: X \rightarrow Y$ be continuous.
+    \begin{enumerate}
+        \item Show that $\{x : f(x) \leq g(x)\}$ is closed in $X$.
+
+        {\bf SOLUTION.} We wish to show that $A = \{x : f(x) > g(x)\}$ is open. Given any $x \in A$, we distinguish two cases: there either exists $y \in Y$ such that $f(x) > y > g(x)$ or $f(x), g(x)$ are consecutively ordered elements. In the first case, $V = (-\infty, z), W = (z, \infty)$ are disjoint neighbourhoods of $g(x), f(x)$. In the second case, we take $V = (-\infty, f(x)), W = (g(x), \infty)$. Let $U = f^{-1}(W) \cap g^{-1}(V)$, which is open by continuity of $f, g$. Since $f(x) \in W$ and $g(x) \in V$, $x \in U$. Moreover if $y \in U$, then $f(y) > g(y)$, showing that $U \subseteq A$. Thus $A$ is open by Exercise 1 of Section 13. $\Box$
+        
+        \item Let $h: X \rightarrow Y$ be the function $h(x) = \min\{f(x), g(x)\}$. Show that $h$ is continuous.
+
+        {\bf SOLUTION.} From (a), $A = \{x: f(x) \leq g(x)\}$, and symmetrically $B = \{x: f(x) \geq g(x)\}$, are closed in $X$ and $X = A \cup B$, with $f(x) = g(x)$ on $A \cap B$. It follows from the pasting lemma that 
+        $$h(x) = \begin{cases}
+            f(x) &\text{if } x \in A \\
+            g(x) &\text{if } x \in B
+        \end{cases}$$
+        is continuous. $\Box$
+    \end{enumerate}
+
+    \item Let $\{A_\alpha\}$ be a collection of subsets of $X$ with $X = \bigcup_\alpha A_\alpha$. Let $f:X\rightarrow Y$ be such that $\restr{f}{A_\alpha}$ is continuous for each $\alpha$.
+    \begin{enumerate}
+        \item Show that if $\{A_\alpha\}$ is finite and each set $A_\alpha$ is closed, then $f$ is continuous.
+
+    {\bf SOLUTION.} By induction on the cardinality of $\{A_\alpha\}$. The case where $|\{A_\alpha\}| = 1$ is trivial; assume the desired result holds for all collections $\{A_\alpha\}$ of cardinality $n$. Consider a collection $\{A_\alpha\}$ of cardinality $n+1$ such that 
+    $$X = \bigcup_{i \leq n} A_i \cup A_{n+1},$$
+    with $\restr{f}{\bigcup_{i \leq n} A_i}$ and $\restr{f}{A_{n+1}}$ continuous. Since $\bigcup_{i \leq n} A_i$ and $A_{n+1}$ are closed, and $\restr{f}{\bigcup_{i \leq n} A_i} = \restr{f}{A_{n+1}}$ on $\left(\bigcup_{i \leq n} A_i\right) \cap A_{n+1}$, the pasting lemma implies that $f$ is continuous. $\Box$
+    
+    \item Find an example where $\{A_\alpha\}$ is countable and each $A_\alpha$ is closed, but $f$ is not continuous.
+
+    {\bf SOLUTION.} Let us define the countable collection $\{A_n\}_{n \in \nats}$ by $A_0 = (-\infty, 0]$ and $A_n = [\frac1n, \infty)$ for $n \in \nats$. Each $A_n$ is closed in $\reals$ and $\reals = \bigcup_n A_n$. Let $f: \reals \rightarrow \reals$ be defined by
+    $$f(x) = \begin{cases}
+        0 &\text{if } x \in (0, \infty), \\
+        1 &\text{if } x \in (-\infty, 0].
+    \end{cases}$$
+    Since $\restr{f}{A_0}(x) = 1$ and $\restr{f}{A_n}(x) = 0$ are constant, they are continuous. However, $f$ is discontinuous at $0$. $\Box$
+
+    \item An indexed family of sets $\{A_\alpha\}$ is locally finite if each point $x$ of $X$ has a neighbourhood that intersects $A_\alpha$ for only finitely many values of $\alpha$. Show that if $\{A_\alpha\}$ is locally finite and each $A_\alpha$ is closed, then $f$ is continuous.
+
+    {\bf SOLUTION.} Suppose $\{A_\alpha\}$ is locally finite and each $A_\alpha$ is closed. Given $x \in X$, let $U$ be a neighbourhood of $x$ that intersects finitely many $A_\alpha$, namely $A_1, \cdots, A_n$. For $i = 1, \cdots, n$, $U \cap A_i$ is closed in $U$ since $A_i$ is closed in $X$. Moreover $X = \bigcup_\alpha A_\alpha$ implies $U = \bigcup_{i=1}^n (U \cap A_i)$. Since $U \cap A_i$ is a subspace of $A_i$ and each $\restr{f}{A_i}$ is continuous, each $\restr{f}{U \cap A_i}$ is continuous by Theorem 2.38(d). Applying (a) to the finite collection of closed sets $\{U \cap A_i\}$, we find that $\restr{f}{U}$ is continuous. 
+    
+    We may write $X$ as the union of neighbourhoods $U_x$ of all points $x \in X$ such that $\restr{f}{U_x}$ is continuous. Thus by Theorem 2.38(f), $f$ is continuous. $\Box$
+    \end{enumerate}
+
+    \item Let $f: A \rightarrow B$ and $g: C \rightarrow D$ be continuous functions. Let $f \times g: A \times C \rightarrow B \times D$ be defined by $(f \times g)(a \times c) = f(a) \times g(c)$. Show that $f \times g$ is continuous.
+
+    {\bf SOLUTION.} Consider a basis element $U \times V$ of $B \times D$. Since $U$ is open in $B$ and $V$ is open in $D$, $f^{-1}(U)$ is open in $A$ and $g^{-1}(V)$ is open in $C$. Moreover
+    \begin{align*}
+        (f \times g)^{-1}(U \times V) &= \{x \times y: (f \times g)(x\times y) \in U \times V\}, \\
+        &= \{x \times y: f(x) \times g(y) \in U \times V\}, \\
+        &= \{x \times y: f(x) \in U, g(y) \in V\}, \\
+        &= f^{-1}(U) \times g^{-1}(V),
+    \end{align*}
+    showing that $(f \times g)^{-1}(U \times V)$ is open in $A \times C$, and thus $f \times g$ is continuous. $\Box$
+
+    \item Let $F: X \times Y \rightarrow Z$. $F$ is continuous in each variable separately if for each $y_0 \in Y$, $h: X \rightarrow Z$ defined by $h(x) = F(x \times y_0)$ is continuous and for each $x_0 \in X$, $k: Y \rightarrow Z$ defined by $k(y) = F(x_0 \times y)$ is continuous. Show that if $F$ is continuous, then $F$ is continuous in each variable separately.
+
+    {\bf SOLUTION.} We write $h$ as $F \circ f$ and $k$ as $F \circ g$, where $f, g$ are the imbeddings defined in Exercise 4. By continuity of $f, g, F$ and continuity of composites, $h, k$ are continuous. $\Box$
+
+    \item Let $F: \reals \times \reals \rightarrow \reals$ be defined by
+    $$F(x\times y) = \begin{cases}
+        \frac{xy}{x^2+y^2} &\text{if } x\times y \neq 0 \times 0, \\
+        0 &\text{if } x \times y = 0\times 0.
+    \end{cases}$$
+
+    \begin{enumerate}
+        \item Show that $F$ is continuous in each variable separately.
+
+        {\bf SOLUTION.} If $y_0 = 0$, then $h: \reals \rightarrow \reals$ is constant and equal to $0$, so it is continuous. Otherwise $y_0 \neq 0$, so $h$ is defined by $h(x) = \frac{xy_0}{x^2+y_0^2}$, which is continuous by quotients of continuous functions since $x^2+y_0^2 >0$ for all $x.$ Symmetrically, $k: \reals \rightarrow \reals$ is continuous. $\Box$
+        
+        \item Compute $g: \reals \rightarrow \reals$ defined by $g(x) = F(x \times x)$.
+
+        {\bf SOLUTION.} $g$ is defined by
+        $$F(x\times y) = \begin{cases}
+            \frac12 &\text{if } x\times y \neq 0 \times 0, \\
+            0 &\text{if } x \times y = 0\times 0.
+        \end{cases}$$
+        
+        \item Show that $F$ is not continuous.
+
+        {\bf SOLUTION.} Suppose $F(x \times y) = \frac12$. Then $x \times y \neq 0 \times 0$ and $\frac12(x^2-2xy+y^2) = 0$, so that $x = y$. Thus $F^{-1}([\frac12, \frac12]) = \{x \times x: x \neq 0\}$ is not closed, so $F$ must not be continuous. $\Box$
+    \end{enumerate}
+
+    \item Suppose $A \subseteq X$, $f: A \rightarrow Y$ is continuous, and $Y$ is Hausdorff. Show that if $f$ may be extended to a continuous $g: \overline{A} \rightarrow Y$, then $g$ is uniquely determined by $f$.
+
+    {\bf SOLUTION.} Suppose $g, h: \overline{A} \rightarrow Y$ are obtained by continuously extending $f$. Letting $S = \{x \in \overline{A}: g(x) = h(x)\}$, we wish to show that $S = \overline{A}$. We remark that $A \subseteq S \subseteq \overline{A},$ since $g, h$ agree on $A$. By Theorem 2.40, the function $g \times h: \overline{A} \rightarrow Y \times Y$ defined by $(g \times h)(x) = g(x) \times h(x)$ is continuous; in particular, $S = (g \times h)^{-1}(\Delta)$, where $\Delta$ is defined as $\{y \times y: y \in Y\}$ in Exercise 13 of Section 17. This exercise states that since $Y$ is Hausdorff, $\Delta$ is closed in $Y \times Y$, hence $S$ is closed. Therefore taking closures of the above containment gives $\overline{A} \subseteq S \subseteq \overline{A}$, or $S = \overline{A}$. $\Box$
+\end{enumerate}
+\end{document}
