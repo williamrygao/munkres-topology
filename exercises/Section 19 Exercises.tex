@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 19 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Prove Theorem 19.2.
+
+    {\bf SOLUTION.} See Theorem 2.47.
+    
+    \item Prove Theorem 19.3.
+
+    {\bf SOLUTION.} See Theorem 2.48.
+    
+    \item Prove Theorem 19.4.
+
+    {\bf SOLUTION.} See Theorem 2.49.
+
+    \item Show that $(X_1 \times \cdots \times X_{n-1}) \times X_n$ is homeomorphic with $X_1 \times \cdots \times X_n$.
+
+    {\bf SOLUTION.} Let $f:(X_1 \times \cdots \times X_{n-1}) \times X_n \rightarrow X_1 \times \cdots \times X_n$ be defined by
+    $$f((x_1 \times \cdots \times x_{n-1}) \times x_n) = x_1 \times \cdots \times x_n.$$
+    If $(x_1 \times \cdots \times x_{n-1}) \times x_n \in (X_1 \times \cdots \times X_{n-1}) \times X_n$ and $V_1 \times \cdots \times V_n$ is a neighbourhood of $f(x),$ then $U= (V_1 \times \cdots \times V_{n-1}) \times V_n$ is a neighbourhood of $x$ with $f(U) \subseteq V$, so $f$ is continuous. Conversely, if $x_1 \times \cdots \times x_n \in X_1 \times \cdots \times X_n$ and $(V_1 \times \cdots \times V_{n-1}) \times V_n$ is a neighbourhood of $f^{-1}(x)$ then $U = V_1 \times \cdots \times V_n$ is a neighbourhood of $x$ with $f^{-1}(U) \subseteq V$, so $f^{-1}$ is continuous. $\Box$
+
+    \item Which of the implications in Theorem 19.6 holds for the box topology?
+
+    {\bf SOLUTION.} (Theorem 2.51 in my notes). The forward direction holds for the box topology since $\pi_\beta^{-1}(U_\beta)$ is also open in the box topology. $\Box$
+
+    \item Let $(\mathbf{x}_n)$ be a sequence of points in $\prod X_\alpha$. Show that this sequence converges to $\mathbf{x}$ if and only if $(\pi_\alpha(\mathbf{x}_n))$ converges to $\pi_a(\mathbf{x})$ for each $\alpha$. Does this hold in the box topology?
+
+    {\bf SOLUTION.} Suppose $(\mathbf{x}_n)$ converges to $\mathbf{x}$. For any $\alpha$, given a neighbourhood $U_\alpha$ of $\pi_\alpha(\mathbf{x})$, $\pi_\alpha^{-1}(U_\alpha)$ is a neighbourhood of $\mathbf{x}$, meaning there exists $N$ such that $n > N$ implies $\mathbf{x}_n \in \pi_\alpha^{-1}(U_\alpha)$. Then $\pi_\alpha(\mathbf{x}_n) \in U_\alpha$ for $n> N$, showing that $(\pi_\alpha(\mathbf{x}_n))$ converges to $\pi_\alpha(\mathbf{x})$. We remark that all steps in this direction are valid in the box topology.
+
+    Conversely, if $(\pi_\alpha(\mathbf{x}_n))$ converges to $\pi_\alpha(\mathbf{x})$ for each $\alpha$, then given a neighbourhood $U$ of $\mathbf{x}$, $U$ contains a basis element $\prod U_\alpha$, and there are only finitely many values of $\alpha$ such that $U_\alpha \neq X_\alpha$. For these $\alpha$, let $N_\alpha$ be such that $\pi_\alpha(\mathbf{x}_n) \in U_\alpha$ for $n > N_\alpha$, and let $N = \max_{\alpha} N_\alpha$. Thus $\mathbf{x}_n \in \prod U_\alpha \subseteq U$ for $n > N$, showing that $(\mathbf{x}_n)$ converges to $\mathbf{x}$. In the box topology, we may have infinitely many such values $\alpha$ and $\{N_\alpha\}$ may not have a maximum, causing this direction to fail. $\Box$
+
+    \item Let $\reals^\infty$ be the subset of $\reals^\omega$ consisting of all sequences that are eventually zero; that is, all sequences $(x_n)$ such that $x_i \neq 0$ for only finitely many values $i$. What is the closure of $\reals^\infty$ in $\reals^\omega$ in the box and product topologies?
+
+    {\bf SOLUTION.} In the box topology, consider $(x_n) \in \reals^\omega - \reals^\infty$, so that there exists a subsequence $(x_{n_k})$ of $(x_n)$ such that $x_{n_i} \neq 0$ for all $i$. Let $U_{n_k}$ be a neighbourhood of $x_{n_k}$ not containing $0$ for each $n_k$, and for all other $n$ let $U_n = \reals$. Then $\prod U_n$ is a neighbourhood of $(x_n)$ disjoint from $\reals^\infty$, so that $(x_n) \notin \overline{\reals^\infty}$. Thus $\overline{\reals^\infty} = \reals^\infty$.
+
+    In the product topology, consider $\mathbf{x} \in \reals^\omega - \reals^\infty$, and define a sequence of points $(\mathbf{y}_n)$ by $\pi_\alpha(\mathbf{y}_n) = \pi_\alpha(\mathbf{x})$ for $\alpha = 1, \cdots, n$ and $\pi_\alpha(\mathbf{y}_n) = 0$ for $\alpha > n$. We see that $\mathbf{y}_n \in \reals^\infty$ for all $n$ and $(\pi_\alpha(\mathbf{y}_n))$ converges to $\pi_\alpha(\mathbf{x})$ since 
+    $$(\pi_\alpha(\mathbf{y}_n)) = \pi_\alpha(\mathbf{x})$$
+    for $n > \alpha$, so $(\mathbf{y}_n)$ converges to $\mathbf{x}$ by Exercise 6. By definition, every neighbourhood of $\mathbf{x}$ intersects $(\mathbf{y}_n) \subseteq \reals^\infty$, so $\overline{\reals^\infty} = \reals^\omega$. $\Box$
+
+    \item Given sequences $(a_n), (b_n)$ of real numbers with $a_i > 0$ for all $i$, define $h: \reals^\omega \rightarrow \reals^\omega$ by
+    $$h(x_1, x_2, \cdots) = (a_1x_1+b_1, a_2x_2+b_2, \cdots).$$
+    Show that if $\reals^\omega$ is given the product topology, then $h$ is a homeomorphism. What happens if $\reals^\omega$ is given the box topology?
+
+    {\bf SOLUTION.} $h$ is bijective with inverse
+    $$h^{-1}(y_1, y_2, \cdots) = (\frac{1}{a_1}y_1 - \frac{b_1}{a_1}, \frac{1}{a_2}y_2 - \frac{b_2}{a_2}, \cdots),$$
+    which has the same form, so it suffices to show that $h$ is continuous. In the product topology, for each $n \in \ints^+,$ define $h_n: \reals^\omega \rightarrow \reals$ by $h_n(\mathbf{x}) = a_ix_i+b_i$. $h_n$ is $\varepsilon$-$\delta$ continuous, so by Theorem 2.51 $h(\mathbf{x}) = (h_n(\mathbf{x}))$ is continuous.
+
+    In the box topology, given $\mathbf{x} \in \reals$ and a basis element $\prod V_n$ of $\reals^\omega$ containing $h(\mathbf{x})$, we define a sequence of positive numbers $(\varepsilon_n)$ by taking $\varepsilon_n$ sufficiently small that $(a_n(x_n - \varepsilon_n) + b_n, a_n(x_n + \varepsilon_n)+b_n) \subseteq V_n$, and thus $U_n = (x_n-\varepsilon_n, x_n+\varepsilon_n)$ satisfies $h_n(U_n) \subseteq V_n$. Then $\prod U_n$ is a neighbourhood of $\mathbf{x}$ such that $h(\prod U_n) \subseteq \prod V_n$, and thus $h$ is continuous. $\Box$
+
+    \item Show that the choice axiom is equivalent to the statement that for any indexed family $\{A_\alpha\}_{\alpha \in J}$ of nonempty sets with $J \neq \varnothing$, the Cartesian product $\prod_{\alpha \in J}A_\alpha$ is nonempty.
+
+    {\bf SOLUTION.} Suppose the axiom of choice holds, so that there exists a choice function. Then let $\mathcal{A} = \{A_\alpha\}_{\alpha \in J}$ be a nonempty indexed family of nonempty sets, with index function $f: J \rightarrow \mathcal{A}$ satisfying $f(\alpha) = A_\alpha$ for each $\alpha \in J$. Moreover let $c: \mathcal{A} \rightarrow \bigcup_{A_\alpha \in \mathcal{A}} A_\alpha$ be the choice function satisfying $c(A_\alpha) \in A_\alpha$ for each $A_\alpha \in \mathcal{A}$. Then $\mathbf{x} = c \circ f: J \rightarrow \bigcup_{A_\alpha \in \mathcal{A}} A_\alpha$ satisfies $\mathbf{x}(\alpha) = c(f(\alpha)) = c(A_\alpha) \in A_\alpha$ for each $\alpha \in J$, and thus $\mathbf{x} \in \prod_{\alpha \in J} A_\alpha$.
+
+    Suppose that for any nonempty indexed family $\mathcal{A} = \{A_\alpha\}_{\alpha \in J}$ of nonempty sets, $\prod_{\alpha \in J} A_\alpha$ is nonempty. We remark that $\mathcal{A}$ itself is an index set for this family, by the index function $f: \mathcal{A} \rightarrow \mathcal{A}$ defined by $f(A_\alpha) = A_\alpha$. Hence $\{A_\alpha\}_{A_\alpha \in \mathcal{A}}$ is a nonempty indexed family of nonempty sets, so $\prod_{A_\alpha \in \mathcal{A}} A_\alpha$ is nonempty. Let $\mathbf{x} \in \prod_{A_\alpha \in \mathcal{A}} A_\alpha$. By definition,
+    $$\mathbf{x}: \mathcal{A} \rightarrow \bigcup_{A_\alpha \in \mathcal{A}} A_\alpha$$
+    satisfies $x(A_\alpha) \in A_\alpha$ for each $A_\alpha \in \mathcal{A}$. Thus $\mathbf{x}$ is precisely the choice function, which exists if and only if the axiom of choice holds. $\Box$
+
+    \item Let $A$ be a set, let $\{X_\alpha\}_{\alpha \in J}$ be an indexed family of spaces, and let $\{f_\alpha\}_{\alpha \in J}$ be an indexed family of functions $f_\alpha: A \rightarrow X_\alpha$.
+    \begin{enumerate}
+        \item Show that there is a unique coarsest topology $\topo$ on $A$ with respect to which each $f_\alpha$ is continuous.
+
+        {\bf SOLUTION.} To show existence, we remark that the discrete topology on $A$ trivially makes each $f_\alpha$ continuous. Now, consider the nonempty collection $\tau$ of all topologies on $A$ with respect to which each $f_\alpha$ is continuous, and consider the topology $\topo = \bigcap_{\topo' \in \tau} \topo'$. For any $\alpha,$ if $V$ is open in $X_\alpha$, then $f_\alpha^{-1}(V)$ is open in $\topo'$ for all $\topo' \in \tau$ by definition. Thus $f_\alpha^{-1}(V)$ is open in $\topo$, so $\topo \in \tau$. In particular, $\topo \subseteq \topo'$ for every $\topo' \in \tau$, so it is the unique coarsest topology in $\tau$. $\Box$
+
+        \item Let
+        $$\mathcal{S}_\beta = \{f^{-1}_\beta(U_\beta): U_\beta \text{ is open in } X_\beta\}$$
+        and let $S = \bigcup S_\beta$. Show that $\mathcal{S}$ is a subbasis for $\topo$.
+
+        {\bf SOLUTION.} For each $\beta$, $f_\beta$ is continuous with respect to every $\topo' \in \tau$, so $f^{-1}_\beta(U_\beta)$ must be open in $\topo'$ whenever $U_\beta$ is open in $X_\beta$. Thus $\mathcal{S} \subseteq \topo'$ for every $\topo' \in \tau$. In particular, $\mathcal{S} \subseteq \topo$. Conversely, if a topology $\topo'$ contains $\mathcal{S}$ then for any $\beta$ and any $U_\beta$ open in $X_\beta$, $f_\beta^{-1}(U_\beta) \in \topo'$, so $f_\beta$ is continuous in $\topo'$, and thus $\topo' \in \tau$. Since $\tau$ is precisely the collection of topologies containing $\mathcal{S}$, the coarsest topology $\topo \in \tau$ is generated by $\mathcal{S}$ as subbasis. $\Box$
+
+        \item Show that $g: Y \rightarrow A$ is continuous in $\topo$ if and only if each $f_\alpha \circ g$ is continuous.
+
+        {\bf SOLUTION.} Suppose $g: Y \rightarrow A$ is continuous in $\topo$. Since $f_\alpha: A \rightarrow X_\alpha$ is continuous in $\topo$ for each $\alpha$, $f_\alpha \circ g$ is continuous by composition of continuous functions. Conversely, if $f_\alpha \circ g$ is continuous for every $\alpha$, and $U$ is open in $\topo$, then $U$ is in the form
+        $$U = \bigcup \left(\bigcap_{i=1}^n f^{-1}_{\beta_i}(U_{\beta_i})\right),$$
+        where each $U_{\beta_i}$ is open in $X_{\beta_i}$, by (b). Thus 
+        \begin{align*}
+            g^{-1}(U) &= g^{-1}\left(\bigcup \left(\bigcap_{i=1}^n f^{-1}_{\beta_i}(U_{\beta_i})\right)\right), \\
+            &= \bigcup g^{-1} \left(\bigcap_{i=1}^n f^{-1}_{\beta_i}(U_{\beta_i})\right), \\
+            &= \bigcup \left(\bigcap_{i=1}^n g^{-1} \left(f^{-1}_{\beta_i}(U_{\beta_i})\right)\right), \\
+            &= \bigcup \left(\bigcap_{i=1}^n (f_{\beta_i} \circ g)^{-1} (U_{\beta_i})\right),
+        \end{align*}
+        is open in $Y$ since each $U_{\beta_i}$ is open in $X_\alpha$ and each $f_{\beta_i} \circ g$ is continuous. $\Box$
+
+        \item Let $f: A \rightarrow \prod X_\alpha$ be defined by $f(a) = (f_\alpha(a))_{\alpha \in J}$, and let $Z$ denote the subspace $f(A)$ of the product spaces $\prod X_\alpha$. Show that the image of each element of $\topo$ under $f$ is open in $Z$.
+
+        {\bf SOLUTION.} Suppose $U \in \topo$ and $\mathbf{x} \in f(U)$. Let $a \in U$ be such that $f(a) = \mathbf{x}$. There must exist a basis element $B \in \topo$ such that $a \in B \subseteq U$ in the form
+        $$B = \bigcap_{i=1}^n f^{-1}_{\beta_i}(U_{\beta_i}),$$
+        where each $U_{\beta_i}$ is open in $X_{\beta_i}$. For the remaining $\alpha$, let $U_\alpha = X_\alpha$, and note that $B = f^{-1}(\prod U_\alpha)$. It follows that $f(B) = \prod U_\alpha \cap f(A)$, which is open in $Z$ since all but finitely many $U_\alpha$ are equal to $X_\alpha$. Thus $f(B)$ is a neighbourhood of $\mathbf{x}$ contained in $f(U)$, so $f(U) = \bigcup_{\mathbf{x} \in f(U)} f(B)$ is open in $Z$. $\Box$
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
