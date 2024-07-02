@@ -1,0 +1,317 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 20 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item 
+        In $\reals^n$, define
+        $$d'(\mathbf{x}, \mathbf{y}) = |x_1 - y_1| + \cdots + |x_n - y_n|.$$
+        Show that $d'$ is a metric that induces the usual topology on $\reals^n$.
+    
+        {\bf SOLUTION.} Since $|x_i - y_i| \geq 0$ for each $i$, $d'(\mathbf{x}, \mathbf{y}) \geq 0$ with equality if and only if $|x_i - y_i| = 0$ for each $i$, and thus $\mathbf{x} = \mathbf{y}$. Symmetry is trivial; the triangle equality follows from repeated applications of the triangle inequality on the absolute value.
+
+        We remark that
+        $$\rho(\mathbf{x}, \mathbf{y}) \leq d'(\mathbf{x}, \mathbf{y}) \leq n\rho(\mathbf{x}, \mathbf{y})$$
+        since $0 \leq |x_i-y_i| \leq \rho(\mathbf{x}, \mathbf{y})$ for each $i.$
+
+        We will show that $d'$ induces the same topology as $\rho$ using Lemma 2.59. For every $\mathbf{x} \in \reals^n$ and $\varepsilon > 0$, let $\delta = \varepsilon$. Then
+        $$B_{d'}(\mathbf{x}, \delta) \subseteq B_\rho(\mathbf{x}, \varepsilon)$$
+        since $d'(\mathbf{x}, \mathbf{y}) < \varepsilon$ implies
+        $$\rho(\mathbf{x}, \mathbf{y}) \leq d'(\mathbf{x}, \mathbf{y}) < \varepsilon.$$
+        Conversely, $\delta = \frac{\varepsilon}{n}$ ensures that
+        $$B_\rho(\mathbf{x}, \delta) \subseteq B_{d'}(\mathbf{x}, \varepsilon)$$
+        since $\rho(\mathbf{x}, \mathbf{y}) < \frac{\varepsilon}{n}$ implies
+        $$d'(\mathbf{x}, \mathbf{y}) \leq n \rho(\mathbf{x}, \mathbf{y}) < \varepsilon.$$
+        Thus $d'$ and $\rho$ both induce the standard topology on $\reals^n$. In $\reals^2$, a ball $B_{d'}(\mathbf{x}, \varepsilon)$ takes the form of a square rotated by $\frac{\pi}{4}$. $\Box$
+
+        \item More generally, given $p \geq 1$, define
+        $$d'(\mathbf{x}, \mathbf{y}) = \left( \sum_{i=1}^n |x_i-y_i|^p \right)^\frac1p.$$
+        Assuming $d'$ is a metric, show that it induces the usual topology on $\reals^n.$
+
+        {\bf SOLUTION.} Similarly, we observe that
+        $$\rho(\mathbf{x}, \mathbf{y}) \leq d'(\mathbf{x}, \mathbf{y}) \leq n^\frac1p \rho(\mathbf{x}, \mathbf{y}).$$        
+        Again, we will that that $d'$ induces the same topology as $\rho$ using Lemma 2.59. Given a ball $B_\rho(\mathbf{x}, \varepsilon)$, let $\delta = \varepsilon$, so that $d'(\mathbf{x}, \mathbf{y}) < \delta$ implies 
+        $$\rho(\mathbf{x}, \mathbf{y}) \leq d'(\mathbf{x}, \mathbf{y}) < \varepsilon.$$
+        Given a ball $B_{d'}(\mathbf{x}, \varepsilon)$, let $\delta = \frac{\varepsilon}{n^\frac1p}$. Then if $\rho(\mathbf{x}, \mathbf{y}) < \delta$,
+        $$d'(\mathbf{x}, \mathbf{y}) \leq n^\frac1p \rho(\mathbf{x}, \mathbf{y}) < \varepsilon.$$
+        Hence $d', \rho$ induce the standard topology on $\reals^n$. $\Box$
+    \end{enumerate}
+
+    \item Show that $\reals^2$ in the dictionary order is metrizable.
+
+    {\bf SOLUTION.} We define $d: \reals^2 \times \reals^2 \rightarrow \reals$ by
+    $$d(a \times b, c \times d) = \begin{cases}
+        \min\{|b-d|, 1\} &\text{if } a = c, \\
+        1 &\text{if } a \neq c.
+    \end{cases}$$
+    Positivity and symmetry are trivial. If $a = c = e$, then
+    $$d(a \times b, c \times d) + d(c \times d, e \times f) = \min\{|b - d|, 1\} + \min\{|d - f|, 1\} \geq \min\{|b - f|, 1\} = d(a \times b, e \times f).$$
+    Otherwise,
+    $$d(a \times b, c \times d) + d(c \times d, e \times f) \geq 1 \geq d(a \times b, e \times f),$$
+    so the triangle inequality is satisfied. To see that $d$ induces the dictionary order topology, let $(a \times b, c \times d)$ be a basis element in the order topology containing $x \times y$. If $a = c$, then let $\varepsilon = \min\{|y - b|, |y - d|, 1\}$. If $u \times v \in B_d(x \times y, \varepsilon)$, then 
+    $$d(u \times v, x \times y) < \min\{|y - b|, |y - d|, 1\}$$
+    implies $u = x$ and $|v - y| < \min\{|y - b|, |y - d|\}$, so that $v \in (b, d)$. Thus $B_d(x \times y, \varepsilon) \subseteq (a \times b, c \times d)$. Otherwise $a \neq c$; if $x = a$, then $\varepsilon = \min\{|y - b|, 1\}$ ensures that $B_d(x \times y, \varepsilon) \subseteq (a \times b, c \times d)$, and similarly if $x = c$. If $a < x < c$, then $B_d(x \times y, \varepsilon) \subseteq (a \times b, c \times d)$ for $\varepsilon < 1$. Thus the metric topology is finer than the order topology. Conversely, basis elements $B_d(x \times y, \varepsilon)$ in the metric topology are either vertical open intervals $(x \times y - \varepsilon, x \times y + \varepsilon)$ if $\varepsilon \leq 1$, or all of $\reals^2$ if $\varepsilon > 1$. Both forms are basis elements in the order topology, so the two topologies are the same. $\Box$
+
+    \item Let $X$ be a metric space with metric $d$.
+    \begin{enumerate}
+        \item Show that $d: X \times X \rightarrow \reals$ is continuous.
+
+        {\bf SOLUTION.} Consider an open interval $U$ in $\reals$. If $x \times y \in d^{-1}(U)$, then let $\varepsilon$ be such that $(d(x, y) - \varepsilon, d(x, y) + \varepsilon) \subseteq U.$ If $u \times v \in B_d(x, \frac{\varepsilon}{2}) \times B_d(y, \frac{\varepsilon}{2})$, then 
+        $$d(u, v) \leq d(u, x) + d(x, y) + d(y, v) < \varepsilon + d(x, y),$$
+        and 
+        $$d(x, y) \leq d(x, u) + d(u, v) + d(v, y)$$
+        so that $d(x, y) - \varepsilon \leq d(u, v)$. Hence $d(u, v) \in (d(x, y) - \varepsilon, d(x, y) + \varepsilon) \subseteq U$, meaning $d^{-1}(U)$ is open in $X \times X$. $\Box$
+        
+        \item Let $\topo$ be the metric topology on $X$ and $\topo'$ another topology on $X$. Show that if $d$ is continuous with respect to $\topo'$, then $\topo'$ is finer than $\topo$.
+
+        {\bf SOLUTION.} Suppose $d$ is continuous in $\topo'$. Then for fixed $x \in X$, $d_x: X \rightarrow \reals$ defined by $y \mapsto d(x, y)$ is continuous. Since any basis element $B_d(x, \varepsilon)$ for the metric topology may be written as $d_x^{-1}(-1, \varepsilon)$, $\topo'$ is finer than $\topo$. $\Box$
+    \end{enumerate}
+
+    \item Consider the product, uniform, and box topologies on $\reals^\omega$.
+    \begin{enumerate}
+        \item In which topologies are the following functions $\reals \rightarrow \reals^\omega$ continuous?
+        \begin{align*}
+            f(t) &= (t, 2t, 3t, \cdots), \\
+            g(t) &= (t, t, t, \cdots), \\
+            h(t) &= (t, \frac12 t, \frac13t, \cdots).
+        \end{align*}
+
+        {\bf SOLUTION.} $f$ is continuous in the product topology by Theorem 2.51 since each coordinate function $f_n: \reals \rightarrow \reals$ defined by $t \mapsto nt$ is continuous. To show that $f$ is not continuous in the uniform topology, consider $B_{\overline{\rho}}(\mathbf{0}, 1)$. $f^{-1}(B_{\overline{\rho}}(\mathbf{0}, 1)) = \{0\}$, because if $t \neq 0$, then $|nt| \geq 1$ for sufficiently large $n$, and thus $\overline{\rho}(f(t), \mathbf{0}) = 1$. Since $\{0\}$ is not open in $\reals$, $f$ is not continuous in the uniform topology (and thus not in the box topology, which is finer).
+
+        Next, we will show that $g$ is continuous in the uniform topology (and thus in the coarser product topology) but not in the box topology. Given $t \in \reals$ and $B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$ containing $g(t)$, there exists $B_{\overline{\rho}}(g(t), \delta) \subseteq B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$ with $\delta < 1$ by Lemma 2.54. If $|y - t| < \delta$, then
+        $$\overline{\rho}(g(y), g(t)) = \overline{d}(y, t) < \delta.$$
+        Hence $(t - \delta, t + \delta)$ is a neighbourhood of $t$ such that $g(t - \delta, t + \delta) \subseteq B_{\overline{\rho}}(g(t), \delta) \subseteq B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$, and thus $g$ is continuous by Theorem 2.35(2).
+
+        To see that $g$ is not continuous in the box topology, consider $\prod V_n$ where $V_n = (-\frac1n, \frac1n)$ for each $n$. $g^{-1}(\prod V_n) = \{0\}$, since $t \neq 0$ implies $t \notin (-\frac1n, \frac1n)$ for $n > |\frac1t|$. Thus $g$ is not continuous.
+
+        Finally, we show that $h$ is continuous in the uniform (and thus product) topology but not in the box topology. Given $t \in \reals$ and $B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$ containing $h(t)$, let $\delta < 1$ be such that $B_{\overline{\rho}}(h(t), \delta) \subseteq B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$. If $|y - t| < \delta$, then for each $n$,
+        $$\overline{d}(\frac{t}{n}, \frac{y}{n}) = \min \{\frac1n|y-t|, 1\} = \frac1n|y-t| \leq |y- t| < \delta,$$
+        so that
+        $$\overline{\rho}(h(t), h(y)) = \sup_{n \in \ints^+} \{ \overline{d}(\frac{t}{n}, \frac{y}{n}) \} < \delta.$$
+        Hence $h(t - \delta, t + \delta) \subseteq B_{\overline{\rho}}(h(t), \delta) \subseteq B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$, meaning $h$ is continuous.
+        
+        To show that $h$ is not continuous in the box topology, consider $\prod V_n$ defined by $V_n = (-\frac{1}{n^2}, \frac{1}{n^2})$ for each $n$. $h^{-1}(\prod V_n) = \{0\}$ because $t \neq 0$ implies $\frac1n t \notin (-\frac{1}{n^2}, \frac{1}{n^2})$ for $n > |\frac1t|$, showing that $h$ is not continuous. $\Box$
+
+        \item In which topologies do the following sequences converge?
+        \begin{align*}
+            \mathbf{w}_1 &= (1, 1, 1, \cdots), &\mathbf{x}_1 &= (1, 1, 1, \cdots), \\
+            \mathbf{w}_2 &= (0, 2, 2, \cdots), &\mathbf{x}_2 &= (0, \frac12, \frac12, \cdots), \\
+            \mathbf{w}_3 &= (0, 0, 3, \cdots), &\mathbf{x}_3 &= (0, 0, \frac13, \cdots), \\
+            &\cdots & &\cdots \\
+            \mathbf{y}_1 &= (1, 0, 0, \cdots), &\mathbf{z}_1 &= (1, 1, 0, \cdots), \\
+            \mathbf{y}_2 &= (\frac12,\frac12, 0, \cdots), &\mathbf{z}_2 &= (\frac12, \frac12, 0, \cdots), \\
+            \mathbf{y}_2 &= (\frac13,\frac13, \frac13, \cdots), &\mathbf{z}_2 &= (\frac13, \frac13, 0, \cdots), \\
+            &\cdots & &\cdots
+        \end{align*}
+
+        {\bf SOLUTION.} It is clear that all four sequences must uniquely converge to $\mathbf{0}$ if they converge. A general basis neighbourhood of $\mathbf{0}$ in the product topology is $\prod U_n$ where $U_n = \reals$ for all but finitely many $n$, for which $U_n$ is a neighbourhood of $0$. Let $N$ be the maximum of these finitely many $n$; for $n > N$, we have $\mathbf{w}_n \in \prod U_n$. Thus $(\mathbf{w}_i)$ converges in the product topology.
+
+        $(\mathbf{w}_i)$ does not converge in the uniform (and thus the finer box) topology, since the  basis neighbourhood $B_{\overline{\rho}}(\mathbf{0}, 1)$ does not contain any $\mathbf{w}_i$ as
+        $$\overline{\rho}(\mathbf{w}_i, \mathbf{0}) = i \geq 1$$
+        for all $i.$
+
+        To show that $(\mathbf{x}_i)$ converges in the uniform (and thus the coarser product) topology, but not in the box topology, consider a general basis neighbourhood $B_{\overline{\rho}}(\mathbf{0}, \varepsilon)$. Let $N$ be such that $\frac1N < \varepsilon$; for $n>N$,
+        $$\overline{\rho}(\mathbf{x}_i, \mathbf{0}) = \frac1n < \varepsilon,$$
+        so that $\mathbf{x}_n \in B_{\overline{\rho}}(\mathbf{0}, \varepsilon)$, and thus $(\mathbf{x}_i)$ converges in the uniform topology.
+
+        However, $\prod U_n$ defined by $U_n = (-\frac1n, \frac1n)$ is a neighbourhood of $0$ containing no $\mathbf{x}_i$.
+
+        Similarly, $(\mathbf{y}_i)$ converges in the uniform and product topologies but not in the box topology. Given $B_{\overline{\rho}}(\mathbf{0}, \varepsilon)$, taking $N$ such that $\frac1N < \varepsilon$ ensures that $n > N$ implies
+        $$\overline{\rho}(\mathbf{x}_i, \mathbf{0}) = \frac1n < \varepsilon,$$
+        so $(\mathbf{y}_i)$ converges in the uniform topology. The same $\prod U_n$ shows that it does not converge in the box topology.
+
+        $(\mathbf{z}_i)$ converges in the all three topologies; it suffices to show the box topology. Given a general basis neighbourhood $\prod U_n$ where $U_n = (-\varepsilon_n, \varepsilon_n)$ for each $n$, let $\frac1N < \min \{\varepsilon_1, \varepsilon_2\}$. Then for $n > N$, 
+        $$\mathbf{z}_n(1) = \frac1n \in U_1, \mathbf{z}_n(2) = \frac1n \in U_2, \text{ and } \mathbf{z}_n(i) = 0 \in U_i \text{ for } i \geq 3.$$
+        Thus $(\mathbf{z}_i)$ converges. $\Box$
+    \end{enumerate}
+
+    \item What is the closure of $\reals^\infty$ in $\reals^\omega$ in the uniform topology?
+
+    {\bf SOLUTION.} Let $\mathbf{x}$ be a limit point for $\reals^\infty$. Given $\varepsilon < 1$, the neighbourhood $B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$ of $\mathbf{x}$ must intersect $\reals^\infty$ at some other point $\mathbf{y}$, meaning $\overline{\rho}(\mathbf{x}, \mathbf{y}) < \varepsilon$, and thus
+    $$\sup_{n \in \ints^+} \{d(x_n, y_n)\} < \varepsilon.$$
+    From this, we claim that $\mathbf{x}$ must converge to $0$ in $\reals$. If $\mathbf{x}$ does not converge to $0$, then for some $\delta > 0$ there is a subsequence $(x_{n_j})$ of $\mathbf{x}$ such that $|x_{n_j}| > \delta$ for each $j$. Then $B_{\overline{\rho}}(\mathbf{x}, \delta)$ is a neighbourhood of $\mathbf{x}$ that does not intersect $\reals^\infty$, contradicting the assumption that $\mathbf{x}$ is a limit point. Thus every limit point must converge to $0$.
+
+    Conversely, is $\mathbf{x} \in \reals^\omega$ converges to $0$, then for any basis neighbourhood $B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$ with $\varepsilon < 1$ of $\mathbf{x}$, there exists $N$ such that $n > N$ implies $|x_n| < \varepsilon$. Define $\mathbf{y} \in \reals^\infty$ by $0 < |x_1-y_1| < \varepsilon$ (to ensure that $\mathbf{x} \neq \mathbf{y}$), $y_i = x_i$ for $1 < i \leq N$, and $y_i = 0$ for $n > N$. Then
+    $$\overline{\rho}(\mathbf{x}, \mathbf{y}) = \sup \{|x_i, y_i|\} < \varepsilon,$$
+    meaning $\mathbf{y} \in B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$. Thus $\mathbf{x} \in (\reals^\infty)'$, and therefore the closure of $\reals^\infty$ is precisely the collection of all sequences in $\reals^\omega$ that converge to $0$. $\Box$
+
+    \item Given $\mathbf{x} \in \reals^\omega$ and $0 < \varepsilon < 1$, let
+    $$U(\mathbf{x}, \varepsilon) = (x_1 - \varepsilon, x_1 + \varepsilon) \times \cdots \times (x_n - \varepsilon, x_n + \varepsilon) \times \cdots$$
+    \begin{enumerate}
+        \item Show that $U(\mathbf{x}, \varepsilon) \neq B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$.
+
+        {\bf SOLUTION.} Let $(\varepsilon_n)_n$ be a sequence of real numbers converging to $\varepsilon$ such that $0 < \varepsilon_n < \varepsilon$ for all $n$. Then $\mathbf{y} = (x_n + \varepsilon_n)_n \in U(\mathbf{x}, \varepsilon)$, while 
+        $$\overline{\rho}(\mathbf{x}, \mathbf{y}) = \sup_n\{\overline{d}(x_n, x_n + \varepsilon_n)\} = \sup_n\{\min\{\varepsilon_n, 1\}\} = \sup_n \{\varepsilon_n\} = \varepsilon,$$
+        so $\mathbf{y} \notin B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$. $\Box$
+
+        \item Show that $U(\mathbf{x}, \varepsilon)$ is not open in the uniform topology.
+
+        {\bf SOLUTION.} Let $\mathbf{y} \in U(\mathbf{x}, \varepsilon)$ be defined as in (a). Suppose there exists $\delta > 0$ such that $B_{\overline{\rho}}(\mathbf{y}, \delta) \subseteq U(\mathbf{x}, \varepsilon)$. By the convergence of $(\varepsilon_n)$, there exists $N$ such that $n > N$ implies $\varepsilon - \varepsilon_n < \delta$. Let $\mathbf{z} \in B_{\overline{\rho}}(\mathbf{y}, \delta)$ be defined by $z_n = y_n$ for $n \leq N$ and $z_n = x_n + \varepsilon$ for $n > N$. To verify that $\mathbf{z} \in B_{\overline{\rho}}(\mathbf{y}, \delta)$, we have
+        $$\overline{\rho}(\mathbf{y}, \mathbf{z}) = \sup_n \{\overline{d}(y_n, z_n)\} = \sup_n \{\overline{d}(x_n + \varepsilon_n, x_n + \varepsilon)\} \leq \sup_n \{\overline{d}(\varepsilon_n, \varepsilon)\} < \delta.$$
+        Clearly $\mathbf{z} \notin U(\mathbf{x}, \varepsilon)$, contradicting the fact that $B_{\overline{\rho}}(\mathbf{y}, \delta) \subseteq U(\mathbf{x}, \varepsilon)$. Since no such $\delta$ exists, $U(\mathbf{x}, \varepsilon)$ is not open in the uniform topology. $\Box$
+
+        \item Show that $B_{\overline{\rho}}(\mathbf{x}, \varepsilon) = \bigcup_{0 < \delta < \varepsilon} U(\mathbf{x}, \delta)$.
+
+        {\bf SOLUTION.} If $\mathbf{y} \in B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$, then let $\delta$ be such that
+        $$\sup_n \{\overline{d}(x_n, y_n) \} < \delta < \varepsilon.$$
+        Since $|y_n - x_n| < \delta$ for each $n$, $\mathbf{y} \in U(\mathbf{x}, \delta) \subseteq \bigcup_{0 < \delta < \varepsilon} U(\mathbf{x}, \delta)$. Conversely, if $\mathbf{y} \in \bigcup_{0 < \delta < \varepsilon} U(\mathbf{x}, \delta)$ then there exists $0 < \delta < \varepsilon$ such that $\mathbf{y} \in U(\mathbf{x}, \delta)$. It follows that $y_n \in (x_n - \delta, x_n + \delta)$ for each $n$, or equivalently, $|y_n - x_n| < \delta < \varepsilon$. Hence $\sup_n \{\overline{d}(x_n, y_n)\} < \varepsilon$, implying that $\mathbf{y} \in B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$. $\Box$
+    \end{enumerate}
+
+    \item Given sequences $(a_n), (b_n)$ of real numbers with $a_i > 0$ for all $i$, define $h: \reals^\omega \rightarrow \reals^\omega$ by
+    $$h(x_1, x_2, \cdots) = (a_1x_1+b_1, a_2x_2+b_2, \cdots).$$
+    Suppose $\reals^\omega$ is given the uniform topology; under what conditions on $(a_n), (b_n)$ is $h$ continuous? a homeomorphism?
+
+    {\bf SOLUTION.} We claim $h$ is continuous if and only if $(a_n)$ is bounded. If $(a_n)$ is bounded, then let $M > 1$ be such that $a_n \leq M$ for all $n$. Given $\mathbf{x} \in \reals^\omega$ and $B_{\overline{\rho}}(h(\mathbf{x}), \varepsilon)$, take $\delta < \frac{\varepsilon}{M}$. If $\mathbf{y} \in B_{\overline{\rho}}(\mathbf{x}, \delta)$, then
+    $$\overline{\rho}(\mathbf{x}, \mathbf{y}) = \sup_n \{\min\{|x_n - y_n|, 1\}\} < \delta,$$
+    and thus
+    \begin{align*}
+        \overline{\rho}(h(\mathbf{x}), h(\mathbf{y})) &= \sup_n \{\min\{a_n|x_n - y_n|, 1\}\}, \\
+        &\leq \sup_n \{\min \{M|x_n - y_n|\}, 1\}, \\
+        &= M\sup_n \{\min \{|x_n - y_n|\}, \frac1M\}, \\
+        &< M\sup_n \{\min \{|x_n - y_n|\}, 1\}, \\
+        &< \delta M, \\
+        &< \varepsilon.
+    \end{align*}
+    Hence $h(\mathbf{y}) \in B_{\overline{\rho}}(h(\mathbf{x}), \varepsilon)$, meaning $h(B_{\overline{\rho}}(\mathbf{x}, \delta)) \subseteq B_{\overline{\rho}}(h(\mathbf{x}), \varepsilon)$, and therefore $h$ is continuous.
+
+    Conversely, suppose $(a_n)$ is unbounded, and consider $B_{\overline{\rho}}(h(\mathbf{0}), \varepsilon)$ for $\varepsilon < 1$. Given any neighbourhood $B_{\overline{\rho}}(\mathbf{0}, \delta)$ of $\mathbf{0}$, let $0 < t < \delta$ and define $\mathbf{y} = (t, t, \cdots) \in B_{\overline{\rho}}(\mathbf{0}, \delta)$. There exists $a_N > \frac1t$ as $(a_n)$ is unbounded, meaning
+    $$\overline{\rho}(h(\mathbf{0}), h(\mathbf{y})) = \sup_n \{\min\{a_i t, 1\}\} = 1 > \varepsilon,$$
+    and thus $h(B_{\overline{\rho}}(\mathbf{0}, \delta))$ is not contained in $B_{\overline{\rho}}(h(\mathbf{0}), \varepsilon)$. Since $\delta$ was arbitrary, $h$ is not continuous. Since $h^{-1}$ takes the same form only with coefficients $(\frac{1}{a_n})$, $h$ is a homeomorphism if and only if $(a_n)$ and $(\frac{1}{a_n})$ are bounded. $\Box$
+
+    \item Let $X \subseteq \reals^\omega$ be the set of all sequences $(x_n)_n$ such that $\sum x_i^2$ converges. Then
+    $$d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^\infty (x_i-y_i)^2}$$
+    is a metric on $X$. Consider the topologies on $X$ inherited from the box, uniform, and product topologies, as well as the topology induced by $d$, called the $\ell^2$-topology.
+    \begin{enumerate}
+        \item Show that on $X$, box topology $\supseteq \ell^2$-topology $\supseteq$ uniform topology.
+
+        {\bf SOLUTION.} For any $\mathbf{x}, \mathbf{y} \in X$, we remark that
+        $$\overline{\rho}(\mathbf{x},\mathbf{y}) \leq \sup_n \{\sqrt{(x_n - y_n)^2}\} \leq d(\mathbf{x}, \mathbf{y}).$$
+        It follows that $B_d(\mathbf{x}, \varepsilon) \subseteq B_{\overline{\rho}}(\mathbf{x}, \varepsilon)$. By Lemma 2.59, the $\ell^2$-topology is finer than the uniform topology.
+
+        Given $B_d(\mathbf{x}, \varepsilon)$ in the $\ell^2$-topology, it suffices to construct a neighbourhood $U$ of $\mathbf{x}$ in the box topology such that $U \subseteq B_d(\mathbf{x}, \varepsilon)$. Let $U_n = (x_n - \frac{\varepsilon}{2^\frac{n}{2}}, x_n + \frac{\varepsilon}{2^\frac{n}{2}}).$ If $\mathbf{y} \in \prod U_n \cap X$, then $|x_n - y_n| < \frac{\varepsilon}{2^\frac{n}{2}}$ for every $n$, so that
+        $$d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^\infty (x_i - y_i)^2} < \sqrt{\sum_{i=1}^\infty \frac{\varepsilon^2}{2^{i}}} = \varepsilon.$$
+        Hence $\mathbf{x} \in \prod U_n \cap X \subseteq B_d(\mathbf{x}, \varepsilon)$, showing that the box topology is finer than the $\ell^2$-topology. $\Box$
+
+        \item $\reals^\infty \subseteq X$. Show that the four topologies $\reals^\infty$ inherits as a subspace of $X$ are all distinct.
+
+        {\bf SOLUTION.} From (a), and the fact that the uniform topology is finer than the product topology, it suffices to show each containment is strict. For $\varepsilon < 1$, $B_{\overline{\rho}}(\mathbf{0}, \varepsilon) \cap \reals^\infty$ is open in the uniform topology on $\reals^\infty$, and moreover nonempty. The general basis element for the product topology is $\prod U_n$, where $U_n = \reals$ for all but finitely many $n$. Clearly such a set cannot be contained in $B_{\overline{\rho}}(\mathbf{0}, \varepsilon) \cap \reals^\infty$, so the product topology is strictly contained in the uniform topology.
+
+        For $\varepsilon < 1$, $B_d(\mathbf{0}, \varepsilon) \cap \reals^\infty$ is open in the $\ell^2$-topology on $\reals^\infty.$ Let $\mathbf{x} = (\frac{\varepsilon}{2}, 0, 0, \cdots) \in B_d(\mathbf{0}, \varepsilon) \cap \reals^\infty.$ Suppose there exists $\delta > 0$ such that $B_{\overline{\rho}}(\mathbf{x}, \delta) \cap \reals^\infty \subseteq B_d(\mathbf{0}, \varepsilon) \cap \reals^\infty.$ Let $s, t$ be such that $\frac{\varepsilon}{2} - \delta < s < \frac{\varepsilon}{2}$ and $0 < t < \delta$; let $N$ be sufficiently large that $Ns^2 + t^2 > \varepsilon^2.$ Define $\mathbf{y} \in B_{\overline{\rho}}(\mathbf{x}, \delta) \cap \reals^\infty$ by
+        $$y_1 = s, y_i = t \text{ for } 2 \leq i \leq N+1, \text{ and } y_j = 0 \text{ for } j \geq N+2.$$
+        As a sanity check, $t < \delta$ and $\frac{\varepsilon}{2} - s < \delta$ implies
+        $$\overline{\rho}(\mathbf{x}, \mathbf{y}) = \min\{\max \{ \frac{\varepsilon}{2} - s, t \}, 1\} < \delta.$$
+        Furthermore,
+        $$d(\mathbf{0}, \mathbf{y}) = \sqrt{\sum_{i=1}^\infty (0 - y_i)^2} = \sqrt{s^2 + Nt^2} > \sqrt{\varepsilon^2} = \varepsilon,$$
+        meaning $\mathbf{y} \notin B_d(\mathbf{0}, \varepsilon)$. Hence the $\ell^2$-topology is strictly finer than the uniform topology.
+
+        Let $U_n = (-\frac1n, \frac1n)$ for every $n$, and consider the open set $\prod U_n \cap \reals^\infty$ in the box topology. Suppose there exists $\varepsilon > 0$ such that $B_d(\mathbf{0}, \varepsilon) \cap \reals^\infty \subseteq \prod U_n \cap \reals^\infty$. Let $N > \frac{1}{\varepsilon}$; define $\mathbf{x} \in B_d(\mathbf{0}, \varepsilon) \cap \reals^\infty$ by 
+        $$x_N = \frac1N \text{ and } x_i = 0 \text{ for } i \neq N.$$
+        Clearly $\mathbf{x} \notin \prod U_n$, so the box topology is strictly finer than the $\ell^2$-topology. $\Box$
+
+        \item $H = \prod_{n \in \ints^+} [0, \frac1n]$, the Hilbert cube, is contained in $X$. Compare the four topologies $H$ inherits as a subspace of $X$.
+
+        {\bf SOLUTION.} For $U_n = (-\frac1n, \frac1n)$, consider the open set $\prod U_n \cap H$ in the box topology. Suppose $\varepsilon > 0$ is such that $B_d(\mathbf{0}, \varepsilon) \cap H \subseteq \prod U_n \cap H$. Let $N > \frac{1}{\varepsilon}$; define $\mathbf{x}$ by
+        $$x_N = \frac1N \text{ and } x_i = 0 \text{ for } i \neq N.$$
+        Clearly $\mathbf{x} \in \prod B_d(\mathbf{0}, \varepsilon) \cap H$, but $\mathbf{x} \notin \prod U_n \cap H$, so the box topology on $H$ is strictly finer than the $\ell^2$-topology.
+
+        Consider any ball $B_d(\mathbf{x}, \varepsilon) \cap H$ in the $\ell^2$-topology. Let $N$ be sufficiently large that
+        $$\sum_{i = N+1}^\infty \frac{1}{i^2} < \frac{\varepsilon^2}{2}.$$
+        Then define
+        $$U_n = \left( x_n - \frac{\varepsilon}{2^\frac{n+1}{2}}, x_n + \frac{\varepsilon}{2^\frac{n+1}{2}} \right) \cap H \text{ for } n < N \text{ and } U_n = H \text{ for } n \geq N.$$
+        $\prod U_n$ is a neighbourhood of $\mathbf{x}$ in the product topology, and if $\mathbf{y} \in \prod U_n$, then
+        $$d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^\infty(x_i - y_i)^2} < \sqrt{\sum_{i=1}^N \left(\frac{\varepsilon}{2^\frac{i+1}{2}}\right)^2 + \sum_{i=N+1}^\infty \frac{1}{i^2}} < \sqrt{\varepsilon^2 \sum_{i=1}^N \frac{1}{2^{i+1}} + \frac{\varepsilon^2}{2}} < \sqrt{ \frac{\varepsilon^2}{2} + \frac{\varepsilon^2}{2}} = \varepsilon.$$
+        Therefore $\mathbf{x} \in \prod U_n \subseteq B_d(\mathbf{x}, \varepsilon) \cap H$, so the product topology is finer than the $\ell^2$-topology. It follows that the $\ell^2$-topology, the uniform topology, and the product topology on $H$ are all equal. $\Box$
+    \end{enumerate}
+
+    \item Show that the euclidean metric $d$ on $\reals^n$ is a metric, as follows: If $\mathbf{x}, \mathbf{y} \in \reals^n$ and $c \in \reals$, define
+    \begin{align*}
+        \mathbf{x} + \mathbf{y} &= (x_1 + y_1, \cdots, x_n + y_n), \\
+        c\mathbf{x} &= (cx_1, \cdots, cx_n), \\
+        \mathbf{x} \cdot \mathbf{y} &= x_1y_1 + \cdots + x_ny_n.
+    \end{align*}
+    \begin{enumerate}
+        \item Show that $\mathbf{x} \cdot (\mathbf{y}+ \mathbf{z}) = (\mathbf{x} \cdot \mathbf{y}) + (\mathbf{x} \cdot \mathbf{z})$.
+
+        {\bf SOLUTION.} 
+        \begin{align*}
+            \mathbf{x} \cdot (\mathbf{y}+ \mathbf{z}) &= \mathbf{x} \cdot (y_1 + z_1, \cdots, y_n + z_n), \\
+            &= x_1(y_1+z_1) + \cdots + x_n(y_n+z_n), \\
+            &= x_1y_1 + \cdots x_ny_n + x_1z_1 + \cdots + x_nz_n, \\
+            &= (\mathbf{x} \cdot \mathbf{y} )+ (\mathbf{x} \cdot \mathbf{z}). \Box
+        \end{align*}
+        
+        \item Show that $|\mathbf{x} \cdot \mathbf{y}| \leq \|\mathbf{x}\|\|\mathbf{y}\|$.
+
+        {\bf SOLUTION.} If $\mathbf{y} = 0$, then both sides are $0$, so we may assume $\mathbf{y} \neq 0$. Then
+        $$\mathbf{x} = \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{y}\|^2}\mathbf{y} + \left( \mathbf{x} - \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{y}\|^2}\mathbf{y}\right),$$
+        and $\mathbf{y} \cdot\left(\mathbf{x} - \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{y}\|^2}\mathbf{y}\right)=0$. By the Pythagorean theorem,
+        \begin{align*}
+            \|\mathbf{x}\|^2 &= \|\frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{y}\|^2} \mathbf{y}\|^2 + \left\| \mathbf{x} - \frac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{y}\|^2}\mathbf{y}\right\|^2, \\
+            &\geq \frac{|\mathbf{x} \cdot \mathbf{y}|^2}{\|\mathbf{y}\|^2},
+        \end{align*}
+        showing that $|\mathbf{x} \cdot \mathbf{y} \leq \|\mathbf{x}\|\|\mathbf{y}\|$. $\Box$
+        
+        \item Show that $\|\mathbf{x} + \mathbf{y}\| \leq \| \mathbf{x} \| + \| \mathbf{y} \|$.
+
+        {\bf SOLUTION.} From (b), we have
+        \begin{align*}
+            \|\mathbf{x} + \mathbf{y}\|^2 &= (x_1 + y_1)^2 + \cdots + (x_n+y_n)^2, \\
+            &= x_1^2 + \cdots + x_n^2 + y_1^2 + \cdots + y_n^2 + 2x_1y_1 + \cdots + 2x_ny_n, \\
+            &= \|\mathbf{x}\|^2 + \|\mathbf{y}\|^2 + 2\mathbf{x} \cdot \mathbf{y}, \\
+            &\leq \|\mathbf{x}\|^2 + \|\mathbf{y}\|^2 + 2\|\mathbf{x} \|\| \mathbf{y}\|, \\
+            &= (\|\mathbf{x}\| + \|\mathbf{y}\|)^2. \Box
+        \end{align*}
+                    
+        \item Verify that $d$ is a metric.
+
+        {\bf SOLUTION.} Clearly 
+        $$d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\| = \sqrt{(x_1-y_1)^2 + \cdots + (x_n-y_n)^2} \geq 0,$$
+        with equality if and only if $x_i = y_i$ for each $i$. Now commutativity ensures symmetry of $d$, and the triangle inequality follows from (c) as
+        \begin{align*}
+            d(\mathbf{x}, \mathbf{y}) + d(\mathbf{x}, \mathbf{z}) &= \|\mathbf{x} - \mathbf{y}\| + \|\mathbf{y} - \mathbf{z}\|, \\
+            &\geq \|\mathbf{x} - \mathbf{z}\|, \\
+            &= d(\mathbf{x}, \mathbf{z}). \Box
+        \end{align*}
+    \end{enumerate}
+
+    \item Let $X \subseteq \reals^\omega$ be as in Exercise 8.
+    \begin{enumerate}
+        \item Show that if $\mathbf{x}, \mathbf{y} \in X$, then $\sum|x_iy_i|$ converges.
+
+        {\bf SOLUTION.} Suppose $\mathbf{x}, \mathbf{y}$ are such that $\sum x_i^2, \sum y_i^2$ converge. For each $n \in \ints^+$, let $\mathbf{x}_n = (|x_1|, \cdots, |x_n|), \mathbf{y}_n = (|y_1|, \cdots, |y_n|)$, and define
+        $$s_n = \sum_{i=1}^n |x_iy_i| = \mathbf{x}_n \cdot \mathbf{y}_n \leq \|\mathbf{x}_n\| \|\mathbf{y}_n\|.$$
+        The sequence of partial sums $(s_n)$ is clearly bounded above by $\sqrt{\sum x_i^2 \sum y_i^2}$ and monotonically increasing, so $(s_n)$ converges to $\sum|x_iy_i|$. $\Box$
+        
+        \item Let $c \in \reals$. Show that if $\mathbf{x}, \mathbf{y} \in X$, then $\mathbf{x} + \mathbf{y}, c\mathbf{x} \in X$.
+
+        {\bf SOLUTION.} We have
+        $$\sum(x_i+y_i)^2 = \sum x_i^2 + \sum 2|x_iy_i| + \sum y_i^2,$$
+        which converges. Moreover, $\sum (cx_i)^2 = c^2 \sum x_i^2$ converges. $\Box$
+        
+        \item Show that
+        $$d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^\infty(x_i-y_i)^2}$$
+        is a well-defined metric on $X$.
+
+        {\bf SOLUTION.} Positivity and symmetry are trivial; for each $n \in \ints^+$, we define $\mathbf{x}_n, \mathbf{y}_n, \mathbf{z}_n$ as in (a) and we let
+        $$s_n = \|\mathbf{x}_n - \mathbf{z}_n \| \leq \|\mathbf{x}_n - \mathbf{y}_n\| + \|\mathbf{y}_n - \mathbf{z}_n\|$$
+        by Exercise 9(d). Thus the sequence of partial sums $(s_n)$ is bounded above by $d(\mathbf{x}, \mathbf{y}) + d(\mathbf{y}, \mathbf{z})$ and monotonically increasing, hence it converges. $\Box$
+    \end{enumerate}
+
+    \item Show that if $d$ is a metric for $X$, then
+    $$d'(x, y) = \frac{d(x, y)}{1+d(x, y)}$$
+    is a bounded metric that gives the topology of $X$.
+
+    {\bf SOLUTION.} Let $f: [0, \infty) \rightarrow [0, 1)$ be defined by $f(x) = \frac{x}{1+x}$. $f$ is continuous, bounded, strictly increasing, and its inverse $f^{-1}(x) = \frac{x}{1-x}$ is continuous. We may write $d' = f \circ d: X \times X \rightarrow [0, 1)$, showing that $d'$ is bounded. Moreover, $d'(x, y) \geq 0$ with equality if and only if $d(x, y) = 0$, which occurs if and only if $x = y$, and $d'$ is clearly symmetric. Lastly, for any $a, b \in [0, \infty)$, we have
+    $$f(a+b) - f(b) = \frac{a+b}{1+a+b} - \frac{b}{1+b} = \frac{a}{(1+a+b)(1+b)} \leq \frac{a}{1+a} = f(a).$$
+    Thus
+    $$d'(x, y) + d'(y, z) = f(d(x, y)) + f(d(y, z)) \geq f(d(x, y) + d(y, z)) \geq f(d(x, z)) = d'(x, z),$$
+    showing that $d'$ is a metric. To show that $d, d'$ induce the same topology on $X$, we use Exercise 3(b). Since $d' = f \circ d$ is continuous in the topology of $d$, the topology of $d'$ is finer. Conversely, $d = f^{-1} \circ d'$ is continuous in the topology of $d'$, hence the topology of $d$ is finer. $\Box$
+\end{enumerate}
+\end{document}
