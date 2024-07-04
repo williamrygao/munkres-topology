@@ -1,0 +1,206 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 21 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item If $d$ is a metric for the topology of $X$ and $A \subseteq X$, show that $\restr{d}{A \times A}$ is a metric for the subspace topology on $A$.
+
+    {\bf SOLUTION.} The fact that $d' = \restr{d}{A \times A}$ is a metric is trivially inherited from $X \times X$. Moreover, since
+    $$B_{d'}(x, \varepsilon) = \{b \in A: d'(a, b) < \varepsilon\} = \{b \in A: d(a, b) < \varepsilon\} = B_d(x, \varepsilon) \cap A,$$
+    where $B_{d'}(x, \varepsilon)$ is a general basis element for the metric topology on $A$ and $ B_d(x, \varepsilon) \cap A$ is a general basis element for the subspace topology on $A$, the two topologies are the same. $\Box$
+
+    \item Let $X, Y$ be metric spaces with metrics $d_X, d_Y$. Let $f: X\rightarrow Y$ be such that for any $x_1, x_2 \in X$,
+    $$d_Y(f(x_1), f(x_2)) = d_X(x_1, x_2).$$
+    Show that $f$ is an imbedding.
+    
+    {\bf SOLUTION.} To show that $f$ is continuous, given $x \in X$ and a basis neighbourhood $B_{d_Y}(f(x), \varepsilon)$ of $f(x)$ in $Y$, $B_{d_X}(x, \varepsilon)$ is a neighbourhood of $x$ such that $f(B_{d_X}(x, \varepsilon)) \subseteq B_{d_Y}(f(x), \varepsilon)$. Indeed, if $y \in B_{d_X}(x, \varepsilon)$, then
+    $$d_Y(f(x), f(y)) = d_X(x, y) < \varepsilon$$
+    shows that $f(y) \in B_{d_Y}(f(x), \varepsilon)$. To show that $f$ is an injection, if $f(x) = f(y)$, then
+    $$d_Y(f(x), f(y)) = d_X(x, y) = 0,$$
+    so $x = y$. Thus the restriction of codomain $f': X \rightarrow f(X)$ is a continuous bijection, and since $f^{-1}$ satisfies
+    $$d_Y(y_1, y_2) = d_Y(f(x_1), f(x_2)) = d_X(x_1, x_2) = d_X(f^{-1}(f(x_1)), f^{-1}(f(x_2))) = d_X(f^{-1}(y_1), f^{-1}(y_2)),$$
+    $f^{-1}$ is also continuous. $\Box$
+
+    \item Let $X_n$ be a metric space with metric $d_n$ for $n \in \ints^+$.
+    \begin{enumerate}
+        \item Show that
+        $$\rho(x, y) = \max \{d_1(x_1,y_1), \cdots, d_n(x_n, y_n)\}$$
+        is a metric for $X_1 \times \cdots \times X_n$.
+
+        {\bf SOLUTION.} The first two conditions are trivially inherited from the metrics $d_i$; to show the triangle inequality,
+        \begin{align*}
+            \rho(x, y) + \rho(y, z) &= \max \{d_1(x_1,y_1), \cdots, d_n(x_n, y_n)\} + \max \{d_1(y_1,z_1), \cdots, d_n(y_n, z_n)\}, \\
+            &\geq \max \{d_1(x_1,y_1) + d(y_1, z_1), \cdots, d_n(x_n, y_n) + d_n(y_n, z_n)\}, \\
+            &\geq \max \{d_1(x_1,z_1), \cdots, d_n(x_n, z_n)\}, \\
+            &= \rho(x, z).
+        \end{align*}
+        To show that $\rho$ induces the product topology, consider a basis element $B_{d_1}(x_1, \varepsilon_1) \times \cdots \times B_{d_n}(x_n, \varepsilon_n)$ for the product topology. Let $\varepsilon = \min \{\varepsilon_1, \cdots, \varepsilon_n\}$; then clearly
+        $$B_\rho(\mathbf{x}, \varepsilon) \subseteq B_{d_1}(x_1, \varepsilon_1) \times \cdots \times B_{d_n}(x_n, \varepsilon_n),$$
+        so the metric topology is finer than the product topology. Conversely, consider a basis element $B_\rho(\mathbf{x}, \varepsilon)$ for the metric topology.
+        $$B_{d_1} (x_1, \varepsilon) \times \cdots \times B_{d_n}(x_n, \varepsilon) \subseteq B_\rho(\mathbf{x}, \varepsilon),$$
+        so the product topology is finer than the metric topology. $\Box$
+
+        \item Let $\overline{d}_i = \min \{d_i, 1\}$. Show that
+        $$D(x, y) = \sup_{i \in \ints^+} \{\frac{\overline{d}_i(x_i, y_i)}{i}\}$$
+        is a metric for $\prod X_i$.
+
+        {\bf SOLUTION.} $D$ trivially inherits the first two properties from $\overline{d}_i$; to show the triangle inequality, we have for each $i$
+        \begin{align*}
+            \frac{\overline{d}_i(x_i, z_i)}{i} &\leq \frac{\overline{d}_i(x_i, y_i)}{i} + \frac{\overline{d}_i(x_i, y_i)}{i}, \\
+            &\leq D(\mathbf{x}, \mathbf{y}) + D(\mathbf{y} + \mathbf{z}).
+        \end{align*}
+        Hence $D(\mathbf{x}, \mathbf{z}) = \sup_{i \in \ints^+} \{\frac{\overline{d}_i(x_i, y_i)}{i}\} \leq D(\mathbf{x}, \mathbf{y}) + D(\mathbf{y} + \mathbf{z})$, as desired.
+
+        Consider a general basis element $B_D(\mathbf{x}, \varepsilon)$ for the metric topology on $\prod X_n$. Let $N > \frac{1}{\varepsilon}$; then define
+        $$U_n = (x_n - \varepsilon, x_n + \varepsilon) \text{ for } n < N, U_n = X_n \text{ for } n \geq N.$$
+        If $\mathbf{y} \in \prod U_n$, then
+        $$D(\mathbf{x}, \mathbf{y}) \leq \max \left\{ \frac{\overline{d}_1(x_1, y_1)}{1}, \cdots, \frac{\overline{d}_{N-1}(x_{N-1}, y_{N-1})}{N-1}, \frac1N \right\} < \varepsilon.$$
+        Hence $\mathbf{x} \in \prod U_n \subseteq B_D(\mathbf{x}, \varepsilon)$, so the product topology is finer than the metric topology.
+
+        Consider $\mathbf{x} \in \prod X_n$ and a basis element $\prod U_n$ for the product topology containing $\mathbf{x}$. Let $U_n = X_n$ for all $n$ except $i_1, \cdots, i_n$, in ascending order. For each $i_j$, let $0 < \varepsilon_j < 1$ be such that $B_{d_{i_j}}(x_{i_j}, \varepsilon_j) \subseteq U_{i_j}$, and let $\varepsilon = \frac{\min \{\varepsilon_1, \cdots, \varepsilon_n\}}{i_n}$. If $\mathbf{y} \in B_D(\mathbf{x}, \varepsilon)$, then for each $i_j$,
+        $$\frac{\overline{d}_{i_j}(x_{i_j}, y_{i_j})}{i_j} < \varepsilon \leq \frac{\varepsilon_j}{i_j},$$
+        so $\overline{d}_{i_j}(x_{i_j}, y_{i_j}) < \varepsilon_j$, and thus $y_{i_j} \in B_{d_{i_j}}(x_{i_j}, \varepsilon_j) \subseteq U_{i_j}$. Hence $\mathbf{x} \in B_D(\mathbf{x}, \varepsilon) \subseteq \prod U_n$, and the metric topology is finer than the product topology. $\Box$
+    \end{enumerate}
+
+    \item Show that $\reals_\ell$ and the ordered square $[0, 1]^2$ are first countable.
+
+    {\bf SOLUTION.} Given $x \in \reals_\ell$, define a countable collection $\{U_n\}_{n \in \ints^+}$ of neighbourhoods of $x$ by $U_n = [x, x + \frac1n)$. It is easy to see that this is a countable basis, so $\reals_\ell$ is first countable.
+
+    For $[0, 1]^2$ in the dictionary order topology, we define a countable basis $\{U_n\}_{n \in \ints^+}$ at $0 \times 0$ by $U_n = [0\times 0, 0 \times \frac1n)$, and similarly a countable basis $\{U_n\}_{n \in\ints^+}$ at $1 \times 1$ by $U_n = (1 \times (1- \frac1n), 1 \times 1]$. For $a \times 0$, let $U_n = ((a - \frac{a}{n}) \times 0, a \times \frac1n)$, for $a \times 1$, let $U_n = ((a \times (1-\frac1n), (a + \frac{1-a}{n}) \times 1)$, and otherwise take $\delta = \min \{b, 1-b\}$ and define $U_n = (a \times (b- \frac{\delta}{n}), a \times (b+ \frac{\delta}{n}))$. $\Box$
+
+    \item Suppose $x_n \rightarrow x$ and $y_n \rightarrow y$ in $\reals$. Show that
+    \begin{align*}
+        x_n + y_n &\rightarrow x + y, \\
+        x_n - y_n &\rightarrow x-y, \\
+        x_ny_n &\rightarrow xy,        
+    \end{align*}
+    and if every $y_n \neq 0$ and $y \neq 0$, then
+    $$\frac{x_n}{y_n} \rightarrow \frac{x}{y}.$$
+
+    {\bf SOLUTION.} We know that $x_n \times y_n \rightarrow x \times y$ in $\reals^2$. Then since $+: \reals^2 \rightarrow \reals$ is continuous,
+    $$x_n + y_n = (+) \circ (x_n \times y_n) \rightarrow (+) \circ (x \times y) = x+ y.$$
+    Similarly, $x_n - y_n \rightarrow x-y$, $x_ny_n \rightarrow xy$, and $\frac{x_n}{y_n} \rightarrow \frac{x}{y}$. $\Box$
+
+    \item Define $f_n:[0, 1]\rightarrow \reals$ by $f_n(x) = x^n$. Show that $(f_n(x))$ converges for each $x \in [0, 1]$, but $(f_n)$ does not converge uniformly.
+
+    {\bf SOLUTION.} If $x \in [0, 1)$, then $(f_n(x)) \rightarrow 0$, and if $x = 1$, then $(f_n(x)) \rightarrow 1$. Thus $(f_n)$ converges pointwise to
+    $$f(x) = \begin{cases}
+        0 &\text{if } x \neq 1, \\
+        1 &\text{if } x = 1.
+    \end{cases}$$
+    Since $f$ is not continuous, $(f_n)$ does not converge uniformly. $\Box$
+
+    \item Let $f_n: X \rightarrow \reals$ be a sequence of functions and $\overline{\rho}$ the uniform metric on $\reals^X$. Show that $(f_n)$ converges uniformly to $f: X \rightarrow \reals$ if and only if $(f_n)$ converges to $f$ as elements of the metric space $\reals^X$.
+
+    {\bf SOLUTION.} Suppose $(f_n)$ converges uniformly to $f: X \rightarrow \reals$. Then for any neighbourhood $B_{\overline{\rho}}(f, \varepsilon)$ of $f$ in $\reals^X$, let $N$ be such that
+    $$\overline{d}(f_n(x), f(x)) < \frac{\varepsilon}{2}$$
+    for all $n > N$ and $x \in X$. Then
+    $$\overline{\rho}(f, f_n) = \sup_{x \in X} \{\overline{d}(f(x), f_n(x))\} \leq \frac{\varepsilon}{2} < \varepsilon$$
+    for all $n \geq N$, and thus $f_n \in B_{\overline{\rho}}(f, \varepsilon)$ for $n > N$.
+
+    Conversely, suppose $(f_n)$ converges to $f$ in $\reals^X$. Given $\varepsilon > 0$, let $\varepsilon' < \min \{1, \varepsilon\}$. Then $B_{\overline{\rho}}(f, \varepsilon')$ is a neighbourhood of $f$, so there exists $N$ such that $n > N$ implies $f_n \in B_{\overline{\rho}}(f, \varepsilon')$. Thus for all $x \in X$ and $n > N$, 
+    $$\overline{d}(f(x), f_n(x)) \leq \sup_{x \in X} \{\overline{d}(f(x), f_n(x))\} = \overline{\rho}(f_n, f) < \varepsilon' < \varepsilon,$$
+    so $(f_n)$ converges uniformly to $f$. $\Box$
+
+    \item Let $Y$ be a metric space and $f_n:X \rightarrow Y$ a sequence of continuous functions. Let $x_n$ be a sequence of points in $X$ converging to $x$. Show that if $(f_n)$ converges uniformly to $f,$ then $(f_n(x_n))$ converges to $f(x)$.
+
+    {\bf SOLUTION.} Let $B_d(f(x), \varepsilon)$ be a neighbourhood of $f(x)$ in $Y$. Since $(f_n)$ converges uniformly to $f$, there exists $N_1$ such that
+    $$d(f_n(x), f(x)) < \frac{\varepsilon}{2}$$
+    for all $n > N_1$ and $x \in X$. In particular for $x = x_n$,
+    $$d(f_n(x_n), f(x_n)) < \frac{\varepsilon}{2}.$$
+    Moreover since $f$ is continuous, $(f(x_n))$ converges to $f(x)$, so there exists $N_2$ such that
+    $$d(f(x_n), f(x)) < \frac{\varepsilon}{2}$$
+    for $n > N_2$. Let $N = \max \{N_1, N_2\};$ if $n > N$ then
+    $$d(f_n(x_n), f(x)) \leq d(f_n(x_n), f(x_n)) + d(f(x_n), f(x)) < \varepsilon.$$
+    Hence $f_n(x_n) \in B_d(f(x), \varepsilon)$, meaning $(f_n(x_n))$ converges to $f(x)$. $\Box$
+
+    \item Let $f_n: \reals \rightarrow \reals$ be defined as
+    $$f_n(x) = \frac{1}{n^3(x-\frac{1}{n})^2 + 1}.$$
+    Let $f: \reals \rightarrow \reals$ be the zero function.
+    \begin{enumerate}
+        \item Show that $f_n(x) \rightarrow f(x)$ for each $x \in \reals$.
+
+        {\bf SOLUTION.} Clearly $f_n(0) = \frac{1}{n+1} \rightarrow 0$. Let $x \in \reals - \{0\}$ and let $B(0, \varepsilon)$ be a neighbourhood of $0$. Let $N$ be sufficiently large that $N^2x^2 - 2xN > 1$ and $\frac1N < \varepsilon$; then
+        $$|f_n(x)| = \left| \frac{1}{n^3(x^2- \frac{2x}{n}+\frac{1}{n^2})+1} \right| < \frac1n \frac{1}{n^2x^2-2xn} < \frac1n < \varepsilon$$
+        for $n > N$. Thus $f_n(x) \rightarrow 0$. $\Box$
+        
+        \item Show that $f_n$ does not converge uniformly to $f$.
+
+        {\bf SOLUTION.} Let $x_n = \frac1n$. Then $x_n \rightarrow 0$, but $f_n(x_n) = 1$ for all $n$. By Exercise 8, $(f_n)$ does not converge uniformly to $f$. $\Box$
+    \end{enumerate}
+
+    \item Using the closed set formulation of continuity, show that the following are closed in $\reals^2$:
+    \begin{align*}
+        A &= \{x \times y: xy = 1\}, \\
+        S^1 &= \{x \times y: x^2+ y^2 = 1\}, \\
+        B^2 &= \{x \times y: x^2+ y^2 \leq 1\}.
+    \end{align*}
+
+    {\bf SOLUTION.} $[1, 1]$ is closed in $\reals$. $A$ may be written as $(\cdot)^{-1}([1, 1])$ where $\cdot: \reals \times \reals \rightarrow \reals$ is the multiplication function. By continuity, $A$ is closed in $\reals^2$. Similarly, $S^1$ is the preimage of $[1, 1]$ under $x^2+y^2$, which is a composition of addition and multiplication functions, and $B^2$ is the preimage of the closed set $[0, 1]$ under $x^2+y^2$. $\Box$
+
+    \item Prove the following standard facts about infinite series:
+    \begin{enumerate}
+        \item Show that if $(s_n)$ is a bounded sequence of real numbers and $s_n \leq s_{n+1}$ for each $n$ then $(s_n)$ converges.
+
+        {\bf SOLUTION.} Let $s = \sup_n\{s_n\}$, since $(s_n)$ is bounded. Given a neighbourhood $B(s, \varepsilon)$ of $s$, there exists $N \in \ints^+$ such that $s_N \in (s-\varepsilon, s] \subseteq B(s, \varepsilon)$; otherwise $s$ would not be a least upper bound. Since $s_n > s_N$ for $n > N$, $s_n \in B(s, \varepsilon)$ for all $n > N$. $\Box$
+
+        \item Let $(a_n)$ be a sequence of real numbers; define $s_n = \sum_{i=1}^na_i$. If $s_n \rightarrow s$, then $\sum_{i=1}^\infty \rightarrow s$. Show that if $\sum a_i \rightarrow s$ and $\sum b_i \rightarrow t$, then $\sum (ca_i+b_i) \rightarrow cs+t$.
+
+        {\bf SOLUTION.} Let $s_n = \sum_{i=1}^n a_i, t_n = \sum_{i=1}^n b_i,$ and $r_n = \sum_{i=1}^n (ca_i +t_i)$. Given $\varepsilon > 0$, let $N_1, N_2$ be such that $s_n \in B(s, \frac{\varepsilon}{2})$ for $n > N_1$ and $t_n \in B(t, \frac{\varepsilon}{2})$ for $n > N_2$. Let $N = \max \{N_1, N_2\}$; if $n > N$, then
+        $$d(r_n, cs+t) = d(cs_n + t_n, cs+t) \leq d(cs_n, cs) + d(t_n, t) < \varepsilon,$$
+        so $r_n \in B(cs+t, \varepsilon)$, and thus $\sum (ca_i+b_i)$ converges to $cs+t$. $\Box$
+
+        \item Prove the comparison test: If $|a_i| \leq b_i$ for each $i$, and $\sum b_i$ converges, then $\sum a_i$ converges.
+
+        {\bf SOLUTION.} Let $s_n = \sum_{i=1}^n |a_i|, t_n = \sum_{i=1}^n b_i, u_n = \sum_{i=1}^n |a_i| + a_i$. Since $\sum b_i$ converges and each $b_i \geq 0$, $t_n \rightarrow t$ for some $t \geq 0$. Then $r_n$ is bounded above by $t$ and $r_n \leq r_{n+1}$ for all $n$, so by (a), $r_n$ converges. Similarly, since $|a_i| + a_i$ is either $0$ or $2|a_i|$, $u_n$ is bounded above and monotonically increasing, so it converges. Then $\sum a_i = \sum |a_i| + a_i - \sum |a_i|$ converges. $\Box$
+
+        \item Given a sequence of functions $f_n: X \rightarrow \reals$, let
+        $$s_n(x) = \sum_{i=1}^n f_i(x).$$
+        Prove the Weierstrass M-test: If $|f_i(x)| \leq M_i$ for all $x \in X$ and all $i$, and $\sum M_i$ converges, then $(s_n)$ converges uniformly to a function $s$.
+
+        {\bf SOLUTION.} Given $x \in X$, $|f_i(x)| \leq M_i$ for all $i$. Since $\sum M_i$ converges, the comparison test implies $\sum f_i(x)$ converges. Hence $(s_n)$ converges pointwise to a function $s$. To show that $(s_n)$ converges uniformly, define $t_n = \sum_{i=n+1}^\infty M_i$. For any $x \in X$,
+        $$|s(x) - s_n(x)| = \left| \sum_{i=n+1}^\infty f_i(x) \right| \leq \sum_{i=n+1}^\infty |f_i(x)| \leq \sum_{i=n+1}^\infty M_i = t_n.$$
+        Since $\sum M_i$ converges, $(t_n)$ must converge to $0$. Given $\varepsilon > 0$, let $N$ be such that $n > N$ implies $t_n < \varepsilon$. Then $|s(x) - s_n(x)| < \varepsilon$ for all $n > N$ and $x \in X$, showing that $(s_n)$ converges uniformly to $s$. $\Box$
+    \end{enumerate}
+
+    \item Prove continuity of the algebraic operations on $\reals$, as follows: Use the metric $d(a, b) = |a-b|$ on $\reals$ and the metric
+    $$\rho(x_0 \times y_0, x_1 \times y_1) = \max \{|x_1-x_0|, |y_1-y_0|\}$$
+    on $\reals^2$.
+    \begin{enumerate}
+        \item Show that addition is continuous.
+
+        {\bf SOLUTION.} Given $x \times y \in \reals^2$ and $\varepsilon > 0$, let $\delta = \frac{\varepsilon}{2}$; if
+        $$\rho(x \times y, x_0 \times y_0) = \max \{|x-x_0|, |y-y_0|\} < \delta,$$
+        then
+        $$d(x + y, x_0 + y_0) \leq |x-x_0| + |y-y_0| < 2\delta = \varepsilon.$$
+        Hence $+$ is continuous. $\Box$
+
+        \item Show that multiplication is continuous.
+
+        {\bf SOLUTION.} Given $x \times y\in \reals^2$ and $\varepsilon > 0$, let $\delta = \min\{\frac{\varepsilon}{|x|+|y|+1, 1}$; if
+        $$\rho(x \times y, x_0 \times y_0) < \delta,$$
+        then
+        \begin{align*}
+            d(xy, x_0y_0) &\leq |x_0||y-y_0| + |y_0||x-x_0| + |x-x_0||y-y_0|, \\
+            &\leq (|x_0| + |y_0| + \rho(x \times y, x_0 \times y_0)) \rho(x \times y, x_0 \times y_0), \\
+            &< \delta(|x_0| + |y_0| + \delta), \\
+            &< \frac{\varepsilon}{|x_0|+|y_0|+1}(|x_0|+|y_0|+1), \\
+            &= \varepsilon. \Box
+        \end{align*}
+        
+        \item Show that the reciprocal operation $\reals - \{0\} \rightarrow \reals$ is continuous.
+
+        {\bf SOLUTION.} Let $f(x): \reals - \{0\} \rightarrow \reals$ be defined by $f(x) = \frac1x.$ Given an open interval $(a, b)$ in $\reals$, if $0 < a < b$ or $a < b< 0$ then $\frac1b < \frac1a$ and if $\frac1b < c < \frac1a$ then $\frac1c \in (a, b)$, and thus $f^{-1}(a, b) = (\frac1b, \frac1a)$. If $a < 0 < b$, then $f^{-1}(a, b) = (-\infty, \frac1a) \cup(\frac1b, \infty)$. If $a = 0$, then $f^{-1}(0, b) = (\frac1b, \infty)$, and if $b = 0$, then $f^{-1}(a, 0) = (-\infty, \frac1a)$. In any case, $f^{-1}(a, b)$ is open, so $f$ is continuous. $\Box$
+
+        \item Show that the subtraction and quotient operations are continuous.
+
+        {\bf SOLUTION.} $f(x) = -x$ is continuous since $f^{-1}(a, b) = (-b, -a)$. Thus subtraction, which is a composition of $f$ and addition, is continuous. Similarly, the quotient operation is a composition of multiplication with the reciprocal, so it is continuous. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
