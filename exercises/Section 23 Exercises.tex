@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 23 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Let $\topo, \topo'$ be two topologies on $X$. If $\topo'$ is finer than $\topo$, what does connectedness in one topology imply about the other?
+
+    {\bf SOLUTION.} If there exists a separation in $\topo$, then surely there exists a separation in $\topo'$. Thus if $\topo'$ is connected, then $\topo$ is connected. $\Box$
+
+    \item Let $\{A_n\}$ be a sequence of connected subspaces of $X$ such that $A_n \cap A_{n+1} \neq \varnothing$ for all $n.$ Show that $\bigcup A_n$ is connected.
+    
+    {\bf SOLUTION.} Suppose $B, C$ is a separation of $\bigcup A_n$. $A_1 \subseteq \bigcup A_n$ is connected; by the lemma, without loss of generality we have $A_1 \subseteq B$. Then as $A_n \subseteq B$ implies $A_{n+1} \subseteq B$ due to their common point, we have $\bigcup A_n \subseteq B$ by induction. Thus $C$ is empty; a contradiction. $\Box$
+
+    \item Let $\{A_\alpha\}$ be a collection of connected subspaces of such an $A$ a connected subspace of $X$. Show that if $A \cap A_\alpha \neq \varnothing$, then $A \cup (\bigcup A_\alpha)$ is connected.
+    
+    {\bf SOLUTION.} For each $\alpha$, $A \cap A_\alpha \neq \varnothing$ implies $A \cup A_\alpha$ is connected. $\{A \cup A_\alpha\}_\alpha$ is a collection of connected subspaces with a common point in any $a \in A$. Therefore $\bigcup_\alpha (A \cup A_\alpha) = A \cup (\bigcup A_\alpha)$ is connected. $\Box$
+
+    \item Show that if $X$ is infinite and given the finite complement topology, then it is connected.
+
+    {\bf SOLUTION.} Clearly, the only subsets of $X$ that are both open and closed are $\varnothing$ and $X.$ $\Box$
+
+    \item $X$ is totally disconnected if its only connected subspaces are singletons. Show that $X$ in the discrete topology is totally disconnected. Does the converse hold?
+
+    {\bf SOLUTION.} Suppose $Y \subseteq X$ contains at least two distinct points and $y \in Y$. Then $\{y\}, Y - \{y\}$ are nonempty disjoint open sets in $Y$ whose union is $Y$, so $Y$ is not connected.
+
+    As a counterexample to the converse, $X = \rats$ in the standard topology is totally disconnected but is not in the discrete topology. $\Box$
+
+    \item Show that if $A \subseteq X$ and $C$ is a connected subspace of $X$ that intersects $A$ and $X-A$ then $C$ intersects Bd $A$.
+
+    {\bf SOLUTION.} Recall that Bd $A = \overline{A} \cap \overline{X - A}$. Suppose $C \cap \overline{A} \cap \overline{X - A} = \varnothing$; then $C \cap A, C \cap (X - A)$ are disjoint, nonempty sets whose union is $C$. Moreover if $C \cap (X-A)$ contains a limit point $x$ of $C \cap A$ then $x \in C \cap (X-A) \cap A' \subseteq C \cap \overline{A} \cap \overline{X-A} = \varnothing$, and similarly if $C \cap A$ contains a limit point of $C \cap (X-A)$. Hence $C \cap A, C \cap (X-A)$ is a separation of $C$; a contradiction. $\Box$
+
+    \item Is $\reals_\ell$ connected?
+
+    {\bf SOLUTION.} $(-\infty, 0), [0, \infty)$ is a separation of $\reals_\ell$, which is thus not connected. $\Box$
+
+    \item Is $\reals^\omega$ connected in the uniform topology?
+
+    {\bf SOLUTION.} Let $A, B \subseteq \reals^\omega$ be the sets of all bounded and unbounded sequences, respectively. $A \cap B = \varnothing$ and $A \cup B = \reals^\omega$. Moreover for any $\mathbf{x} \in \reals^\omega$, $B_{\overline{\rho}}(\mathbf{x}, 1)$ is a neighbourhood of $\mathbf{x}$ contained in $A$ if $\mathbf{x} \in A$ and $B$ if $\mathbf{x} \in B$, so $A, B$ are open. Hence $A, B$ is a separation, and $\reals^\omega$ is not connected. $\Box$
+
+    \item Let $A \subsetneq X, B \subsetneq Y$. If $X, Y$ are connected, show that $(X \times Y) - (A \times B)$ is connected.
+
+    {\bf SOLUTION.} Take $c \times d \in (X-A) \times (Y-B)$. For each $x \in X-A$,
+    $$U_x = (X \times \{d\}) \cup (\{x\} \times Y)$$
+    is connected since $X \times \{d\}, \{x\} \times Y$ are connected and intersect at $x \times d$. Similarly
+    $$V_y = (X \times \{y\}) \cup (\{c\} \times Y)$$
+    is connected for any $y \in Y - A$. Thus 
+    $$(X \times Y) - (A \times B) = \bigcup_{x \in X-A} U_x \cup \bigcup_{y \in Y-B} V_x$$
+    is connected since the two sets intersect at $c \times d$. $\Box$
+
+    \item Let $\{X_\alpha\}_{\alpha \in J}$ be an indexed family of connected spaces and $X = \prod_{\alpha \in J} X_\alpha$ in the product topology. Let $\mathbf{a} = (a_\alpha) \in X$.
+    \begin{enumerate}
+        \item Given any finite subset $K$ of $J$, let $X_K$ denote the subspace of $X$ consisting of all points $\mathbf{x} = (x_\alpha)$ such that $x_\alpha = a_\alpha$ for $\alpha \notin K$. Show that $X_K$ is connected.
+
+        {\bf SOLUTION.} Let $K = \{\alpha_1, \cdots, \alpha_n\}$. Define $f: X_K \rightarrow X_{\alpha_1} \times \cdots X_{\alpha_n}$ by $f(\mathbf{x}) = (x_{\alpha_1}, \cdots, x_{\alpha_n})$. $f$ is a homeomorphism as the remaining entries are fixed by $\mathbf{a}$. Since the codomain is a finite product of connected spaces, the domain $X_K$ must be connected. $\Box$
+
+        \item Show that $\bigcup_K X_K$ is connected.
+
+        {\bf SOLUTION.} Each $X_K$ is connected and clearly $\mathbf{a} \in X_K$ for any $K$, so $\bigcup_K X_K$ is connected. $\Box$
+
+        \item Show that $X = \overline{\bigcup_K X_K}$; conclude that $X$ is connected.
+        
+        {\bf SOLUTION.} If $\mathbf{x} \in X - \bigcup_K X_K$ and $\prod U_\alpha$ is a basis element for $X$ containing $\mathbf{x}$ then let $K = \{\alpha_1, \cdots, \alpha_n\}$ be the indices for which $U_\alpha \neq X_\alpha$. Since $\mathbf{x} \notin \bigcup_K X_K$, there exists an index $\beta \in J - K$ such that $x_\beta \neq a_\beta$. Now if $\mathbf{y}$ is defined by $y_{\alpha_i} = x_{\alpha_i}$ for $\alpha_i \in K$ and $y_\alpha = a_\alpha$ for all other indices, $\mathbf{y} \neq \mathbf{x}$ since $y_\beta = a_\beta \neq x_\beta$, while $\mathbf{y} \in \prod U_\alpha \cap X_K = \prod U_\alpha \cap (\bigcup_K X_K).$ Therefore $\overline{\bigcup_K X_K} = X$, and moreover $\bigcup_K X_K \subseteq X \subseteq \overline{\bigcup_K X_K}$ implies $X$ is connected. $\Box$
+    \end{enumerate}
+
+    \item Let $p: X \rightarrow Y$ be a quotient map. Show that if each set $p^{-1}(\{y\})$ is connected and $Y$ is connected then $X$ is connected.
+
+    {\bf SOLUTION.} Suppose $A, B$ is a separation of $X$. If $y \in p(A)$ then $y = p(x)$ for some $x \in A$ and thus $x \in p^{-1}(\{y\})$. Since $p^{-1}(\{y\})$ is connected and intersects $A$, we must have $p^{-1}(\{y\}) \subseteq A$ for any $y \in p(A)$. Hence $p^{-1}(p(A)) \subseteq A$. Since $A \subseteq p^{-1}(p(A))$ is generally true, we have equality, which shows $A$ is saturated. Symmetrically $B$ is saturated. Since $p$ is a quotient map, $p(U), p(V)$ are disjoint nonempty open sets in $Y$ whose union is $Y$; this contradicts the assumption that $Y$ is connected. Thus $X$ must be connected. $\Box$
+
+    \item Let $Y \subseteq X$, where $X, Y$ are connected. Show that if $A, B$ are a separation of $X - Y$ then $Y \cup A, Y \cup B$ are connected.
+
+    {\bf SOLUTION.} Suppose $C, D$ is a separation of $Y \cup A$. $Y \subseteq C \cup D$; by the lemma, assume without loss of generality that $Y \subseteq C$, so that $D \subseteq A$. Since $A$ is open and closed in $X - Y$ there exists $U$ open in $X$ and $V$ closed in $X$ such that $A = U \cap (X-Y) = U - Y$ and $A = V \cap (X - Y) = V - Y$. This means $D \subseteq U$ and $D \subseteq V$. Since $U \subseteq Y \cup A$ and $D$ is open in $Y \cup A$, $D$ is open in $U$. Similarly $V \subseteq Y \cup A$ and $D$ is closed in $Y \cup A$ so $D$ is closed in $V$, meaning $D$ is a nonempty proper subset of $X$ that is open and closed; a contradiction. Therefore, $Y \cup A$ is connected, and symmetrically $Y \cup B$ is connected. $\Box$
+\end{enumerate}
+\end{document}
