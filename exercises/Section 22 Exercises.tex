@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 22 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Check the details of Example 3.
+
+    {\bf SOLUTION.} See page 37 of the general notes.
+
+    \item \begin{enumerate}
+        \item Let $p: X \rightarrow Y$ be continuous. Show that if there is a continuous map $f: Y \rightarrow X$ such that $p \circ f$ is the identity map of $Y$, then $p$ is a quotient map.
+
+        {\bf SOLUTION.} Suppose $f$ is such that $p \circ f: Y \rightarrow Y$ is the identity map. If $p^{-1}(U)$ is open in $X$ then $f^{-1}(p^{-1}(U)) = (p \circ f)^{-1}(U) = U$ is open in $Y$ by continuity of $f$. Hence $p$ is a quotient map. $\Box$
+
+        \item If $A \subseteq X$, a retraction of $X$ onto $A$ is a continuous map $r: X \rightarrow A$ such that $r(a) = a$ for each $a \in A$. Show that a retraction is a quotient map.
+
+        {\bf SOLUTION.} Let $i: A \rightarrow X$ be the inclusion map, which is continuous. Then $r \circ i$ is the identity map, so $r$ is a quotient map by (a). $\Box$
+    \end{enumerate}
+
+    \item Let $\pi_1 : \reals^2 \rightarrow \reals$ be the projection map. Let
+    $$A = \{x \times y\in \reals^2: x \geq 0 \text{ or } y = 0\}.$$
+    Show that $\restr{\pi_1}{A}$ is a quotient map that is neither open nor closed.
+
+    {\bf SOLUTION.} We remark that for each $y\in Y,$ $\restr{\pi_1}{A}((\restr{\pi_1}{A})^{-1}(\{y\})) = \{y\}$. Let us define $p: A \rightarrow \reals \times \{0\}$ by $f(x, y) = (x, 0)$. $p$ is clearly a retraction, hence it is a quotient map by Exercise 2(b). Moreover, if $f: \reals \times \{0\} \rightarrow \reals$ is defined by $g(x, 0) = x$, then $f$ is a homeomorphism, and thus a quotient map. Then $\restr{\pi_1}{A} = f \circ p$, so by Theorem 2.77, $\restr{\pi_1}{A}$ is a quotient map.
+
+    To show that $\restr{\pi_1}{A}$ is not open, $(\reals \times \reals^+) \cap A$ is open in $A$ but $\restr{\pi_1}{A} ((\reals \times \reals^+) \cap A) = [0, \infty)$ is not open in $\reals$. To show that $\restr{\pi_1}{A}$ is not closed, $B = \{ x \times \frac1x: x > 0\}$ is closed in $A$ but $\restr{\pi_1}{A}(B) = \reals^+$ is not closed in $\reals$. $\Box$
+
+    \item 
+    \begin{enumerate}
+        \item Define an equivalence relation $\sim$ on $\reals^2$ by
+        $$x_0 \times y_0 \sim x_1 \times y_1 \text{ whenever } x_0 + y_0^2 = x_1 + y_1^2.$$
+        Let $X^*$ be the corresponding quotient space. It is homeomorphic to a familiar space; what is it?
+    
+        {\bf SOLUTION.} Let $g: \reals^2 \rightarrow \reals$ be defined by $g(x, y) = x+y^2$. Clearly $g$ is surjective and continuous; moreover as $g$ has a continuous right inverse in $h(x) = x \times 0$, $g$ is a quotient map by Exercise 2(a). Thus $g$ induces a homeomorphism $f: X^* \rightarrow \reals$. $\Box$
+
+        \item Repeat (a) for
+        $$x_0 \times y_0 \sim x_1 \times y_1 \text{ whenever } x_0^2 + y_0^2 = x_1^2 + y_1^2.$$
+
+        {\bf SOLUTION.} Let a continuous surjection $g: \reals^2 \rightarrow [0, \infty)$ be defined by $g(x \times y) = x^2 + y^2$. $g$ is a quotient map since $h(x) = \sqrt{x} \times 0$ is a continuous right inverse for $g$. Thus $g$ induces a homeomorphism $f: X^* \rightarrow [0, \infty)$. $\Box$
+
+    \end{enumerate}
+
+    \item Let $p: X \rightarrow Y$ be open. Show that if $A$ is open in $X$, then $\restr{p}{A}: A \rightarrow p(A)$ is open.
+
+    {\bf SOLUTION.} Suppose $U$ is open in $A$, so that $U$ is open in $X$. Then $p(U)$ is open in $Y$, so $p(U) \cap p(A) = p(U) = (\restr{p}{A})(U)$ is open in $p(A)$. $\Box$
+
+    \item Let $Y$ be the quotient space obtained from $\reals_K$ be collapsing $K$ to a point; let $p: \reals_K \rightarrow Y$ be the quotient map.
+
+    \begin{enumerate}
+        \item Show that $Y$ is $T_1$ but not Hausdorff.
+
+        {\bf SOLUTION.} We have $Y = \{\{x\}: x \in \reals - K\} \cup \{K\}$.
+        
+        Let $y \in Y$; we show that $\{y\}$ is closed in $Y$. If $y = \{K\}$, then $p^{-1}(\{y\}) = K$ is closed in $\reals_K$, so $\{y\}$ is closed in $Y$ by the quotient map. Otherwise if $y \neq \{K\}$, then $p^{-1}(\{y\}) = y$. Since $\reals_K$ is Hausdorff, and thus $T_1$, $y$ is closed in $\reals_K$, and thus $\{y\}$ is closed in $Y$. Since one-point sets are closed in $Y$, $Y$ is $T_1$.
+
+        Consider the points $\{0\}, \{K\}$ in $Y$. Suppose $U, V$ are neighbourhoods of $\{0\}, \{K\}$ respectively. $p^{-1}(V)$ is open in $\reals_K$ and $K \subseteq p^{-1}(V)$, so $p^{-1}(V) = \bigcup_{n \in \ints^+} (\frac1n - \varepsilon_n, \frac1n + \varepsilon_n)$. Moreover, $p^{-1}(U)$ is a neighbourhood of $0$ in $\reals_K$ and thus intersects $p^{-1}(V)$, so $p^{-1}(U \cap V) = p^{-1}(U) \cap p^{-1}(V) \neq \varnothing$. Hence $U$ and $V$ are not disjoint, so $Y$ is not Hausdorff. $\Box$
+
+        \item Show that $p \times p: \reals_K \times \reals_K \rightarrow Y \times Y$ is not a quotient map.
+
+        {\bf SOLUTION.} Since $Y$ is not Hausdorff, the diagonal $\Delta_Y = \{x \times x: x \in Y\}$ is not closed in $Y \times Y$ by Exercise 13 of Section 17. However, $(p \times p)^{-1}(\Delta_Y) = \Delta_{\reals_K} \cup (K \times K)$ is closed in $\reals_K \times \reals_K$ since $\reals_K$ is Hausdorff and $K \times K$ is closed in $\reals_K \times \reals_K$. Hence $p \times p$ is not a quotient map. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
