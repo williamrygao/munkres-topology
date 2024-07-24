@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 24 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item Show that no two of the spaces $(0, 1), (0, 1], [0, 1]$ are homeomorphic.
+
+        {\bf SOLUTION.} Suppose $f: (0, 1] \rightarrow (0, 1)$ is a homeomorphism. Then $\restr{f}{(0, 1)}: (0, 1) \rightarrow (0, 1)$ is continuous and $(0, 1)$ is connected, and there must exist $a, b \in (0, 1)$ such that $\restr{f}{(0, 1)}(a) < f(1) < \restr{f}{(0, 1)}(b)$. However there is no $c \in (0, 1)$ such that $\restr{f}{(0, 1)}(c) = f(1)$ since $f$ is injective. This contradicts the Intermediate Value Theorem.
+
+        Identically, if $g: [0, 1] \rightarrow (0, 1]$ and $h: [0, 1] \rightarrow (0, 1)$ are homeomorphisms then $\restr{g}{(0, 1]}$ and $\restr{h}{(0, 1]}$ contradict the Intermediate Value Theorem. Therefore, none of $(0, 1), (0, 1], [0, 1]$ are homeomorphic. $\Box$
+
+        \item Suppose there exist imbeddings $f: X \rightarrow Y, g: Y \rightarrow X$. Show that $X, Y$ need not be homeomorphic.
+
+        {\bf SOLUTION.} From (a), $X = [0, 1], Y = (0, 1)$ are not homeomorphic. However, $g(y) = y$ is clearly an imbedding as and $f(x) = \frac14 x + \frac12$ is a homeomorphism $[0, 1] \rightarrow [\frac12, \frac34]$ and thus an imbedding $[0, 1] \rightarrow (0, 1)$. $\Box$ 
+
+        \item Show $\reals^n, \reals$ are not homeomorphic for $n > 1$.
+
+        {\bf SOLUTION.} We saw that $\reals^n - \{\mathbf{0}\}$ is connected for $n > 1$. Suppose $f: \reals^n \rightarrow \reals$ is a homeomorphism; then $\restr{f}{\reals^n - \{\mathbf{0}\}}$ is a continuous map from a connected space. Let $\mathbf{a}, \mathbf{b} \in \reals^n$ be such that $\restr{f}{\reals^n - \{\mathbf{0}\}}(a) < f(\mathbf{0} < \restr{f}{\reals^n - \{\mathbf{0}\}}(b)$. There is no $c \in \reals^n - \{\mathbf{0}\}$ such that $\restr{f}{\reals^n - \{\mathbf{0}\}}(c) = f(\mathbf{0})$ because $f$ is injective; contradicting the Intermediate Value Theorem. $\Box$
+    \end{enumerate}
+
+    \item Let $f: S^1 \rightarrow \reals$ be continuous. Show that there exists $x\in S^1$ such that $f(x) = f(-x)$.
+
+    {\bf SOLUTION.} We know $S^1$ is connected. Define $g: S^1 \rightarrow \reals$ by $z \mapsto f(z) - f(-z)$. We remark that
+    $$g(-z) = f(-z) - f(z) = -g(z),$$
+    hence if there exists $z \in S^1$ such that $g(z) > 0$ then $-z$ satisfies $g(-z) < 0$ and thus by the Intermediate Value Theorem, there exists $x \in S^1$ such that $g(x) = 0$, or $f(-x) = f(x)$. If no such $z$ exists, then $f(-x) = f(x)$ for all $x \in S^1$. $\Box$
+
+    \item Let $f: X \rightarrow X$ be continuous. Show that if $X = [0, 1]$, then $f$ has a fixed point. What happens if $X = [0, 1)$ or $(0, 1)$?
+
+    {\bf SOLUTION.} We know $[0, 1]$ is connected. Define $g: X \rightarrow X$ by $x \mapsto f(x) - x$. Suppose $0,1$ are not fixed points of $f$, so $f(0) > 0$ and $f(1) < 1$. Then $g(0) > 0$ and $g(1) < 0$, so by the Intermediate Value Theorem there exists $x \in [0, 1]$ such that $g(x) = 0$, or $f(x) = x$.
+
+    If $X = [0, 1)$ or $(0, 1)$ then $f(x) = \frac12 x + \frac12$ does not have a fixed point. $\Box$
+
+    \item Let $X$ be in the order topology. Show that if $X$ is connected then $X$ is a linear continuum.
+
+    {\bf SOLUTION.} Suppose $x, y \in X$ are such that $x < y$ but there exists no $z$ with $x < z < y$. Then $(-\infty, y), (x, \infty)$ is a separation of $X$; contradicting connectedness.
+
+    Let $A$ be a nonempty subset of $X$ with a nonempty set of upper bounds $B$. Suppose $A$ has no supremum, or $B$ has no minimum. Then
+    $$C = \bigcup_{a \in A} (-\infty, a), D = \bigcup_{b \in B} (b, \infty)$$
+    are disjoint nonempty open sets whose union is $X$. Indeed if $x \in C \cap D$ then $x > b$ for some upper bound $b$ of $A$ and thus $x > a$ for all $a \in A$. But $x < a$ for some $a \in A$; a contradiction. $C, D$ are nonempty as $A$ has no supremum and $B$ has no minimum; they are clearly open. Now if $x \in B$ then there exists a lower bound $b$ of $a$ smaller than $x$ so $x \in D$. Otherwise if $x \in X - B$ then there exists $a \in A$ greater than $x$, so $x \in C$, showing that $X = C \cup D$ is a separation of $X$; a contradiction. Therefore $X$ is a linear continuum. $\Box$
+
+    \item Which of the following, in the dictionary order, are linear continua?
+    \begin{enumerate}
+        \item $\ints^+ \times [0, 1)$
+
+        {\bf SOLUTION.} If $A \subseteq \ints^+ \times [0, 1)$ is nonempty and bounded above, let $x = \max \pi_1(A)$ and $y = \sup \pi_2 (A \cap (\{x\} \times (0, 1]))$. If $y \neq 1$, then $\sup A = x \times y$ as $a \times b \in A$ implies $a \leq x$ and in the case that $a = x$ we have $b \leq y$, minimally. Otherwise $y = 1$ and $\sup A = (x+1) \times 0$ as $a \times b \in A$ implies $a < x+1$ but $x \times z$ is not an upper bound for $A$ for any $z \in [0, 1)$.
+
+        Suppose $x \times y < z \times w \in \ints^+ \times [0, 1)$. If $x = z$, then $x \times \frac{y+w}2 \in (x \times y, z \times w) \cap \ints^+ \times [0, 1)$. Otherwise $x < z$, and we have $y < 1$ so there exists $v$ with $y < v < 1$, and thus $x \times v \in (x \times y, z \times w) \cap \ints^+ \times [0, 1)$. $\Box$
+
+        \item $[0, 1) \times \ints^+$
+
+        {\bf SOLUTION.} $0 \times 1 < 0 \times 2$, but there exists no $z \in (0 \times 1, 0 \times 2) \cap [0, 1) \times \ints^+$. $\Box$
+
+        \item $[0, 1) \times [0, 1]$
+
+        {\bf SOLUTION.} If $A \subseteq [0, 1) \times [0, 1]$ is nonempty and bounded above, let $x = \sup \pi_1(A)$ and $y = \sup \pi_2(A \cap (\{x\} \times[0, 1])$. If $x \in \pi_1(A)$ then $\sup A = x \times y$ as $a \times b \in A$ implies $a \leq x$ and if $a = x$ then $b \leq y$. Otherwise $x \notin \pi_1(A)$ so $\sup A = x \times 0$ while $z \times 1$ is not an upper bound for any $z < x$.
+
+        Suppose $x \times y < z \times w \in [0, 1) \times [0, 1]$. If $x = z$, then $x \times \frac{y+w}2 \in (x \times y, z \times w) \cap [0, 1) \times [0, 1]$ and otherwise if $x < z$ then there exists $x < v< z$ so that $v \times 0 \in (x\times y, z \times w) \cap [0, 1) \times [0, 1]$. $\Box$ 
+
+        \item $[0, 1] \times [0, 1)$
+
+        {\bf SOLUTION.} Consider $A = \{0\} \times [0, 1)$. $b \times 0$ is an upper bound for $A$ provided that $b > 0$, but there exists $0 < c < b$ so that $c \times 0$ is a smaller upper bound. $\Box$
+    \end{enumerate}
+
+    \item Show that if $X$ is well-ordered, then $X \times [0, 1)$ in the dictionary order is a linear continuum.
+
+    {\bf SOLUTION.} If $A \subseteq X \times [0, 1)$ is nonempty and bounded below, let $x = \inf \pi_1(A)$ by the well-ordering of $X$ and let $y = \inf \pi_2(A \cap (\{x\} \times [0, 1))$. $\inf A = x \times y$ as $a \times b \in A$ implies $a \geq x$ and if $a = x$ then $y \geq [0, 1)$, and it is clear that $x \times y$ is the greatest such value. Therefore $X$ has the greatest lower bound property (and thus the least upper bound property).
+
+    If $x \times y < z \times w$ and $x = z$ then $y < w$, so $x \times \frac{y+w}2 \in (x \times y, z \times w) \cap (X \times [0, 1))$. Otherwise $x < z$ so there exists $v$ such that $y < v < 1$, and then $x \times v \in (x \times y, z \times w) \cap (X \times [0, 1))$. $\Box$
+
+    \item \begin{enumerate}
+        \item Let $X, Y$ be given the order topology. Show that if $f: X \rightarrow Y$ is order preserving and surjective then $f$ is homeomorphic.
+
+        {\bf SOLUTION.} Since $f$ is order-preserving, $x \neq y$ implies $f(x) \neq f(y)$, and thus $f$ is bijective. Moreover $f^{-1}((a, b)) = (x, y)$ where $x = f^{-1}(a)$ and $y=f^{-1}(b)$ as $f(z) \in (a, b)$ implies $f^{-1}(a) < z < f^{-1}(b)$. Thus $f$ is continuous. Similarly, $f^{-1}$ is order preserving and surjective, so $f$ is a homeomorphism. $\Box$
+
+        \item Let $X = Y = [0, \infty)$. Given $n \in \ints^+$, show that $f(x) = x^n$ is order preserving and surjective. Conclude that $\sqrt[n]{x}$ is continuous.
+
+        {\bf SOLUTION.} $f$ is clearly surjective as for any $y\in [0, \infty)$, $\sqrt[n]y \in [0, \infty)$ satisfies $f(\sqrt[n]y) = y.$ Moreover if $0 \leq x < y$ then 
+        $$x^n < x^{n-1}y < \cdots xy^{n-1} < y^n,$$
+        showing that $f$ is order-preserving. By (a), $f$ is a homeomorphism so $\sqrt[n]x$ is continuous. $\Box$
+
+        \item Let $X = (-\infty, -1) \cup[0, \infty) \subseteq \reals$. Show that $f: X \rightarrow \reals$ defined by
+        $$f(x) = \begin{cases}
+            x+1 &\text{if }x< -1 \\
+            x &\text{if } x \geq 0
+        \end{cases}$$
+        is order preserving and surjective. If $f$ a homeomorphism? Compare with (a).
+
+        {\bf SOLUTION.} If $y \in (-\infty, 0)$ then $y - 1 \in (-\infty, -1) \cup[0, \infty)$ satisfies $f(y-1) = y$, and otherwise if $y \in [0, \infty)$ then $y \in (-\infty, -1) \cup[0, \infty)$ satisfies $f(y) = y$, showing that $f$ is surjective. Moreover $f$ is clearly order-preserving; the only nontrivial case is $x < -1$ and $y \geq 0$, for which
+        $$f(x) = x+1 < 0 \geq y = f(y).$$
+        However, $f$ cannot be a homeomorphism as $(-\infty, -1) \cup [0, \infty)$ is not connected, unlike $\reals$. This is because $(-\infty, -1) \cup[0, \infty)$ is not convex, and thus the subspace topology is not necessarily the same as the order topology, while (a) works only if $X, Y$ are in the order topology. $\Box$
+    \end{enumerate}
+
+    \item \begin{enumerate}
+        \item Is a product of path-connected spaces necessarily path connected?
+
+        {\bf SOLUTION.} Let $\{X_\alpha\}_{\alpha \in J}$ be a collection of path-connected spaces and $\mathbf{x}, \mathbf{y} \in \prod_{\alpha \in J} X_\alpha$. For each $\alpha$, there exists a continuous function $f_\alpha: [a, b] \rightarrow X_\alpha$ such that $f_\alpha(a) = x_\alpha, f_\alpha(b) = y_\alpha$. Defined $f: [a, b] \rightarrow \prod X_\alpha$ by $f(t) = (f_\alpha(t))_{\alpha \in J}$; $f$ is continuous and $f(a) = \mathbf{x}, f(b) = \mathbf{y}$. Hence $\prod X_\alpha$ is path connected. $\Box$
+        
+        \item If $A \subseteq X$ is path connected, is $\overline{A}$ necessarily path connected?
+
+        {\bf SOLUTION.} As a counterexample, the topologist's sine curve 
+        $$S = \{x \times \sin \left(\frac1x\right): 0 < x \leq 1\}$$
+        is path connected by the path $f: [a, b] \rightarrow S$ defined by $f(t) = t \times \sin \left(\frac1t\right)$. However, we saw that $\overline{S}$ is not path connected. $\Box$
+
+        \item If $f: X\rightarrow Y$ is continuous and $X$ is path connected, is $f(X)$ necessarily path connected?
+
+        {\bf SOLUTION.} Given $f(x), f(y) \in f(X)$, there exists a continuous path $g: [a, b] \rightarrow X$ such that $g(a) = x, g(b) = y$. Then $f \circ g: [a, b] \rightarrow Y$ is a continuous map satisfying $(f \circ g)(a) = f(x), (f\circ g)(b) = f(y)$, and thus $f(X)$ is path connected. $\Box$
+
+        \item If $\{A_\alpha\}$ is a collection of path-connected subspaces of $X$ and $\bigcap A_\alpha \neq \varnothing$, is $\bigcup A_\alpha$ necessarily path connected?
+
+        {\bf SOLUTION.} Given $x, y \in \bigcup A_\alpha$, there exist $\alpha, \beta$ such that $x \in A_\alpha, y \in A_\beta$. Let $z \in \bigcap A_\alpha$. Since $A_\alpha$ is path connected, there exists a function $f: [a, b] \rightarrow A_\alpha$ such that $f(a) = x, f(b) = z$. Since $A_\beta$ is path connected, there exists a function $g: [b, c] \rightarrow A_\beta$ such that $g(b) = z, g(c) = y$. We may extend the ranges of $f, g$ to $\bigcup A_\alpha$. By the pasting lemma, $h: [a, c] \rightarrow \bigcup A_\alpha$ defined by
+        $$h(x) = \begin{cases}
+            f(x) &\text{if } x\in [a, b]\\
+            g(x) &\text{if }x \in [b, c]
+        \end{cases}$$
+        is continuous and satisfies $h(a) = x, h(c) = y$. Thus $\bigcup A_\alpha$ is path connected. $\Box$
+    \end{enumerate}
+
+    \item Show that if $A$ is a countable subset of $\reals^2$ then $\reals^2 - A$ is path connected.
+
+    {\bf SOLUTION.} Given $x, y \in \reals^2 - A$ there are uncountably many lines passing through $x$; since $A$ is countable, let $\ell_1$ be a line that does not intersect $A$. Let $\ell_2$ be a line passing through $y$ that intersects $\ell_1$ but not $A$; $\ell_1$ and $\ell_2$ are clearly path connected and intersect, so $\ell_1 \cup \ell_2 \subseteq \reals^2 - A$ is path connected. Let $f: [a, b] \rightarrow \ell_1 \cup \ell_2$ be a path from $x$ to $y$; by extending the codomain to $\reals^2 - A$, we have a path from $x$ to $y$ in $\reals^2 - A$. $\Box$
+
+    \item Show that if $U \subseteq \reals^2$ is open and connected, then $U$ is path connected.
+
+    {\bf SOLUTION.} Given $x \in U$, let $A$ be the set of points that can be joined to $x$ by a path in $U$. If $y \in A$, then there exists a ball $B_d(y, \varepsilon) \subseteq U$. Then every point in $B_d(y, \varepsilon)$ may be joined to $y$ by a straight line path in $B_d(y, \varepsilon) \subseteq U$, and thus may be joined to $x$ by a path in $U$. Thus $B_d(y, \varepsilon) \subseteq A$, showing that $A$ is open in $U$. Similarly, if $z \in U - A$ then there is a ball $B_d(z, \delta) \subseteq U-A$, so $A$ is closed in $U$. Since $U$ is connected and $A$ is nonempty for $x \in A$, $U - A$ must be empty; that is, $U = A$. Therefore, $U$ is path connected. $\Box$
+
+    \item If $A$ is a connected subspace of $X$, does it follow that Int $A$ and Bd $A$ are connected? Does the converse hold?
+
+    {\bf SOLUTION.} Consider $A = \overline{B_d(0 \times 0, 1)} \cup \overline{B_d(2 \times 0, 1)}$. Since $\overline{B_d(0 \times 0, 1)}$ and $\overline{B_d(2 \times 0, 1)}$ are both connected and share the point $1 \times 0$, $A$ is connected. However Int $A$ is not connected as Int $\overline{B_d(0 \times 0, 1)}$, Int $\overline{B_d(2 \times 0, 1)}$ is a separation. 
+
+    Now consider $A = (0, 1) \subseteq \reals$, which is connected while Bd $A = \{0,1\}$ is clearly not.
+
+    Conversely, $A = \rats \cup (-\infty, 0)$ is such that Int $A = (-\infty, 0)$, Bd $A = \reals$ are connected while $A$ is clearly not. $\Box$
+
+    \item $S_\Omega$ denotes the minimal uncountable well-ordered set. Let the long line $L = S_\Omega \times [0, 1)$ be in the dictionary order, with its smallest element deleted.
+    
+    Theorem. The long line path is connected and locally homeomorphic to $\reals,$ but cannot be imbedded in $\reals.$ 
+    \begin{enumerate}
+        \item Let $X$ be an ordered set with $a < b < c \in X$. Show that $[a, b)$ has the order type of $[0, 1)$ if and only if both $[a, b), [b, c)$ have the order type of $[0, 1)$.
+
+        {\bf SOLUTION.} If $[a,c), [0,1)$ has the same order type then there exists an order-preserving bijection $f: [a, c) \rightarrow [0, 1)$ so that $\restr{f}{[a, b)}: [a, b) \rightarrow [0, f(b))$ and $\restr{f}{[b, c)}: [b, c) \rightarrow [f(b), 1)$ are order-preserving bijections. Then $[a, b), [b, c)$ have the same order type as $[0, f(b)), [f(b), 1),$ which is the order type of $[0, 1)$.
+
+        Conversely, there exist order-preserving bijections $[a, b) \rightarrow [0, \frac12)$ and $[b, c) \rightarrow [\frac12, 1)$. We define $h: [a, c) \rightarrow [0, 1)$ by
+        $$h(x) = \begin{cases}
+            f(x) &\text{if } x \in [a, b), \\
+            g(x) &\text{if } x \in [a, b).
+        \end{cases}$$
+        $h$ is an order-preserving bijection, showing that $[a, c)$ has the order type of $[0, 1)$. $\Box$
+
+        \item Let $X$ be an ordered set with an increasing sequence $x_0 < x_1 < \cdots$ of points in $X$; suppose $b = \sup\{x_i\}$. Show that $[x_0, b)$ has the order type of $[0, 1)$ if and only if each $[x_i, x_{i+1})$ has the order type of $[0, 1)$.
+
+        {\bf SOLUTION.} Suppose $[x_0, b)$ has the order type of $[0, 1)$. Applying (a) to $x_0 < x_i < b$, for any $i$, shows that $[x_0, x_i)$ and $[x_i, b)$ have the order type of $[0, 1)$. Applying (a) once more to $x_i < x_{i+1} < b$, $[x_i, x_{i+1})$ and $[x_{i+1}, b)$ have the order type of $[0, 1)$.
+
+        Conversely, if each $[x_i, x_{i+1})$ has the order type of $[0, 1)$ then for each $i$ there exists an order-preserving bijection $f_i: [x_i, x_{i+1}) \rightarrow [1- \frac1{2^i}, 1 - \frac1{2^{i+1}})$. Define $f: [x_0, b) \rightarrow [0, 1)$ by
+        $$f(x) = f_i(x),$$
+        for $x \in [1- \frac1{2^i}, 1 - \frac1{2^{i+1}})$. $f$ is an order-preserving bijection $[x_0, b) \rightarrow [0, 1)$. $\Box$
+
+        \item Let $a_0$ be the smallest element of $S_\Omega$. For each $a \in S_\Omega$ different from $a_0$, show that $[a_0 \times 0, a \times 0) \subseteq S_\Omega \times [0, 1)$ has the order type of $[0, 1)$.
+
+        {\bf SOLUTION.} We proceed by transfinite induction. For the base case if $a$ is the immediate successor of $a_0$ then $\pi_2: [a_0 \times 0, a \times 0) \rightarrow [0, 1)$ is an order-preserving bijection.
+        
+        Now suppose $a$ has an immediate predecessor $b > a_0$ and $[a_0 \times 0, b \times 0)$ has the order type of $[0, 1)$. Since $\pi_2: [b \times 0, a \times 0) \rightarrow [0, 1)$ is an order-preserving bijection, (a) implies that $[a_0 \times 0, a \times 0)$ has the order type of $[0, 1)$.
+
+        Finally if $a$ is not a successor in $S_\Omega$ then there exists an increasing sequence $(a_i)$ in $S_\Omega$ with $a = \sup a_i$. By induction, each $[a_0 \times 0, a_i \times 0)$ has the order type of $[0, 1)$ so by (b), $[a_0 \times 0, a \times 0)$ has the order type of $[0, 1)$. $\Box$
+        
+        \item Show that $L$ is path connected.
+
+        {\bf SOLUTION.} Given any point $a \times t \in L$, $[a \times 0, a \times 1)$ clearly has the order type of $[0, 1)$. Recall from (c) that $[a_0 \times 0, a \times 0)$ is has the order type of $[0, 1)$, and thus by (a), $[a_0 \times 0, a \times t)$ has the order type of $[0, 1)$. By Exercise 7(a), this order-preserving bijection is a homeomorphism, and thus a path from $a \times t$ to $a_0 \times 0$. $\Box$
+        
+        \item Show that every point of $L$ has a neighbourhood homeomorphic with an open interval in $\reals$.
+
+        {\bf SOLUTION.} Given $x \in L$, let $a, b \in L \cup \{a_0\}$ be such that $a < x < b$. By (d), there exists a homeomorphism $f: [c, d] \rightarrow [a, b]$ such that $f(c) = a, f(d) = b$. Then $\restr{f}{(c, d)}: (c, d) \rightarrow (a, b)$ is a homeomorphism between an open interval in $\reals$ and a neighbourhood of $x$ in $L$. $\Box$
+        
+        \item Show that $L$ cannot be imbedded in $\reals^n$ for any $n$.
+
+        {\bf SOLUTION.} Suppose there exists an imbedding $L \rightarrow \reals^n$; thereby a homeormorphism $L \rightarrow Y$ for some subspace $Y$ of $\reals^n$. Since $\reals^n$ is a metric space, $Y$ has a countable basis.
+
+        Let $\{U_i\}_{i \in \ints^+}$ be a countable basis for $L$, and consider the subspace $Z = \{\alpha \times \frac12: \alpha \in S_\Omega\}$ of $L$. By (e), there exists an uncountable collection $\{V_\alpha\}_{\alpha \in S_\Omega}$ such that each $V_\alpha$ is a neighbourhood of $\alpha \times \frac12$. In particular, $V_\alpha$ may be made pairwise disjoint, such as $V_\alpha = (\alpha \times 0, \alpha \times 1)$.
+        
+        Since each $V_\alpha$ must contain at least one $U_i$, there exists a surjection $f: \{U_n\}_{n \in \ints^+} \rightarrow \{V_\alpha\}_{\alpha \in S_\Omega}$ assigning $U_i$ to $V_\alpha$ if $V_\alpha$ contains $U_i$. Composing this with the index functions induces a surjection $\ints^+ \rightarrow S_\Omega$, which is absurd. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
