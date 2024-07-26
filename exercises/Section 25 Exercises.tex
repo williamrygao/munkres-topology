@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 25 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item What are the components and path components of $\reals_\ell$? What are the continuous maps $f: \reals \rightarrow \reals_\ell$?
+
+    {\bf SOLUTION.} Given a nonempty connected subspace $A$ of $\reals_\ell$ and $a \in A$, consider $[a, a + \varepsilon) \cap A$ for any $\varepsilon > 0$. This is nonempty since $a \in [a, a + \varepsilon) \cap A$, open since $[a + \varepsilon)$ is open in $\reals_\ell$, and closed since the complement of $[a, a + \varepsilon)$ is $(-\infty, a) \cup [a + \varepsilon, \infty)$ which is open in $\reals_\ell$. Since $A$ is connected, $[a, a + \varepsilon) \cap A = A$. Since $\varepsilon$ may be made arbitrarily small, $A = \{a\}$ is the general component in $\reals_\ell$. Since path components are contained in components, the path components are also single-point sets.
+
+    If $f: \reals \rightarrow \reals_\ell$ is continuous then $f(\reals)$ is connected, or $f(\reals) = \{a\}$ for some $a$. This means $f$ is a constant function. Conversely if $f$ is constant then it is surely continuous. $\Box$
+
+    \item \begin{enumerate}
+        \item What are the components and path components of $\reals^\omega$ in the product topology?
+
+        {\bf SOLUTION.} We know $\reals^\omega$ is path connected in the product topology, so $\reals^\omega$ is the only component and the only path component. $\Box$
+        
+        \item Consider $\reals^\omega$ in the uniform topology. Show that $\mathbf{x}, \mathbf{y}$ lie in the same component of $\reals^\omega$ if and only if $\mathbf{x-y}$ is bounded.
+
+        {\bf SOLUTION.} For fixed $\mathbf{x} \in \reals^\omega$, $f: \reals^\omega\rightarrow \reals^\omega$ defined by $\mathbf{y}\mapsto \mathbf{x-y}$ is a homeomorphism. This means $\mathbf{x}, \mathbf{y}$ lie in the same component if and only if $\mathbf{x-y}$ lies in the same component as $\mathbf{0}$. Suppose there exists a connected subspace $A$ containing $\mathbf{x-y}, \mathbf{0}$. Since the sets of bounded and unbounded sequences separate $\reals^\omega$ and $\mathbf{0}$ is bounded, $\mathbf{x-y}$ must be bounded since $A$ is connected.
+
+        Conversely if $\mathbf{x - y}$ is bounded then define $f: [0, 1] \rightarrow \reals^\omega$ by $f(t) = t(\mathbf{x-y})$. Given $0 < \varepsilon < 1$, let $M$ be such that $|x_n-y_n| < M$ for all $n \in \ints^+$; take $\delta = \frac{\varepsilon}{M}$. If $|t-t_0|< \delta$ then
+        \begin{align*}
+            \overline{\rho}(f(t), f(t_0)) &= \overline{\rho}(t\mathbf{x-y}, t_0\mathbf{x-y}), \\
+            &= \sup_i \{\min \{1, |t|x_i-y_i| - t_0|x_i-y_i||\}\}, \\
+            &= \sup_i \{\min \{1, |x_i-y_i||t - t_0|\}\}, \\
+            &< \min \{1, M \delta \}, \\
+            &= \varepsilon,
+        \end{align*}
+        showing that $f$ is continuous. Since $f(0)= \mathbf{0}$ and $f(1) = \mathbf{x-y}$, $f$ is a path from $\mathbf{0}$ to $\mathbf{x-y}$, so $\mathbf{0}, \mathbf{x-y}$ lie in the same path component, and thereby $\mathbf{x}, \mathbf{y}$ lie in the same component. $\Box$
+
+        \item Consider $\reals^\omega$ in the box topology. Show that $\mathbf{x}, \mathbf{y}$ lie in the same component if and only if $\mathbf{x-y} \in \reals^\infty$.
+
+        {\bf SOLUTION.} Suppose $\mathbf{x-y} \in \reals^\infty$. Define $f: [0, 1] \rightarrow \reals^\omega$ by $f(t) = \mathbf{y}+t(\mathbf{x-y})$. $x_i-y_i = 0$ for all but finitely many indices $i_1, \cdots, i_n$ because $\mathbf{x-y}$ is eventually $0$. For $t \in [0, 1]$ and a basis neighbourhood $\prod U_i$ of $f(t)$, let $\varepsilon_{i_j} > 0$ be such that $B_d(f(t)_{i_j}, \varepsilon_{i_j}) \subseteq U_{i_j}$ for each $i_j$ and let $\varepsilon = \min_j \{\varepsilon_{i_j}\}$. Let $M > |x_i-y_i|$ for all $i$; and $\delta = \frac{\varepsilon}{M}$. Then $(t-\delta, t+\delta) \cap [0, 1]$ is a neighbourhood of $t$ in $[0, 1]$ such that if $s \in (t-\delta, t+\delta) \cap [0, 1]$, then $|s-t| < \varepsilon$, and for each $i_j$,
+        $$|f(s)_{i_j} - f(t)_{i_j}| = |\mathbf{y}_{i_j} - s(\mathbf{x-y}_{i_j}) - \mathbf{y}_{i_j}+t(\mathbf{x-y}_{i_j})| = |s-t||\mathbf{x-y}_{i_j}| < \delta M = \varepsilon,$$
+        and thus $f(s)_{i_j} \in B_d(f(t)_{i_j}, \varepsilon) \in B_d(f(t)_{i_j}, \varepsilon_{i_j}) \subseteq U_{i_j}$ shows that $f(s) \in \prod U_i$. $f$ is thereby continuous and clearly $f(0) = \mathbf{y}, f(1) = \mathbf{x}$, so $\mathbf{y}$ and $\mathbf{x}$ must lie in the same path component, and thus the same component.
+
+        Conversely, if $\mathbf{x-y} \notin \reals^\infty$ then let $(i_j)_{j \in \ints^+}$ be a subsequence of indices such that $x_{i_j} \neq y_{i_j}$ for all $j$. Define a homeomorphism $h: \reals^\omega \rightarrow \reals^\omega$ by 
+        $$h(\mathbf{z})_i = \begin{cases}
+            z_i - x_i &\text{if } i \neq i_j \text{ for all } j, \\
+            \frac{n(z_i-x_i}{y_i-x_i} &\text{if } i = i_j \text{ for some } j.
+        \end{cases}$$
+        $h$ is a homeomorphism by Exercise 8 of Section 19; in particular $h(\mathbf{x}) = \mathbf{0}$ while $h(\mathbf{y})$ is bounded since its $i_j$th entry is equal to $i_j$ for each $j$. If there exists a connected subspace $A$ containing $\mathbf{x}, \mathbf{y}$, then $h(A)$ is connected. However, the sets of bounded and unbounded sequences are separated in $\reals^\omega$, contradicting the connectedness of $h(A)$ and showing that $\mathbf{x}, \mathbf{y}$ must belong to different components. $\Box$
+    \end{enumerate}
+
+    \item Show that $I_0^2$ is locally connected but not locally path connected. What are the path components?
+
+    {\bf SOLUTION.} Given $x \times y \in I_0^2$ and a neighbourhood $U$ of $x \times y$, there exists an open interval around $x\times y$ contained in $U$; since $I_0^2$ is a linear continuum, this interval is connected.
+
+    Given $p \in (0, 1)$, consider $p \times 1 \in I_0^2$. Given a neighbourhood $U$ of $p \times 1$, suppose $V$ is a path connected neighbourhood of $p \times 1$ contained in $U$. $V$ must contain a point $q \times 0$ for $q > p$; let $f: [a,b] \rightarrow V$ be a path from $p \times 1$ to $q \times 0$. By the Intermediate Value Theorem, $(p \times 1, q \times 0) \subseteq f([a,b])$. Therefore, for each $x \in (p, q)$ the set
+    $$U_x = f^{-1}(\{x \} \times (0, 1))$$
+    is nonempty and by continuity, open in $[a,b]$. Let $q_x \in U_x \cap \rats$; since the sets $U_x$ are disjoint, $x \mapsto q_x$ is an injection $(p, q) \rightarrow \rats$, which is absurd.
+
+    Similarly, $I_0^2$ is not locally path connected at any point $q \times 0$ with $q \in (0, 1)$; the path components are $\{x\} \times [0, 1]$ for $x \in [0, 1]$ since these sets are clearly homeomorphic to $[0, 1]$. $\Box$
+
+    \item Let $X$ be locally path connected. Show that every connected open set in $X$ is path connected.
+
+    {\bf SOLUTION.} Let $U$ be open and connected in $X$. By Theorem 3.19, each path component of $U$ is open in $X$ and thus open in $U$. Then the complement of any path component in $U$ is the union of all other path components and thus is open, so each path component is additionally closed in $U$. Since $U$ is connected, the path components must either be empty or all of $U$; thereby $U$ is path connected. $\Box$
+
+    \item Let $X = (\rats \cap [0, 1]) \times \{0\} \subseteq \reals^2$. Let $T$ be the union of all line segments joining $p = 0 \times 1$ to points of $X$.
+
+    \begin{enumerate}
+        \item Show that $T$ is path connected, but locally connected only at $p$.
+
+        {\bf SOLUTION.} Each line segment joining $p$ to some points in $X$ is evidently path-connected. Since $T$ is a union of path-connected lines with common point $p$, $T$ is path-connected.
+
+        Given any neighbourhood $U$ of $p$ in $T$, any point $x \in U$ must lie on a line segment, which is a path to $p$. Hence $U$ is path connected, and $T$ is locally connected at $p$.
+
+        If $q \neq p$ then let $U$ be a neighbourhood of $q$ not containing $p$. $U$ intersects infinitely many line segments, none of which intersect; these are the components of $U$. Since any neighbourhood of $q$ contained in $U$ contains infinitely many components, they cannot be connected. Hence $T$ is not locally connected at $q$. $\Box$
+
+        \item Find a subset of $\reals^2$ that is path connected but nowhere locally connected.
+
+        {\bf SOLUTION.} Let $Y = (\rats \cap [0, 1]) \times \{1\}$. Let $S$ be the union of all line segments joining $q = 1 \times 0$ to some point in $Y$. As in (a), $S$ is path connected. Moreover $S$ and $T$ have common point $p$ so $S \cup T$ is also path connected. However, any open set in $S \cup T$ contains infinitely many components, and thus there cannot exist a connected open subset. Therefore, $S \cup T$ is nowhere locally connected. $\Box$
+    \end{enumerate}
+
+    \item $X$ is weakly locally connected at $x$ if for every neighbourhood $U$ of $x$, there is a connected subspace of $X$ contained in $U$ that contains a neighbourhood of $x$. Show that if $X$ is everywhere weakly locally connected, then $X$ is locally connected.
+
+    {\bf SOLUTION.} Let $U$ be open in $X$ and $C$ a component of $U$. If $x \in C \subseteq U$ there exists a connected subspace $C_x$ of $X$ contained in $U$ that contains a neighbourhood $V_x$ of $x$. In particular, the connected space $C_x$ intersects the component $C$ at $x$ so $C_x \subseteq C$. Then $V_x$ is a neighbourhood of $x$ satisfying $x \in V_x \subseteq C$, so $C$ is open in $X$. $\Box$
+
+    \item Consider the infinite broom $X$. Show that $X$ is not locally connected at $p$, but weakly locally connected at $p$.
+
+    {\bf SOLUTION.} Without loss of generality assume $p = 0 \times 0$. Let $(a_i)_{i \in \ints^+}$ be a decreasing sequence of positive real numbers converging to $0$, and for each $i$, let $(r_{i_j})_{j \in \ints^+}$ be a strictly decreasing sequence of positive real numbers converging to $0$. $X$ consists of the line segment from $p$ to $(a_1, 0)$, which incidentally contains all points $(a_i, 0)$, along with all line segments $L_{i, j}$ joining $(a_i, 0)$ to $(a_{i+1}, r_{i_j})$ for each $i,j$.
+
+    Let $V$ be a connected neighbourhood of $p$ in $X$. Clearly $V$ contains $(a_i, 0)$ for all but finitely many $i$. Suppose $N$ is the smallest integer such that $i > N$ implies $(a_i, 0) \in V$. Assume $N > 0$. Since $(r_{N_j}) \rightarrow 0$, $V$ must also intersect infinitely many line segments $L_{N, j}$. Let $r_{N_K}$ be the smallest $K$ such that $(a_N, r_{N_K}) \in V$. Then $\{(a_N, r_{N_K})\}$ is open in $V$ since a ball may be may sufficiently small that it does not contain $(a_N, r_{N_{K+1}})$; and conversely $V - \{(a_N, r_{N_K})\}$ is open in $V$. This defines a separation of $V$, so we must have $N = 0$, meaning $V$ contains $(a_i, 0)$ for all $i$. Then given a neighbourhood $U$ of $p$ that does not contain every $(a_i, 0)$, $U$ cannot contain a connected neighbourhood of $p$.
+
+    Given a neighbourhood $U$ of $x$ containing $(a_i, 0)$ for $i > N$, minimally, let 
+    $$C = U - \bigcup_{j \in \nats} L_{N, j} \subseteq U.$$
+    $C$ is path connected and thereby connected. Furthermore, we may define a neighbourhood $V$ of $x$ contained in $C$ by 
+    $$V = C \cap ((-\infty, a_{N+1}) \times \reals),$$
+    showing that $X$ is weakly locally connected at $p$. $\Box$
+
+    \item Let $p: X \rightarrow Y$ be a quotient map. Show that if $X$ is locally connected then $Y$ is locally connected.
+
+    {\bf SOLUTION.} Suppose for every $U$ open in $X$, each component of $U$ is open in $X$. Let $V$ be open in $Y$ and $C$ a component of $V$. Let $D$ be a component of $p^{-1}(V)$ that intersects $p^{-1}(C)$. $p(D)$ is the image of a connected space under a continuous map and thereby connected. Moreover, $p(D)$ intersects $C$, so $p(D) \subseteq C$, or $D \subseteq p^{-1}(C)$. Hence $p^{-1}(C)$ is a union of components of $p^{-1}(V)$, which are open in $X$; thus $p^{-1}(C)$ is open in $X$. Since $p$ is a quotient map, we conclude that $C$ is open in $Y$. $\Box$
+
+    \item Let $G$ be a topological group and $C$ the component of $G$ containing $e$. Show that $C$ is a normal subgroup of $G$.
+
+    {\bf SOLUTION.} Recall that for fixed $x$, $y \mapsto xy$ and $y \mapsto yx$ are homeomorphisms $G \rightarrow G$. Since $C$ is a component containing $e$, $xC, Cx$ are both components containing $x$. Since $xC = Cx$ for all $x \in G$, $C$ is a normal subgroup of $G$. $\Box$
+
+    \item Let $X$ be a space. Define $x \sim y$ if there is no separation $A, B$ of $X$ such that $x \in A, y \in B.$
+    \begin{enumerate}
+        \item Show that $\sim$ is an equivalence relation. The equivalence classes are called quasicomponents of $X$.
+
+        {\bf SOLUTION.} Symmetry and reflexitivity are trivial; suppose $x \sim y$ and $y \sim z$. Suppose $A, B$ is a separation of $X$ such that $x \in A, z \in B$. If $y \in A$ this contradicts $y \sim z$ and if $y \in B$ this contradicts $x \sim y$. Thus $x \sim z$. $\Box$
+
+        \item Show that each component lies in a quasicomponent, and that they are the same if $X$ is locally connected.
+
+        {\bf SOLUTION.} Suppose $C, Q$ are respectively the component and quasicomponent containing $x$. If $y \in C$, there is a connected subspace $Y$ containing $x$ and $y$. Suppose $A, B$ is a separation of $X$ such that $x \in A, y \in B$; then $Y \cap A, Y \cap B$ is a separation of $Y$; a contradiction. Thus $x \sim y$ or $y \in Q$.
+
+        If $X$ is moreover locally connected, then $C$ is open in $X$. Suppose $y \in Q$ and $y \in X-C$. Then $C, X-C$ is a separation of $X$ with $x \in C, y \in X-C$, contradicting the fact that $x, y \in Q$. Thus $y \in C$, showing that $Q = C$. $\Box$
+
+        \item Determine the components, path components, and quasicomponents of
+        \begin{align*}
+            A &= (K \times [0, 1]) \cup \{0 \times 0\, 0 \times 1\}, \\
+            B &= A \cup ([0, 1] \times \{0\}), \\
+            C &= (K \times [0, 1]) \cup (-K \times [-1, 0]) \cup ([0, 1] \times -K) \cup ([-1, 0] \times K).
+        \end{align*}
+
+        {\bf SOLUTION.} For $A$, the components and path components are $\{0 \times 0\}, \{0 \times 1\},$ and $\{\frac1n\} \times [0, 1]$ for each $n$. The quasicomponents are $\{0 \times 0, 0 \times 1\}$ and $\{\frac1n\} \times [0, 1]$ for each $n$.
+        
+        If $x \times s, y \times t \in A$ are such that $x < y$ then let $z \in (x, y)$ be such that $\frac1z \notin \nats$. Then $((-\infty, z) \times \reals) \cap A, ((z, \infty) \times \reals) \cap A$ is a separation of $A$ with $x \in ((-\infty, z) \times \reals) \cap A$ and $y \in ((z, \infty) \times \reals) \cap A$, so $x \times s, y \times t$ belong in different quasicomponents. Since $\{\frac1n\} \times [0, 1]$ is path connected for all $n$, these sets are path components, and thus components and quasicomponents as well. However, $(\{0\} \times \reals) \cap A = \{0 \times 0, 0 \times 1\}$ has separation $\{0\times 0\}, \{0 \times 1\}$ and thus is not connected. However the singletons are trivially path connected, so they are path components and components. Nonetheless $\{0 \times 0, 0 \times 1\}$ is indeed a quasicomponent: suppose there is a separation $D, E$ of $A$ with $0 \times 0 \in D, 0 \times 1 \in E$. Then $\frac1n \times 0 \in D, \frac1n \times 1 \in E$ for sufficiently large $n$, and thus $D\cap (\{\frac1n\} \times [0, 1]), E \cap (\{\frac1n\} \times [0, 1])$ is a separation of $\{\frac1n \} \times [0, 1]$, contradicting connectedness.
+        
+        For $B$, we see that the path connected subspaces $\{\frac1n\}\times [0, 1], [0, 1] \times \{0\}$ intersect at $\frac1n \times 0$; so their union is path connected. Furthermore $B - \{0 \times 1\}$ is the union of all these sets along with $\{0 \times 0\}$ which all intersect at $0 \times 0$, so $B - \{0 \times 1\}$ is path connected. Now $\overline{B - \{0\times 1\}} = B$, so $B$ is connected. It follows that $B$ consists of a single components and quasicomponent, while the path components of $B$ are $B-\{0\times 1\}, \{0\times 1\}$. Indeed, there is no path from $0 \times 0$ to $0\times 1$, as with $A$.
+
+        Suppose there exists a separation $D, E$ of $C$. For fixed $N \in \nats$, consider $0 \times \frac1N \in [-1, 0] \times K$; without loss of generality say $0 \times \frac1N \in D$. $[-1, 0] \times \{\frac1N\}$ is clearly path connected in $C$, so it is contained in $D$. Then $0 \times \frac1N$ is a limit point of $K \times [0, 1]$ so $\frac1n \times [0, 1] \subseteq D$ for all but perhaps finitely many $n$. Since $0 \times \frac1n$ is a limit point of the union of all lines in $D$ in the form $\frac1n \times [0, 1]$, this means $[-1, 0] \times K \subseteq D$. Symmetrically, $-K \times [-1, 0] \subseteq D$, and then $[0, 1] \times -K \subseteq D$, and finally $K \times [0, 1] \subseteq D$, so $E$ is empty; a contradiction. Since $C$ is connected, it is the only component and quasicomponent. Each line in $C$ is clearly its own path component. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
