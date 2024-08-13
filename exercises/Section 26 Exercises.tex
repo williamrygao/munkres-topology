@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 26 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item Let $\topo, \topo'$ be topologies on $X$ where $\topo'$ is finer. What does compactness of one of these topologies imply about the other?
+
+        {\bf SOLUTION.} If $\topo'$ is compact then given an open covering in $\topo,$ each element is in $\topo'$ so it is also an open covering in $\topo'.$ By compactness, it has a finite subcover, so $\topo$ is also compact.
+
+        If $\topo$ is compact then given an open covering in $\topo',$ we cannot determine anything as the elements may or may not be in $\topo.$ $\Box$
+
+        \item Show that if $\topo, \topo'$ are both compact Hausdorff then either $\topo = \topo'$ or they are not comparable.
+
+        {\bf SOLUTION.} Suppose without loss of generality that $\topo' \supseteq \topo;$ we will show that $\topo' \subseteq \topo.$ Given $A \in \topo',$ $X-A$ is closed in $\topo'$ hence compact. Then by (a), $X-A$ is compact in $\topo,$ or closed in $\topo$. Therefore $A$ is open in $\topo.$ $\Box$
+    \end{enumerate}
+
+    \item \begin{enumerate}
+        \item Show that in the finite complement topology on $\reals$ every subspace is compact.
+
+        {\bf SOLUTION.} Given an open covering $\mathcal{A}$ of $X \subseteq \reals,$ take any $A \in \mathcal{A}.$ $A$ must be in the form $X - \{x_1, \cdots, x_n\}$ for some finite number of points $x_1, \cdots, x_n.$ For each $x_i,$ let $A_i \in \mathcal{A}$ be a neighbourhood of $x_i.$ Then 
+        $$\{A, A_1, \cdots, A_n\}$$
+        is a finite subcovering of $\mathcal{A}$. $\Box$
+
+        \item If $\reals$ has the topology consisting of all sets $A$ such that $\reals - A$ is either countable or all of $\reals,$ is $[0, 1]$ compact?
+
+        {\bf SOLUTION.} Define the open covering $\{A_n\}_{n \in \ints^+}$ of $[0, 1]$ by $A_n = [0, 1] - \{\frac1k: k \geq n\}.$ Suppose $A_1, \cdots, A_n$ is a finite subcovering; then for any $k \geq n,$ $\frac1k \notin \bigcup_{i=1}^n A_i.$ Thus there is no finte subcovering. $\Box$
+    \end{enumerate}
+
+    \item Show that a finite union of compact subspaces of $X$ is compact.
+
+    {\bf SOLUTION.} Let $X_1, \cdots, X_n \subseteq X$ be compact. Let $\mathcal{A}$ be an open covering of $\bigcup_{i=1}^n X_i$ and naturally an open covering of each $X_i$ for each $i$; let $A_{i_1}, \cdots, A_{i_n}$ be a finite subcovering of $X_i.$ Then
+    $$A_{1_1}, \cdots, A_{1_n}, \cdots, A_{n_1}, \cdots, A_{n_n}$$
+    is a finite subcovering of $\bigcup_{i=1}^n X_i.$ $\Box$
+
+    \item Show that every compact subspace of a metric space is closed and bounded. Find a metric space in which the converse is false.
+
+    {\bf SOLUTION.} Suppose $Y$ is compact in a metric space $X.$ Since $X$ is Hausdorff, $Y$ is closed. For fixed $y \in Y$, $\{B(y, n)\}_{n \in \ints^+}$ is certainly an open covering of $Y,$ so it must contain a finite subcover $B(y, n_1), \cdots, B(y, n_k).$ Then for all $x \in Y,$ $d(x, y) < n_k$, so $Y$ is bounded.
+
+    Let $X$ be an infinite set given the discrete topology; which is a metric space induced by the discrete metric $d(x, x) = 0$ and $d(x, y) = 1$ for all $x, y \in X.$ In particular, $B_d(x, 2) = X$, so $X$ is bounded, and $\varnothing$ is open, so $X$ is closed. However $X$ is not compact as the open covering $\{\{x\}\}_{x \in X}$ has no finite subcover. $\Box$
+
+    \item Let $A, B$ be disjoint compact subspaces of the Hausdorff space $X$. Show that there exist disjoint open sets $U, V$ containing $A, B.$
+
+    {\bf SOLUTION.} Given $a \in A$, $a \notin B$ means that there exist disjoint open sets $U_a$ and $V_a$ containing $a$ and $B$ respectively. Then $\{U_a\}_{a \in A}$ is an open covering of $A$ so it has a finite subcovering $U_{a_1}, \cdots, U_{a_n}$. The corresponding $V_{a_1}, \cdots, V_{a_n}$ are open sets containing $B,$ so $\bigcap_{i=1}^n V_{a_i}$ is an open set containing $B$ disjoint from $\bigcup_{i=1}^n U_{a_i}$, which is an open set containing $A.$ $\Box$
+
+    \item Show that if $f: X \rightarrow Y$ is continuous with $X$ compact and $Y$ Hausdorff, then $f$ is a closed map.
+
+    {\bf SOLUTION.} Suppose $A$ is closed in $X,$ hence compact. Then $f(A)$ is compact in $Y$, and thus closed. $\Box$
+
+    \item Show that if $Y$ is compact then $\pi_1: X \times Y \rightarrow X$ is a closed map.
+
+    {\bf SOLUTION.} Suppose $C$ is closed in $X \times Y$ and consider $x_0 \in X - \pi_1(C).$ We have $x_0 \times Y \subseteq (X \times Y) - C$, so by the tube lemma $(X \times Y) - C$ contains a tube $W \times Y$ about $x_0 \times Y$ where $W$ is a neighbourhood of $x_0$ in $X.$ Now if $x \in W$ then $x \times y \in W \times Y$ for any $y \in Y,$ so $x \times y \in (X \times Y) - C,$ or $x \in X - \pi_1(C).$ We have shown that there exists a neighbourhood $W$ of $x_0$ such that $x_0 \in W \subseteq X-\pi_1(C),$ so $\pi_1(C)$ is closed in $X.$ $\Box$
+
+    \item {\it Theorem.} Let $f: X \rightarrow Y$ where $Y$ is compact Hausdorff. Then $f$ is continuous if and only if the graph of $f$
+    $$G_f = \{x \times f(x): x \in X\}$$
+    is closed in $X \times Y.$
+
+    {\bf SOLUTION.} Suppose $f$ is continuous and consider $x_0 \times y_0 \in (X \times Y) - G_f.$ By definition, $y_0 \neq f(x_0).$ By the Hausdorff condition, let $U, V$ be disjoint neighbourhoods of $y, f(x_0)$ in $Y.$ Then $f^{-1}(V) \times U$ is a neighbourhood of $x_0 \times y_0$ which does not intersect $G_f.$ Indeed, if $x \times y \in (f^{-1}(V) \times U) \cap G_f$ then $f(x) = y$ and $f(x) \times y \in V \times U$. But then $y \in U \cap V$; a contradiction. Therefore $f^{-1}(V) \times U$ is a neighbourhood of $x_0 \times y_0$ contained in $(X \times Y) - G_f,$ so $G_f$ is closed in $X \times Y.$
+
+    Conversely, let $x_0 \in X$ and consider a neighbourhood $V$ of $f(x_0).$ $C = G_f \cap (X \times (Y-V))$ is an intersection of closed sets and thus is closed in $X \times Y$. By Exercise 7, $\pi_1(C)$ is closed in $X,$ or $U = X - \pi_1(C)$ is open in $X.$ Since $f(x_0) \in V,$ we have $f(x_0) \in U.$ Suppose $f(x) \notin V.$ Then $x \times f(x) \in G_f \cap (X \times (Y - V)) = C,$ so $\pi_1(x \times f(x)) \notin X - \pi_1(C) = U.$ By contraposition, $U$ is a neighbourhood of $x_0$ such that $f(U) \subseteq V$, so $f$ is continuous. $\Box$
+
+    \item Generalize the tube lemma as follows: {\it Theorem.} Let $A, B$ be subspaces of $X, Y$; let $N$ be open in $X \times Y$ containing $A \times B.$ If $A, B$ are compact then there exist open sets $U, V \in X, Y$ such that
+    $$A \times B \subseteq U \times V \subseteq N.$$
+
+    {\bf SOLUTION.} Let $a \in A$ and consider $a \times B \subseteq N$. Let $\{W_1 \times Z_1, \cdots, W_n \times Z_n\}$ be a finite open covering of $a \times B$ such that each $W_i \times Z_i$ intersects $a \times B$ and lies in $N.$ Define
+    $$U_a = \bigcap_{i=1}^n W_i, V_a = \bigcup_{i=1}^n Z_i.$$
+    Then $U_a$ and $V_a$ are open sets in $Y$ containing $a$ and $B$ with $U_a \times V_a \subseteq N.$ Indeed, if $x \times y \in U_a \times V_a$ then $y \in Z_i$ for some $i$ and then $x \times y \in W_i \times Z_i \subseteq N.$
+
+    Now $\{U_a \times V_a\}_{a \in A}$ is an open covering of $A \times B.$ By compactness it has a finite subcover $U_{a_1} \times V_{a_1}, \cdots, U_{a_n} \times V_{a_n}$. Let
+    $$U = \bigcup_{i=1}^n U_{a_i}, V = \bigcap_{i=1}^n V_{a_i}$$
+    be open sets in $X, Y$ respectively. If $a \times b \in A \times B$ then $a \times b \in U_{a_i} \times V_{a_i}$ for some $i$, so clearly $a \in U$ and $b \in V,$ since each $V_a$ contains all of $B.$ Thus $A \times B \subseteq U \times V.$
+
+    If $x \times y \in U \times V,$ then $x \in U_{a_i}$ for some $i$ and $y \in V_{a_j}$ for all $j,$ hence $x \times y \in U_{a_i} \times V_{a_i} \subseteq N.$ Therefore $U, V$ are open sets in $X$ such that $A \times B \subseteq U \times V \subseteq N.$ $\Box$
+
+    \item \begin{enumerate}
+        \item Prove the following partial converse to the uniform limit theorem: {\it Theorem.} Let $f_n: X \rightarrow \reals$ be a sequence of continuous functions with $f_n(x) \rightarrow f(x)$ for each $x \in X.$ If $f$ is continuous, $f_n(x) \leq f_{n+1}(x)$ for all $n, x$, and $X$ is compact, then the convergence is uniform.
+
+        {\bf SOLUTION.} By monotonicity, $f_n(x) \leq f(x)$ for all $n, x.$ Given $\varepsilon > 0,$ there exists for each $x \in X$ some $N_x \in \ints^+$ such that $f(x) - f_n(x) < \varepsilon$ for $n > N_x.$ Since $f, f_n$ are continuous, there exists a neighbourhood $U_x$ of $x$ such that $f(z) - f_n(z) < \varepsilon$ for all $z \in U_x.$
+
+        $\{U_x\}_{x \in X}$ is an open covering of $X$, so by compactness it has a finite subcover $\{U_{x_1}, \cdots, U_{x_n}\}.$ Let $N = \max \{N_{x_1}, \cdots, N_{x_n}\}.$ For all $n > N$, given $x \in X$ there is some $U_{x_i}$ containing $x$. $N > N_{x_i}$ implies
+        $$f(x) - f_n(x) < \varepsilon,$$
+        so $(f_n)_n$ converges uniformly to $f.$ $\Box$
+    
+        \item Give examples to show that this theorem fails if you delete the requirement that $X$ be compact, or if you delete the requirement that the sequence be monotone.
+
+        {\bf SOLUTION.} Consider $f_n: \reals \rightarrow \reals$ defined by
+        $$f_n(x) = \arctan(x+n).$$
+        In particular $\reals$ is not compact. $(f_n)_n$ is a monotone sequence of continuous functions and converges pointwise to the constant (thus continuous) function $\frac{\pi}{2}$, but not uniformly. Indeed, $f_n(-n) = 0$ for all $n.$
+
+        Consider $f_n: [0, 1] \rightarrow \reals$ given by
+        $$f_n(x) = \frac{1}{n^3(x-\frac1n)^2+ 1}.$$
+        $[0, 1]$ is compact and $(f_n)_n$ is a sequence of (not monotone) continuous functions that converges pointwise to the constant function $0$. However $(\frac1n)_n \rightarrow 0$ while $(f_n(\frac1n)) \rightarrow 1,$ so the convergence is not uniform. $\Box$
+    \end{enumerate}
+
+    \item {\it Theorem.} Let $X$ be a compact Hausdorff space. Let $\mathcal{A}$ be a collection of closed connected subsets of $X$ that is simply ordered by proper inclusion. Then $Y = \bigcap_{A \in \mathcal{A}} A$ is connected.
+
+    {\bf SOLUTION.} $Y$ is an arbitrary intersection of closed sets, and thus closed. Suppose $C, D$ forms a separation of $Y.$ Then $C, D$ are closed in $Y$, and thus in $X$; by compactness of $X,$ $C, D$ are compact. By Exercise 5, there exist disjoint open sets $U, V$ containing $C, D.$ Now for any $A \in \mathcal{A}$, $A- (U \cup V) = (X-(U \cup V)) \cap A$ is closed in $X$ and nonempty. Otherwise $A = U \cup V,$ but $U, V$ are disjoint nonempty open sets, contradicting connectedness of $A.$ Moreover as $\mathcal{A}$ is simply ordered by proper inclusion, so is the collection $\{A-(U \cup V)\}_{A\in \mathcal{A}}.$ Hence any finite subcollection $\{A_1 - (U\cup V), \cdots, A_n - (U \cup V)\}$ satisfies
+    $$\bigcap_{i=1}^n (A_1 - (U\cup V)) = A_1 - (U \cup V),$$
+    where $A_1 - (U \cup V)$ is nonempty. In other terms, $\{A-(U \cup V)\}_{A\in \mathcal{A}}$ is a collection of closed sets in the compact space $X$ having the finite intersection property, so $\bigcap_{A \in \mathcal{A}} (A-(U \cup V))$ is nonempty. Then there exists $y \in (A - (U \cup V))$ for all $A \in \mathcal{A},$ or equivalently, $y \in Y - (U \cup V).$ But this means $y \notin C \cup D,$ so $C, D$ cannot be a separation. $\Box$
+
+    \item Let $p: X \rightarrow Y$ be a closed continuous surjection such that $p^{-1}(\{y\})$ is compact for each $y \in Y.$ Show that if $Y$ is compact, then $X$ is compact.
+
+    {\bf SOLUTION.} Given $y \in Y,$ suppose $U$ is open in $X$ and contains $p^{-1}(\{y\})$. $X-U$ is closed in $X$ so $p(X-U)$ is closed in $Y.$ Then $V = Y - p(X-U)$ is a neighbourhood of $y$ in $Y.$ Otherwise $y \in p(X-U)$, or $p(x) = y$ for some $x \in X-U$, contradicts the fact that $p^{-1}(\{y\}) \subseteq U.$ Now if $x \in p^{-1}(V)$ then $p(x) \notin p(X-U),$ which implies $x \notin X-U$ or $x \in U.$ Hence $V$ is a neighbourhood of $y$ in $Y$ such that $p^{-1}(V) \subseteq U.$
+
+    Now consider an open covering $\mathcal{A}$ of $X.$ Given $y \in Y,$ let $\mathcal{A}_y$ be a subcollection of $\mathcal{A}$ such that
+    $$p^{-1}(\{y\}) \subseteq \bigcup_{A \in \mathcal{A}_y} A.$$
+    By compactness of $p^{-1}(\{y\}),$ $\mathcal{A}_y$ has a finite subcover $\{A_{y_1}, \cdots, A_{y_n}\}.$ Then $\bigcup_{i=1}^{n} A_{y_i}$ is open in $X$ and contain $p^{-1}(\{y\}).$ By the first part, there exists a neighbourhood $V_y$ of $y$ such that $p^{-1}(\{y\}) \subseteq \bigcup_{i=1}^{n} A_{y_i}.$
+
+    $\{V_y\}_{y \in Y}$ is an open covering of $Y,$ so it has a finite subcovering $\{V_{y_1}, \cdots, V_{y_m}\}.$ Then
+    \begin{align*}
+        X &= p^{-1}(Y), \\
+        &= p^{-1}\left( \bigcup_{i=1}^m V_{y_i} \right), \\
+        &= \bigcup_{i=1}^m p^{-1}(V_{y_i}), \\
+        &\subseteq \bigcup_{i=1}^m \left( \bigcup_{j=1}^n A_{y_{i_j}} \right),
+    \end{align*}
+    so $\{A_{y_{1_1}}, \cdots, A_{y_{1_n}}, A_{y_{m_1}}, \cdots, A_{y_{m_1}}\}$ is a finite subcover of $\mathcal{A}.$ $\Box$
+
+    \item Let $G$ be a topological group.
+    \begin{enumerate}
+        \item Let $A, B$ be subspaces of $G.$ If $A$ is closed and $B$ compact, show that $A \cdot B$ is closed.
+
+        {\bf SOLUTION.} Recall that the multiplication map $\cdot: G \times G \rightarrow G$ is continuous. Let $c \in G - (A \cdot B).$ By definition, $c \cdot b^{-1} \notin A$ for any $b \in B.$ We know that there exists a neighbourhood $U$ of $c \cdot b^{-1}$ disjoint from $A.$ Then $V = U \cdot B$ is a neighbourhood of $c$ disjoint from $A \cdot B$, so $A \cdot B$ is closed in $G$. $\Box$
+
+        \item Let $H$ be a subgroup of $G$ and $p: G \rightarrow G/H$ the quotient map. If $H$ is compact, show that $p$ is closed.
+
+        {\bf SOLUTION.} Suppose $A$ is closed in $G$ and $x \in G$ is such that $xH \in G/H - p(A).$ Then $x \notin A \cdot H,$ which is closed in $G$ by part (a). We know that there exists a neighbourhood $U$ of $x$ disjoint from $A \cdot H$. We also know that $p$ is an open map, so $p(U)$ is a neighbourhood of $xH$ disjoint from $p(A).$ $p(A)$ is thereby closed, and $p$ is a closed map. $\Box$
+
+        \item Let $H$ be a compact subgroup of $G.$ Show that if $G/H$ is compact then $G$ is compact.
+
+        {\bf SOLUTION.} By (b), $p: G \rightarrow G/H$ is closed. Additionally, $p$ is continuous and surjective. Given $x \in G,$ $p^{-1}(\{x\}) = p^{-1}(xH) = xH$ is homeomorphic to $H$, hence compact. We have shown $p$ is a perfect map; by Exercise 12 $G$ is thus compact. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
