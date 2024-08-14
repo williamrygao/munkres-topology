@@ -1,1 +1,1 @@
-
+Try your hand at the exercises before viewing my solutions. The hardest part of any problem is readying yourself to answer it (maybe not, but at least for the problems in this book). Sail forbidden seas, land on barbarous coasts.
