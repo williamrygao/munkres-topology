@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 27 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Prove that if $X$ is an ordered set in which every closed interval is compact, then $X$ has the least upper bound property.
+
+    {\bf SOLUTION.} Suppose every closed interval in $X$ is compact and let $A$ be a nonempty, bounded subset of $X$. $\overline{A} \subseteq X$ is closed, and thus compact. The inclusion map $i: \overline{A} \rightarrow X$ is continuous. By the extreme value theorem, there exists $b \in \overline{A}$ such that $a \leq b$ for all $a \in \overline{A}$, so $b$ is an upper bound for $A.$ Suppose there exists $c \in X$ such that $c < b$ and $a \leq c$ for all $a \in A.$ Given $\varepsilon > 0,$ the neighbourhood $(c-\varepsilon, c+\varepsilon)$ of $c$ must intersect $A$; otherwise the corresponding neighbourhood $(b-\varepsilon, b+ \varepsilon)$ of $b$ does not intersect $A$ either, contradicting $b \in \overline{A}.$ Thus $c \in \overline{A}$; contradicting the fact that $b$ is an upper bound for $\overline{A}.$ Therefore $b = \sup A.$ $\Box$
+
+    \item Let $X$ be a metric space with metric $d$ and $A \subseteq X$ nonempty.
+    \begin{enumerate}
+        \item Show that $d(x, A) = 0$ if and only if $x \in \overline{A}.$
+
+        {\bf SOLUTION.} Suppose $d(x, A) = 0$ and suppose some basis neighbourhood $B_d(x, \varepsilon)$ of $x$ does not intersect $A.$ Then
+        $$d(x, a) \geq \varepsilon$$
+        for all $a \in A,$ so $d(x, A) \geq \varepsilon$; a contradiction. Conversely, if $x \in \overline{A}$ then given $\varepsilon > 0,$ $B_d(x, \varepsilon)$ intersects $A,$ meaning there exists $a \in A$ such that $d(x, a) < \varepsilon.$ Then 
+        $$d(x, A) = \inf_{a \in A} d(x, a) = 0,$$
+        as desired. $\Box$
+        
+        \item Show that if $A$ is compact, $d(x, A) = d(x, a)$ for some $a \in A.$
+
+        {\bf SOLUTION.} We know that $d_x: A \rightarrow \reals$ defined by $d_x(a) = d(x, a)$ is continuous. By the extreme value theorem, there exists $\alpha \in A$ such that $d(x, \alpha) \leq d(x, a)$ for all $a \in A.$ Then $d(x, A) = \inf_{a \in A} d(x, a) = d(x, \alpha).$ $\Box$
+        
+        \item Define the $\varepsilon$-neighbourhood of $A$ in $X$ by
+        $$U(A, \varepsilon) = \{x: d(x, A) < \varepsilon)\}.$$
+        Show that $U(A, \varepsilon) = \bigcup_{a \in A} B_d(a, \varepsilon).$
+
+        {\bf SOLUTION.} Suppose $y \in U(A, \varepsilon).$ Then $\inf_{a \in A} d(y, a) = d(y, A) < \varepsilon,$ so there exists $a \in A$ such that $d(y, a) < \varepsilon,$ or $y \in B_d(a, \varepsilon).$ Conversely if $y \in \bigcup_{a \in A} B_d(a, \varepsilon)$, then $y \in B_d(a, \varepsilon)$ for some $a \in A$ and then 
+        $$d(y, A) = \inf_{a \in A} d(y, a) \leq d(y, a) < \varepsilon,$$
+        so $y \in U(A, \varepsilon).$ $\Box$
+
+        \item Assume $A$ is compact and $U$ is an open set containing $A.$ Show that some $\varepsilon$-neighbourhood of $A$ is contained in $U.$
+
+        {\bf SOLUTION.} Given $a \in A,$ let $\varepsilon_a > 0$ be such that $B_d(a, \varepsilon_a) \subseteq U.$ $\{B_d(a, \varepsilon_a)\}_{a \in A}$ is an open covering of $A$; by compactness it has a finite subcovering $\{B_d(a_1, \varepsilon_{a_1}), \cdots, B_d(a_n, \varepsilon_{a_n}\}.$ Let $\delta > 0$ be a Lebesgue number for this finite subcovering and take $\varepsilon = \frac12 \delta.$ For any $a \in A,$ $B_d(a, \varepsilon)$ has diameter less than $\delta,$ so it is contained within one of the sets $B_d(a_i, \varepsilon_{a_i}).$ Hence by (c),
+        $$U(A, \varepsilon) = \bigcup_{a \in A}B_d(a, \varepsilon) \subseteq \bigcup_{i=1}^n B_d(a_i, \varepsilon_{a_i}) \subseteq U. \, \Box$$
+
+        \item Show that (d) fails if $A$ is closed but not compact.
+
+        {\bf SOLUTION.} As a counterexample, consider $C = \{x \times \tan(x): x \in \left( -\frac{\pi}{2}, \frac{\pi}{2} \right).$ $C$ is closed in $\reals^2$ but not compact as it is unbounded. $U = \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \times \reals$ is open in $\reals^2$ and contains $C,$ but for any $\varepsilon > 0$ there exists $c \in C$ such that $B_d(c, \varepsilon)$ intersects $(\reals^2-U).$ Thus $U$ may not contain any $\varepsilon$-neighbourhood of $C$. $\Box$
+    \end{enumerate}
+
+    \item \begin{enumerate}
+        \item Show that $[0, 1]$ is not compact in $\reals_K$.
+
+        {\bf SOLUTION.} $\{[0, 1] - K\} \cup \{\left(\frac1{n+1}, \frac1{n-1}\right)\}_{n \in \ints^+}$ is an open covering of $[0, 1].$ However, it is obvious that no finite covering may contain all the points $\frac1n.$ $\Box$
+
+        \item Show that $\reals_K$ is connected.
+
+        {\bf SOLUTION.} $(-\infty, 0)$ inherits the order topology as a subspace of $\reals_K$; we will show the same for $(0, \infty).$ The general basis element $V$ of $(0, \infty)$ in the subspace topology is in the form $U \cap (0, \infty)$ where $U$ is open in $\reals_K.$ If $U$ is in the form $(a, b)$ then $V$ is open in the order topology; otherwise if $U = (a, b)-K$ then $V = (a, b) \cap (0, \infty) - K = (a, b) \cap (0, \infty) - \overline{K},$ which remains open in the order topology. Since $(-\infty, 0), (0, \infty)$ are connected, so are their closures. Moreover, their closure share the point $0,$ so $\reals_K = (-\infty, 0] \cup [0, \infty)$ is connected. $\Box$
+        
+        \item Show that $\reals_K$ is not path connected.
+
+        {\bf SOLUTION.} Suppose there is a continuous function $f: [0, 1] \rightarrow \reals_K$ such that $f(0) = 0, f(1) = 1.$ Since $[0, 1]$ is compact in $\reals$ and $f$ is continuous, $f([0, 1])$ is compact in $\reals_K$. By the intermediate value theorem, $f$ takes on every value between $0$ and $1$, or $[0, 1] \subseteq f([0, 1]).$ Then $[0, 1]$ is a closed subset of a compact space, implying it is also compact in $\reals_K,$ contradicting (a). $\Box$
+    \end{enumerate}
+
+    \item Show that a connected metric space having more than one point must be uncountable.
+
+    {\bf SOLUTION.} Recall that for fixed $x \in X,$ $d_x: X \rightarrow \reals$ defined by $d_x(y) = d(x, y)$ is continuous. If $X$ is connected then $d_x(X)$ is connected in $\reals,$ and moreover contains $0$ since $d_x(x) = 0.$ Thus if $y \neq x \in X$ then $d_x(X)$ contains $[0, d_x(y)],$ which is uncountable. $\Box$
+
+    \item Let $X$ be a compact Hausdorff space; let $\{A_n\}$ be a countable collection of closed sets in $X.$ Show that if each set $A_n$ has an empty interior in $X,$ then $\bigcup A_n$ has an empty interior in $X.$
+
+    {\bf SOLUTION.} We will show that any nonempty open set $U$ in $X$ must contain a point that is not in $\bigcup A_n.$ Since $A_1$ has an empty interior, $U$ is not contained in $A_1.$ Given $x \in U-A_1,$ the closed set $A_1 \cup (X-U)$ does not contain $x.$ By compactness of $X,$ $A_1 \cup (X-U)$ is compact. Thus there exist disjoint open sets $V_1, W$ containing $a, A_1 \cup (X-U),$ respectively. It follows that
+    $$x \in V_1 \subseteq \overline{V_1} \subseteq X - (A_1 \cup (X-U)) = U - A_1.$$
+    Similarly, $V_1$ is a nonempty open set in $X$ not contained in $A_2,$ so there exists a nonempty open set $V_2$ such that $\overline{V_2} \subseteq V_1 - A_2.$ Continuing this process, we obtain a sequence
+    $$\overline{V_1} \supseteq \overline{V_2} \supseteq \cdots$$
+    of nonempty nested closed sets of $X.$ By compactness of $X$, there exists $x \in \bigcap_{i=1}^\infty V_i \subseteq \overline{V_1} \subseteq U$, so that $x \notin A_i$ for all $i \in \ints^+.$
+
+    We have shown that any nonempty open set $U$ contains a point that is not in $\bigcup A_n.$ Therefore, $\bigcup A_n$ has an empty interior. $\Box$
+
+    \item Let $A_0 = [0, 1] \subseteq \reals$. Let $A_1 = A_0 - (\tfrac13, \tfrac23)$; $A_2 = A_1 - (\tfrac19, \tfrac29) - (\tfrac79, \tfrac89)$; in general,
+    $$A_n = A_{n-1} - \bigcup_{k=0}^\infty \left( \frac{1+3k}{3^n}, \frac{2+3k}{3^n} \right).$$
+    The intersection $C = \bigcap_{n \in \ints^+}A_n$ is called the {\it Cantor set}; it is a subspace of $[0, 1].$
+    \begin{enumerate}
+        \item Show that $C$ is totally disconnected.
+
+        {\bf SOLUTION.} Let $B$ be a connected subspace of $C.$ If $B$ contains distinct points $x, y$ then by the Archimedean property, there exists $n \in \ints^+$ such that $\frac{1}{3^n} < |x-y|.$ Thereby, $x$ and $y$ must belong to different closed intervals in $A_n$; let $I$ be the interval containing $x.$ Then $B \cap I, B \cap (C-I)$ is a separation of $B$; contradiction. Therefore $C$ is totally disconnected. $\Box$
+        
+        \item Show that $C$ is compact.
+
+        {\bf SOLUTION.} Each $A_n$ is clearly closed in $[0, 1],$ so $C$ is an intersection of closed sets and thus closed. Since $C$ is a closed subspace of a compact space, $C$ is compact. $\Box$
+        
+        \item Show that each $A_n$ is a union of finitely many disjoint closed intervals of length $\frac{1}{3^n}$; and show that the end points of these intervals lie in $C.$
+
+        {\bf SOLUTION.} By induction; the desired result is true for $A_1 = [0, \tfrac13] \cup [\tfrac23, 3]$. If $A_n$ satisfies the desired result then $A_{n+1}$ is obtained by dividing each third of $A_n$ into three closed intervals of equal length and removing the interior of the middle third. The result is a union of finitely many disjoint closed intervals of length $\frac{1}{3^{n+1}}$ whose endpoints remain in $C$ since they are never removed. $\Box$
+        
+        \item Show that $C$ has no isolated points.
+
+        {\bf SOLUTION.} Let $x \in C.$ Since $x \in A_n$ for all $n,$ there exist intervals $I_n \subseteq A_n$ containing $x$. Choose an endpoint $x_n \in I_n$ distinct from $x$; these endpoints are in $C$ and converge to $x.$ Thus $x$ is not an isolated point. $\Box$
+        
+        \item Conclude that $C$ is uncountable.
+
+        {\bf SOLUTION.} $C$ is a nonempty compact Hausdorff space with no isolated points, and thereby is uncountable by Theorem 3.43. $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
