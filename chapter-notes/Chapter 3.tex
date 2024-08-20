@@ -1,0 +1,546 @@
+\section{Connectedness and Compactness}
+The intermediate value theorem depends on the connectedness of a closed interval $[a, b]$ in $\reals$. The extreme vaule theorem and the uniform continuity theorem depend on the compactness of a closed interval $[a, b]$ in $\reals$.
+
+\subsection{Connected Spaces}
+\begin{definition}\label{3.1}
+    A {\it separation} of a topological space $X$ is a pair $U, V$ of disjoint nonempty open subsets of $X$ whose union is $X$. $X$ is {\it connected} if there does not exist a separation of $X$.
+\end{definition}
+Equivalently, $X$ is connected if and only if the only subsets of $X$ that are both open and closed in $X$ are $\varnothing$ and $X$ itself.
+
+Indeed, if $X$ is connected and $U$ is open and closed, then $U, X-U$ is a pair of disjoint open subsets of $X$ whose union is $X$, so one of $U, X - U$ must be empty. Conversely, if $A \neq \varnothing, X$ is open and closed, then $A, X - A$ is a separation of $X$.
+
+The following lemma gives a useful criterion for determining whether a subspace is connected.
+
+\begin{lemma}\label{3.2}
+    If $Y$ is a subspace of $X$, a separation of $Y$ is a pair of disjoint nonempty sets $A, B$ whose union is $Y$, neither of which contains a limit point of the other.
+\end{lemma}
+{\it Proof.} Suppose $A, B$ is a separation of $Y$. Then $A$ is open and closed in $Y$. Sine $A$ is equal to its closure in $Y$, $A = \overline{A} \cap Y$. Since $A \cap B = \varnothing$, this means $\overline{A} \cap B = \varnothing$, so $B$ contains no limit points of $A$. Symmetrically, $A$ contains no limit points of $B$.
+
+Conversely, suppose $A, B$ are disjoint nonempty sets whose union is $Y$, and neither contains a limit point of the other. Since $\overline{A} \cap B = A \cap \overline{B} = \varnothing$, we conclude that $\overline{A} \cap Y \subseteq A$ and $\overline{B} \cap Y \subseteq B$, meaning $A, B$ are closed in $Y$. Since $A = Y-B, B = Y-A$, they are open in $Y$, and thus a separation. $\Box$
+
+It is easy to see that the indiscrete topology is connected. As a more enlightening example, consider $Y = [-1, 0) \cup (0, 1] \subseteq \reals$. $[-1, 0), (0, 1]$ is a separation of $Y$. Moreover, $0$ is the unique limit point of each set in $\reals$, but neither subset contains $0$.
+
+Now consider $X = [-1, 1] \subseteq \reals$. $[-1, 0]$ and $(0, 1]$ are not a separation of $X$ as $[-1, 0]$ is not open in $X$. Alternatively we see that $[-1, 0]$ contains $0$, a limit point of $(0, 1]$.
+
+To show that $\rats \subseteq \reals$ is not connected, consider two points $p, q \in \rats$ and choose $a \in \overline{Q}$ such that $p < a < q$. Then $\rats \cap (-\infty, a)$ and $\rats \cap (a, \infty)$ forms a separation of $\rats$.
+
+Consider $X = \{x \times 0\} \cup \{x \times \frac1x: x > 0\} \subseteq \reals^2.$ The two component sets form a separation of $X$ as neither contains a limit point of the other; hence $X$ is not connected.
+
+\begin{lemma}\label{3.3}
+    If $C, D$ is a separation of $X$ and $Y$ is a connected subspace of $X$, then $Y$ is contained in one of $C$ or $D$.
+\end{lemma}
+{\it Proof.} Suppose $C,D$ are a separation of $X$, so they are both open in $X$. Since $C \cap Y, D \cap Y$ are both open in $Y$, disjoint, and their union is $Y$, one of them most be empty as there exists no separation of $Y$. Therefore $Y$ must lie entirely in $C$ or $D$. $\Box$
+
+\begin{theorem}\label{3.4}
+    The union of a collection of connected subspaces of $X$ that have a point in common is connected.
+\end{theorem}
+{\it Proof.} Suppose $\{A_\alpha\}$ is a collection of connected subspaces of $X$ and there exists $p \in \bigcap A_\alpha$. Suppose $C, D$ is a separation of $\bigcup A_\alpha$ and without loss of generality, suppose $p \in C$. Since $A_\alpha$ is connected, the lemma implies $A_\alpha \subseteq C$, since $p \in A_\alpha$ for each $\alpha$. Therefore $\bigcup A_\alpha \subseteq C$, and $D$ is empty; a contradiction. $\Box$
+
+\begin{theorem}\label{3.5}
+    Suppose $A$ is connected and $A \subseteq B \subseteq \overline{A}$. Then $B$ is connected.
+\end{theorem}
+{\it Proof.} Suppose $C, D$ is a separation of $B$. Then by the lemma $A$, assume without loss of generality that $A \subseteq C$. Then $B \subseteq \overline{A} \subseteq \overline{C}$, and $\overline{C}$ does not intersect $D$ by \hyperref[3.2]{3.2}. Therefore $D$ is empty; a contradiction. $\Box$
+
+\begin{theorem}\label{3.6}
+    The image of a connected space under a continuous map is connected.
+\end{theorem}
+{\it Proof.} Let $f: X \rightarrow Y$ be continuous where $X$ is connected. Suppose $A, B$ is a separation of $f(X)$; $A, B$ are open in $f(X)$. Then $f^{-1}(A), f^{-1}(B)$ are disjoint, nonempty, open sets in $X$ whose union is $X$, and thus is a separation of $X$; a contradiction. $\Box$
+
+\begin{theorem}\label{3.7}
+    A finite Cartesian product of connected spaces is connected.
+\end{theorem}
+{\it Proof.} Suppose $X, Y$ are connected and $a \times b \in X \times Y$. Since $X \times b$ is homeomorphic with $X$, it is connected, and for any $x \in X$, $x \times Y$ is homeomorphic with $Y$ and thus connected. Then $T_x = (X \times b) \cup (x \times Y)$ is connected as they have common point $x \times b$, and $X \times Y = \bigcup_{x \in X} T_x$ is connected as it is a union of connected spaces with a common point $a \times b$. By induction, finite Cartesian products of connected spaces are connected. $\Box$
+
+We now attempt to extend this theorem to arbitrary products.
+
+$\reals^\omega$ in the box topology may be written as a union of the set $A$ of all bounded sequences of real numbers and the set $B$ of all unbounded sequences, which are clearly disjoint. Moreover for $\mathbf{x} \in \reals^\omega$, 
+$$U = (x_1 - 1, x_1 + 1) \times (x_2-1, x_2+1) \times \cdots$$
+is a neighbourhood of $\mathbf{x}$ contained in $A$ if $\mathbf{x}$ is bounded and contained in $B$ otherwise. Hence $\reals^\omega$ in the box topology is not connected.
+
+In the product topology, let
+$$\Tilde{\reals}^n = \{\mathbf{x} \in \reals^\omega: x_i = 0 \text{ for } i > n\}.$$
+Clearly $\Tilde{\reals}^n$ is homeomorphic to $\reals^n$, which is connected by \hyperref[3.7]{3.7}. Since $\mathbf{0} \in \Tilde{\reals}^n$ for all $n$, $\reals^\infty = \bigcup_{n \in \ints^+} \Tilde{\reals}^n$ is connected. It follows that $\overline{\reals^\infty} = \reals^\omega$ is connected.
+
+\subsection{Connected Subspaces of the Real Line}
+Throughout the examples provided in the previous section, we assumed $\reals$ was a connected space. We will now justify this claim. In fact, we will only need the order properties of $\reals$.
+\begin{definition}\label{3.8}
+    A simply ordered set $L$ containing more than one element is a {\it linear continuum} if the following hold:
+    \begin{enumerate}
+        \item[(1)] $L$ has the least upper bound property.
+        \item[(2)] (Density) - If $x < y$, there exists $z$ such that $x < z < y$.
+    \end{enumerate}
+\end{definition}
+\begin{theorem}\label{3.9}
+    If $L$ is a linear continuum in the order topology then $L$ is connected, as are intervals and rays in $L$.
+\end{theorem}
+{\it Proof.} It suffices to show that any convex subspace $Y$ of $L$ is connected. Suppose $A, B$ is a separation of $Y$ and take $a \in A, b \in B$; we may as well assume $a < b$. Since $[a, b] \subseteq Y$, $A_0, B_0$ defined by
+$$A_0 = A \cap [a, b] \text{ and } B_d = B \cap [a, b]$$
+is a separation of $[a, b]$. Let $c = \sup A_0$.
+
+First assume $c \in A_0$. Then $c \neq b \in B_0$, so we either have $c = a$ or $a < c < b$. Since $A_0$ is open in $[a, b]$, there exists some basis neighbourhood $(x, y)$ in $[a, b]$ around $c$ contained in $A_0$. In particular, $[c, y) \subseteq A_0$. By the density of $L$, there exists $z \in L$ such that $c < z < y$. Then $z \in A_0$, contradicting the fact that $c$ is an upper bound for $A_0$.
+
+Now suppose $c \in B_0$. Then as $c \neq a$, there exists $d$ such that $(d, c] \subseteq B_0$. If $c = b$ then $d$ is an upper bound for $A_0$ less than $c$, a contradiction. Otherwise $c < b$ so $(c, b]$ does not intersect $A_0$ by the fact that $c$ is an upper bound for $A_0$ and thus $(d, b] = (d, c] \cup (c, b]$ does not intersect $A_0$. Again, $d$ is an upper bound for $A_0$. $\Box$
+
+\begin{corollary}\label{3.10}
+    $\reals$ is connected and so are intervals and rays in $\reals$.
+\end{corollary}
+{\it Proof.} We know $\reals$ satisfies the supremum property and is dense. $\Box$
+
+We will now see how connectedness is sufficient to establish the familiar Intermediate Value Theorem.
+
+\begin{theorem}\label{3.11}
+    Let $f: X \rightarrow Y$ be continuous where $X$ is connected and $Y$ in the order topology. If $a, b \in X$ and $t \in Y$ is such that $f(a) < t < f(b)$ then there exists $c \in X$ such that $f(c) = t$.
+\end{theorem}
+{\it Proof.} The sets $A = f(X) \cap (-\infty, t)$ and $B= f(X) \cap (t, \infty)$ are disjoint, nonempty, and open in $f(X)$. If no such $c \in X$ existed, then $f(X) = A \cup B$, making $A, B$ a separation of $f(X)$. This contradicts \hyperref[3.6]{3.6}. $\Box$
+
+If $X$ is given the order topology then by considering $\restr{f}{[a, b]}$ we see that $c$ must lie in $(a, b)$, resulting in the familiar and intuitive formulation of the Intermediate Value Theorem.
+
+
+\begin{itemize}
+    \item An example of a linear continuum not in $\reals$ is the ordered square. Indeed, if $A \subseteq [0, 1] \times [0, 1]$ then consider $b = \sup \pi_1(A)$. If $b \in \pi_1(A)$ then $A$ intersects $b \times I$, so $A \cap (b \times I)$ has a least upper bound as it is homeomorphic to an interval in $\reals$. Moreover this will be a least upper bound for $A$. Otherwise if $b \notin \pi_1(A)$ then $b \times 0$ is a least upper bound of $A$, since if $b' \times c$ were an upper bound for $A$ such that $b' < b$, then $b'$ would be an upper bound for $\pi_1(A)$. The density of the ordered square follows from the density of $\reals$.
+
+    \item For any well-ordered set $X$, $X \times [0, 1]$ is a linear continuum in the dictionary order, which follows by similar arguments as the ordered square.
+
+\end{itemize}
+
+\begin{definition}\label{3.12}
+    Given $x, y\in X$, a path in $X$ from $x$ to $y$ is a continuous map $f: [a, b] \rightarrow X$ satisfying $f(a) = x$ and $f(b) = y$. $X$ is {\it path connected} if every pair of points of $X$ can be joined by a path in $X$.
+\end{definition}
+
+Path-connectedness implies connectedness; suppose $X = A \cup B$ is a separation of $X$ and $f: [a, b] \rightarrow X$ any path. $f([a, b])$ is connected by \hyperref[3.6]{3.6}, so by \hyperref[3.3]{3.3} it is contained in either $A$ or $B$. Suppose for convenience that $f([a, b]) \subseteq A$; then for $x \in A, y \in B$, it is impossible that $f(b) = y \in B$; a contradiction.
+
+However, connectedness does not imply path-connectedness, as seen in the last two examples that follow.
+\begin{itemize}
+    \item The unit ball $B^n = \{\mathbf{x} \in \reals^n: \|x\| \leq 1\}$ is path connected; given $\mathbf{x}, \mathbf{y} \in B^n$, the straight line $f: [0, 1] \rightarrow B^n$ defined by
+    $$f(t) = (1-t)\mathbf{x} + t\mathbf{y}$$
+    satisfies $f(0) = \mathbf{x}$ and $f(1) = \mathbf{y}$. To verify that the codomain is in fact $B^n$, we have
+    $$\|f(t) \| \leq (1-t) \|\mathbf{x}\| + t\|\mathbf{y}\| \leq 1$$
+    for all $t\in [0, 1]$. Similarly, open balls $B_d(\mathbf{x}, \varepsilon)$ and closed balls $\overline{B}_d(\mathbf{x}, \varepsilon)$ are path connected in $\reals^n$.
+
+    \item Punctured Euclidean space $\reals^n - \{\mathbf{0}\}$ is path connected provided that $n > 1$. Given $\mathbf{x}, \mathbf{y} \in \reals^n - \{\mathbf{0}\}$, there clearly exists a path not passing through $\mathbf{0}$ joining $\mathbf{x}$ and $\mathbf{y}$.
+
+    \item If $g: X \rightarrow Y$ is continuous, then $g(X)$ is path connected. Given $x, y \in g(X)$, let $x_0 \in g^{-1}(\{x\}), y_0 \in g^{-1}(\{y\})$. If $f$ is a path in $X$ from $x_0$ to $y_0$, then $g \circ f$ is a path in $g(X)$ from $x$ to $y$. For example, consider the unit sphere $S^{n-1} = \{\mathbf{x} \in \reals^n: \|x\| = 1\}$. $g: \reals^n - \{\mathbf{0}\} \rightarrow S^{n-1}$ defined by $\mathbf{x} \mapsto \frac{\mathbf{x}}{\|\mathbf{x}\|}$ is continuous and surjective, and since its domain is path connected, $S^{n-1}$ is path connected.
+
+    \item The ordered square is connected but not path connected. We previously showed that it is connected; now let $p = 0 \times 0, q = 1 \times 1$. Suppose there exists a path $f: [a, b] \rightarrow I_0^2$ from $p$ to $q$; $f([a, b])$ must contain every point in $I_0^2$ by the Intermediate Value Theorem. Thus for each $x \in I$, $U_x = f^{-1}(x \times (0, 1))$ is nonempty and open in $[a, b]$ by continuity. For each $x$, let $q_x \in \rats \cap U_x$. Then $h: I \rightarrow \rats$ defined by $x \mapsto q_x$ is injective as $U_x$ are disjoint. This contradicts the fact that $I$ is uncountable while $\rats$ is.
+
+    \item Consider the subset of $\reals^2$
+    $$S = \{x \times \sin \left(\frac1x\right): 0 < x \leq 1\}.$$
+    $S$ is the image of the connected set $(0, 1]$ under the continuous map $x \mapsto x \times \sin \left( \frac1x \right)$, so $S$ is connected, and in turn the topologist's sine curve $\overline{S} = S \cup (0 \times [1, 1])$ is connected. We will show that $\overline{S}$ is however not path connected.
+
+    If there exists a path $f: [a, c] \rightarrow \overline{S}$ such that $f(a) = 0 \times 0$, $f^{-1}(0 \times [-1, 1])$ is closed, and thus has a largest element $b$. Then $f: [b, c] \rightarrow \overline{S}$ is a path such that $f(b) \in S'$ and $f((b, c]) \subseteq S$. We may assume $[b, c] = [0, 1]$ for convenience; let $f(t) = (x(t), y(t))$. Then $x(0) = 0$ and $x(t) > 0$, $y(t) = \sin \left( \frac{1}{x(t)} \right)$ for $t>0$. For each $n$, let $u_n$ be such that $0 < u < x \left(\frac1n\right)$ and $\sin \left( \frac1u\right) = (-1)^n$. By the Intermediate Value Theorem, there exists $t_n$ with $0 < t_n < \frac1n$ such that $x(t_n) = u$. Then $(t_n)_n$ is a sequence of points converging to $0$ while $y(t_n) = (-1)^n$ does not converge, contradicting continuity of $f$. hence $\overline{S}$ is not path connected.
+\end{itemize}
+
+\subsection{Components and Local Connectedness}
+In this section, we seek a canonical decomposition of any space $X$ into connected, or even path connected, subspaces.
+\begin{definition}\label{3.13}
+    Define an equivalence relation on $X$ with $x \sim y$ if there is a connected subspace of $X$ containing both $x$ and $y$. Equivalence classes are called {\it components} of $X$.
+\end{definition}
+Symmetry and reflexivity are trivial; transitivity follows from the observation that if $A$ is a connected subspace containing $x, y$ and $B$ is a connected subspace containing $y, z$ then $A \cup B$ has common point $y$, and thus is a connected subspace containing $x, z$.
+
+\begin{theorem}\label{3.14}
+    The components of $X$ are connected disjoint subspaces of $X$ whose union is $X$, such that each nonempty connected subspace of $X$ intersects exactly one component.
+\end{theorem}
+{\it Proof.} As equivalence classes, the components of $X$ must be disjoint and union to $X$. Suppose a connected subspace $A$ intersects components $C_1, C_2$ at some points $x_1, x_2$; then $x_1 \sim x_2$, which requires $C_1, C_2$ to be equal.
+
+Given a component $C$ and a point $x_0 \in C$, the relation $x_0 \sim x$ for all $x \in C$ means there is a connected subspace $A_x$ containing both $x_0$ and $x$. By the previous paragraph, $A_x \subseteq C$, showing that
+$$C = \bigcup_{x \in C}A_x$$
+is a union of connected subspaces with common point $x_0$, and thereby connected. $\Box$
+
+We will now define a similar decomposition into path connected subspaces.
+\begin{definition}\label{3.15}
+    Define an equivalence relation on $X$ with $x \sim y$ if there is a path in $X$ from $x$ to $y$. These equivalence classes are called {\it path components} of $X$.
+\end{definition}
+Reflexivity holds since the constant path $f: [a, b] \rightarrow X$ with $f(t) = x$ for all $t$ is a path from $x$ to $x$. Symmetry holds since any path $f: [0, 1] \rightarrow X$ from $x$ to $y$ induces a reverse path $g: [0, 1] \rightarrow X$ defined by $g(t) = f(1-t)$ from $y$ to $x$. Transitivity follows from the pasting lemma: given paths $f: [0, 1] \rightarrow X$ from $x$ to $y$ and $g: [1, 2] \rightarrow X$ from $y$ to $z$, the pasted function is a path from $x$ to $z$ in $X$.
+\begin{theorem}\label{3.16}
+    The path components of $X$ are path connected disjoint subspaces of $X$ whose union is $X$ such that each nonempty path-connected subspace intersects exactly one path component.
+\end{theorem}
+{\it Proof.} As equivalence classes, the path components of $X$ must be disjoint and union to $X$. If a path-connected subspace $A$ intersects path components $C_1, C_2$ at $x_1, x_2$; then there exists a path from $x_1$ to $x_2$ or $x_1 \sim x_2$, whence $C_1 = C_2$.
+
+Given a path component $C$ and a pair of points $x, y \in C$, the relation $x \sim y$ means there is a path from $x$ to $y$, so that $C$ is path connected. $\Box$
+
+Since the closure of a connected subspace is also connected, each component of a space is closed. If $X$ has finitely many components, then the complement of a component is a finite union of closed sets and thus closed, showing that components are also open. However, path components are not necessarily open nor closed.
+\begin{itemize}
+    \item The components of $\rats$ in $\reals$ consist of single points, which are closed but not open in $\rats$.
+
+    \item The topologist's sine curve $\overline{S}$ has a single component, since it is connected, and two path components: $S$ and $V = 0 \times [-1, 1]$. $S$ is open but not closed, while $V$ is closed but not open.
+
+    By removing all points of $V$ with a rational second coordinate from $\overline{S}$, we obtain a space with only one component but uncountably many path components.
+\end{itemize}
+
+\begin{definition}\label{3.17}
+    $X$ is {\it locally connected at} $x$ if for every neighbourhood $U$ of $x$, there exists a connected neighbourhood $V$ of $x$ contained in $U$. Similarly, $X$ is {\it locally path connected at} $x$ if every neighbourhood contains a path connected neighbourhood.
+\end{definition}
+
+As a reminder that connectedness and local connectedness are independent properties, intervals and rays in $\reals$ are connected and locally connected, $[-1, 0) \cup (0, 1]$ is not connected, but it is locally connected, the topologist's sine curve $\overline{S}$ is connected but not locally connected, and $\rats$ is neither connected nor locally connected.
+
+This beckons a criterion for local connectedness:
+\begin{theorem}\label{3.18}
+    $X$ is locally connected if and only if for every open set $U$ of $X$, each component of $U$ is open in $X$.
+\end{theorem}
+{\it Proof.} ($\implies$) Given an open set $U$ of $X$, let $C$ be a component of $U$. Given $x \in C$, there exists a connected neighbourhood $V$ of $x$ contained in $U$; by \hyperref[3.14]{3.14}, $V$ must be contained in $C$. Thus $C$ is open in $X$.
+
+($\impliedby$) Given $x \in X$ and a neighbourhood $U$ of $x$, let $C$ be the component of $U$ containing $x$. $C$ is a connected neighbourhood of $x$ contained in $U$, thus $X$ is locally connected. $\Box$
+
+\begin{theorem}\label{3.19}
+    $X$ is locally path connected if and only if for every open set $U$ of $X$, each path component of $U$ is open in $X$.
+\end{theorem}
+{\it Proof.} ($\implies$) Given an open set $U$ of $X$, let $C$ be a path component of $U$. Given $x \in C$, there exists a path connected neighbourhood $V$ of $x$ contained in $U$; by \hyperref[3.16]{3.16}, $V$ must be contained in $C$. Thus $C$ is open in $X$.
+
+($\impliedby$) Given $x \in X$ and a neighbourhood $U$ of $x$, let $C$ be the path component of $U$ containing $x$. $C$ is a path connected neighbourhood of $x$ contained in $U$, thus $X$ is locally path connected. $\Box$
+
+The next theorem relates components to path components.
+\begin{theorem}\label{3.20}
+    Each path component of $X$ lies in a component of $X$. If $X$ is moreover locally path connected, then the components are precisely the path components.
+\end{theorem}
+{\it Proof.} Let $C$ be a component of $X$ containing a point $x$; let $P$ be the path component of $X$ containing $x$. Since $P$ is connected, $P \subseteq C$. Now assume $X$ is locally path connected; suppose $P \subsetneq C$. Let $Q$ be the union of all path components of $X$ distinct from $P$ that intersect $C$. Since $Q \subseteq C$, $C = P \cup Q$, and $P, Q$ are open in $X$. $P, Q$ are then a separation of $C$, which is a contradiction. $\Box$
+
+\subsection{Compact Spaces}
+\begin{definition}\label{3.21}
+    A collection $\mathcal{A}$ of subsets of $X$ {\it covers} $X$, or is a {\it covering} of $X$, if the union of elements in $\mathcal{A}$ is $X$. $\mathcal{A}$ is an {\it open covering} of $X$ if its elements are moreover open in $X$.
+\end{definition}
+\begin{definition}\label{3.22}
+    $X$ is {\it compact} if every open covering $\mathcal{A}$ of $X$ contains a finite subcollection that also covers $X$.
+\end{definition}
+To help digest this less intuitive definition, a few examples follow:
+\begin{itemize}
+    \item $\reals$ is not compact, as the covering
+    $$\mathcal{A} = \{(n-1, n+1): n \in \ints^+\}$$
+    contains no finite subcover.
+
+    \item $X = \{0 \} \cup K$ is compact; given an open covering $\mathcal{A}$ of $X$ there exists $U \in \mathcal{A}$ containing $0$, which must contain all but finitely many of the points $\frac1n$. For each point $x\in X-U$, choose an element $A_x$ of $\mathcal{A}$ containing $x$. Then $\bigcup_{x \in X-U} A_x \cup U$ is a finite subcover of $X$.
+
+    \item Any space $X$ containing only finitely many points is compact, since every open covering is finite.
+
+    \item $(0, 1]$ is not compact; the open covering $\mathcal{A} = \{(\frac1n, 1]: n \in \ints^+\}$ contains no finite subcollection covering $(0, 1]$. Similarly is the interval $(0, 1)$ compact. However, $[0, 1]$ is compact, which we will prove shortly.
+\end{itemize}
+\begin{lemma}\label{3.23}
+    A subspace $Y$ of $X$ is compact if and only if every covering of $Y$ by open sets in $X$ contains a finite subcollection covering $Y$.
+\end{lemma}
+{\it Proof.} Suppose $Y$ is compact and $\mathcal{A} = \{A_\alpha\}_{\alpha \in J}$ is a covering of $Y$ by open sets in $X$. Then
+$$\{A_\alpha \cap Y: \alpha \in J\}$$
+is a covering of $Y$, so it has a finite subcollection
+$$\{A_{\alpha_1} \cap Y, \cdots, A_{\alpha_n} \cap Y\}$$
+that covers $Y$. Then $\{A_{\alpha_1}, \cdots, A_{\alpha_n}\}$ is a finite subcollection of $\mathcal{A}$ that covers $Y$.
+
+Conversely, suppose every covering of $Y$ by open sets in $X$ contains a finite subcollection covering $Y$. Given a covering $\mathcal{A}' = \{A_\alpha'\}_{\alpha \in J}$ of $Y$ by open sets in $Y$, choose $A_\alpha$ open in $X$ such that $A'_\alpha = A_\alpha \cap Y$ for each $\alpha$. Then $\mathcal{A} = \{A_\alpha\}$ is a covering of $Y$ by open sets in $X$, and thus has a finite subcollection $\{A_{\alpha_1}, \cdots, A_{\alpha_n}\}$ that covers $Y$. Then $\{A_{\alpha_1}', \cdots, A_{\alpha_n}'\}$ is a finite subcollection of $\mathcal{A}$ that covers $Y$, so $Y$ is compact. $\Box$
+
+\begin{theorem}\label{3.24}
+    Every closed subspace of a compact space is compact.
+\end{theorem}
+{\it Proof.} Suppose $X$ is compact and $Y$ is closed in $X$. Given a covering $\mathcal{A} = \{A_\alpha\}_{\alpha \in J}$ of $Y$ by open sets in $X$, $X-Y$ is open in $X$ so $\mathcal{A}' = \{A_\alpha\}_{\alpha \in J \cup \{\star\}}$ where $A_\star = X-Y$ is a collection of open sets in $X$ such that
+$$\bigcup_{\alpha \in J \cup \{\star\}} A_\alpha = \bigcup_{\alpha \in J} A_\alpha \cup (X-Y) = X,$$
+as $\bigcup_{\alpha \in J} A_\alpha \supseteq Y$. Thus $\mathcal{A}'$ is an open covering of $X$, and thereby contains a finite subcovering indexed by $\alpha \in I$ for some finite set $I \subseteq J$. Now $\{A_\alpha\}_{\alpha \in I - \{\star\}}$ is a finite subcollection of $\mathcal{A}$ that covers $Y$. By \hyperref[3.23]{3.23}, $Y$ is compact. $\Box$
+
+\begin{lemma}\label{3.25}
+    If $Y$ is a compact subspace of a Hausdorff space $X$ and $x_0 \in X-Y$ then there exist disjoint open sets $U, V$ in $X$ containing $x_0$ and $Y$, respectively.
+\end{lemma}
+{\it Proof.} Let $Y$ be a compact subspace of a Hausdorff space $X$ and $x_0 \in X - Y$. Given $y \in Y$ let $U_y, V_y$ be disjoint neighbourhoods of $x_0, y$ by the Hausdorff condition. Since $\{V_y: y \in Y\}$ is a covering of $Y$ by open sets in $X$, it has a finite subcollection $V_{y_1}, \cdots, V_{y_n}$ covering $Y$. Hence
+$$V = \bigcup_{i=1}^n V_{y_i}$$
+is an open set containing $Y$ that is disjoint from the open set $U = \bigcap_{i=1}^n U_{y_i}$. Indeed, if $z \in V$ then $z \in V_{y_i}$ for some $i$ so that $z \notin U_{y_i}$ and thus $z\notin U$. Therefore, $U, V$ are disjoint open sets in $X$ containing $x_0, Y$, respectively. $\Box$
+
+\begin{theorem}\label{3.26}
+    Every compact subspace of a Hausdorff space is closed.
+\end{theorem}
+{\it Proof.} For any $x_0 \in X-Y$, let $U, V$ be disjoint open sets containing $x_0, Y$. Then $x_0 \in U \subseteq X-Y$, so $X-Y$ is open in $X.$ $\Box$
+
+\begin{itemize}
+    \item We will soon prove that $[a, b] \subseteq \reals$ is compact. It will follow from \hyperref[3.24]{3.24} that any closed subspace of $[a, b]$ is compact.
+
+    \item It follows from \hyperref[3.26]{3.26} that $(a, b]$ and $(a, b)$ cannot be compact because they are not closed in the Hausdorff space $\reals$.
+
+    \item In \hyperref[3.26]{3.26} the Hausdorff condition is crucial. Consider the finite complement topology on $\reals$. Every subset of $\reals$ is compact, but the only closed proper subsets of $\reals$ are finite.
+\end{itemize}
+
+\begin{theorem}\label{3.27}
+    The image of a compact space under a continuous map is compact.
+\end{theorem}
+{\it Proof.} Let $f: X \rightarrow Y$ be continuous, where $X$ is compact. Let $\mathcal{A}$ be a covering of $f(X)$ by open sets in $Y$. Then
+$$\{f^{-1}(A): A \in \mathcal{A}\}$$
+is a collection of open sets in $X$ that cover $X$, so it contains a finite subcover $f^{-1}(A_1), \cdots, f^{-1}(A_n)$. Then $A_1, \cdots, A_n$ cover $f(X)$. $\Box$
+
+\begin{theorem}\label{3.28}
+    Let $f: X \rightarrow Y$ be a continuous bijection. If $X$ is compact and $Y$ Hausdorff, then $f$ is a homeomorphism.
+\end{theorem}
+{\it Proof.} Suppose $A$ is closed in $X$, and thus compact by \hyperref[3.24]{3.24}. By \hyperref[3.27]{3.27}, $f(A)$ is compact. By \hyperref[3.26]{3.26}, $f(A)$ is thus closed in $Y$. This shows that $f^{-1}$ is continuous, so $f$ is a homeomorphism. $\Box$
+
+\begin{lemma}\label{3.29}
+    (The tube lemma). Let $X \times Y$ be given the product space, where $Y$ is compact. If $N$ is an open set in $X \times Y$ containing $x_0 \times Y$, then $N$ contains some tube $W \times Y$ about $x_0 \times Y$, where $W$ is a neighbourhood of $x_0$ in $X.$
+\end{lemma}
+{\it Proof.} Suppose $x_0 \in X$ and $N$ is an open set in $X \times Y$ containing $x_0 \times Y$. Since $x_0 \times Y$ is homeomorphic to $Y$, it is compact. Let $\{U_i \times V_i\}_{i=1}^n$ be a covering of $x_0 \times Y$ by basis elements lying in $N$, where each $U_i \times V_i$ intersects $x_0 \times Y$, and let
+$$W = \bigcap_{i=1}^n U_i.$$
+$W$ is a finite intersection of open sets, and thus open. Moreover each $U_i \times V_i$ intersects $x_0 \times Y$ so $x_0 \in W$.
+
+We will show that the sets $U_i \times V_i$ cover the tube $W \times Y$. If $x \times y \in W \times Y$ then $x_0 \times y \in U_i \times V_i$ for some $i$; that is, $y \in V_i$. Since $x \in W = \bigcap_{j=1}^n U_j,$ $x \in U_j$ for every $j$ and thus $x \times y \in U_i \times V_i.$ Since $N$ contains the covering $\{U_i \times V_i\}_{i=1}^n$ of $W \times Y$, $N$ contains $W \times Y$. $\Box$
+
+To see that the tube lemma fails without compactness of $Y$, $X \times Y = \reals^2$ and $N = \{x \times y: |x|<\frac{1}{y^2+1}\}.$ $N$ is an open set containing $0 \times \reals$, but it contains no tube about $0 \times \reals$.
+
+\begin{theorem}\label{3.30}
+    Finite products of compact spaces are compact.
+\end{theorem}
+{\it Proof.} Let $X$, $Y$ be compact and $\mathcal{A}$ an open covering of $X \times Y$. Given $x_0 \times X$, $x_0 \times Y$ is compact. Let $A_1, \cdots, A_m \in \mathcal{A}$ cover $x_0 \times Y$. Then $N = \bigcup_{i=1}^m$ is a neighbourhood of $x_0 \times Y$ and by \hyperref[3.29]{3.29}, it contains a tube $W \times Y$ about $x_0 \times Y$ where $W$ is a neighbourhood of $x_0$. It follows that $W \times Y$ is covered by $A_1, \cdots, A_m$.
+
+From this, given $x \in X$ we may choose a neighbourhood $W_x$ of $x$ such that there exists a finite subcover of $\mathcal{A}$ for $W_x \times Y$. Moreover $\{W_x\}_{x \in X}$ is an open covering of $X$, so by compactness it has a finite subcover $\{W_1, \cdots, W_k\}$ for $X$. Now, $\{W_1 \times Y, \cdots, W_k \times Y\}$ covers $X \times Y$, and each $W_i \times Y$ may be covered by finitely many elements of $\mathcal{A}$. Thereby, $X \times Y$ may be covered by a finite subcollection of $\mathcal{A}$. $\Box$
+
+\begin{definition}\label{3.31}
+    A collection $\mathcal{C}$ of subsets of $X$ has the finite intersection property if for every finite subcollection $\{C_1, \cdots, C_n\}$ of $\mathcal{C}$, $\bigcap_{i=1}^n C_i$ is nonempty.
+\end{definition}
+\begin{theorem}\label{3.32}
+    A topological space $X$ is compact if and only if for every collection $\mathcal{C}$ of closed sets in $X$ having the finite intersection property, the intersection $\bigcap_{C \in \mathcal{C}} C$ of all the elements in $\mathcal{C}$ is nonempty.
+\end{theorem}
+{\it Proof.} Given a collection $\mathcal{A}$ of subsets of $X$, define $\mathcal{C} = \{X-A: A \in \mathcal{A}\}.$ We remark that
+\begin{enumerate}
+    \item[(1)] $\mathcal{A}$ is a collection of open sets if and only if $\mathcal{C}$ is a collection of closed sets,
+    \item[(2)] $\mathcal{A}$ covers $X$ if and only if $\bigcap_{C \in \mathcal{C}} = \varnothing,$
+    \item[(3)] A finite subcollection $\{A_1, \cdots, A_n\}$ of $\mathcal{A}$ covers $X$ if and only if $\bigcap_{i=1}^n C_i$ is empty.
+\end{enumerate}
+Indeed, the second and third statements follow from
+$$X - \bigcup_{A \in \mathcal{A}} A = \bigcap_{A \in \mathcal{A}} (X-A).$$
+Now if $X$ is not compact then for some open covering $\mathcal{A}$ of $X,$ the collection $\mathcal{C}$ consists of closed sets (1) of $X$ whose intersection $\bigcap_{C \in \mathcal{C}} C$ if empty (2). Moreover any finite subcollection $\{A_1, \cdots, A_n\}$ of $\mathcal{A}$ must not cover $X$, so $\bigcap_{i=1}^n C_i$ is nonempty (3); hence $\mathcal{C}$ has the finite intersection property.
+
+Conversely if there exists a collection $\mathcal{C}$ of closed sets having the finite intersection property but an empty intersection $\bigcap_{C \in \mathcal{C}} C,$ then the collection of complements $\mathcal{A}$ is an open covering of $X.$ No finite subcollection of $\mathcal{A}$ may cover $X$ since no finite intersection of elements of $\mathcal{C}$ is empty; hence $X$ is not compact. $\Box$
+
+\begin{corollary}\label{3.33}
+    (Nested sets). Suppose $\mathcal{C} = \{C_n\}_{n \in \ints^+}$ is a collection of nonempty closed sets in a compact space $X$ such that $C_1 \supseteq C_2 \supseteq \cdots.$ Then
+    $$\bigcap_{n \in \ints^+} C_n$$
+    is nonempty.
+\end{corollary}
+{\it Proof.} Clearly $\bigcap_{j=1} C_{i_j}$ is nonempty for any subsequence $(C_{i_j})_{j \in \ints^+}$ of $\mathcal{C},$ so it has the finite intersection property. The desired result is immediate from \hyperref[3.32]{3.32}. $\Box$
+
+\subsection{Compact Subspaces of the Real Line}
+The following theorem shows that every closed interval in $\reals$ is compact. In fact, the only property of $\reals$ the theorem will use is the supremum property.
+
+\begin{theorem}\label{3.34}
+    Suppose $X$ is a simply ordered set having the least upper bound property. Then each closed interval in $X$ is compact.
+\end{theorem}
+{\it Proof.} Given $a<b,$ let $\mathcal{A}$ be an open covering of $[a, b].$ We will first show that if $x \in [a, b)$ then there exists $y \in (x, b]$ such that $[x, y]$ may be covered by at most two elements of $\mathcal{A}.$
+
+If $x$ has an immediate successor in $X,$ let $y$ be this immediate successor. Then $[x, y]$ contains only $x$ and $y,$ so it may be covered by at most two elements of $\mathcal{A}$. Otherwise if $x$ has no immediate successor, let $A \in \mathcal{A}$ be a neighbourhood of $x.$ $A$ contains an interval in the form $[x, c) \subseteq [a, b].$ Let $y \in (x, c)$; $[x, y]$ is covered by $A.$
+
+Define
+$$C = \{y \in (a, b]: [a, y] \text{ can be covered by finitely many elements of } \mathcal{A}\}.$$
+The previous result with $x = a$ shows that $C$ is nonempty. Let $c = \sup C;$ in particular $c \in (a, b].$ We will show that $c \in C.$
+
+Let $A \in \mathcal{A}$ be a neighbourhood of $c$; $A$ must contain some interval $(d, c]$ where $d \in [a, b].$ Suppose $c \notin C.$ Then there exists $z \in C \cap (d, c)$; otherwise $c$ is not a least upper bound. By definition, $[a, z]$ may be covered by finitely many elements of $\mathcal{A}.$ Since $[z, c] \subseteq (d, c] \subseteq A,$ $[a, c] = [a, z] \cup [z, c]$ may be covered by finitely many elements of $\mathcal{A}.$ Given that $c \in C,$ we will show that $c = b.$
+
+Suppose $c < b.$ Then there exists $y \in (c, b]$ such that $[c, y]$ may be covered by at most two elements of $\mathcal{A}$. $[a, y] = [a, c] \cup [c, y]$ may therefore by covered by finitely many elements of $\mathcal{A}$, contradicting the fact that $c$ is an upper bound for $C.$ Therefore $c = b,$ so $[a, b]$ has a finite subcover in $\mathcal{A}.$ $\Box$
+
+\begin{corollary}\label{3.35}
+    Every closed interval in $\reals$ is compact.
+\end{corollary}
+{\it Proof.} $\reals$ obviously has the least upper bound property. $\Box$
+
+\begin{theorem}\label{3.36}
+    A subspace $A$ of $\reals^n$ is compact if and only if it is closed and bounded in the Euclidean metric $d$ or the square metric $\rho.$
+\end{theorem}
+{\it Proof.} The inequality
+$$\rho(x, y) \leq d(x, y) \leq \sqrt{n}\rho(x, y)$$
+ensures that $A$ is bounded in $d$ if and only if it is bounded in $\rho$; we will show the desired result for $\rho.$
+
+Suppose $A \subseteq \reals^n$ is compact. Then by the Hausdorff condition on $\reals$, it is closed. $\{B_\rho(\mathbf{0}, n)\}_{n \in \ints^+}$ is an open covering of $A$, so it has a finite subcover. By definition, $A \subseteq B_\rho(\mathbf{0}, N)$ for some $N$, so for any $x, y\in A$ we have 
+$$\rho(x, y) \leq \rho(x, \mathbf{0}) + \rho(\mathbf{0}, y) \leq 2N.$$
+Thus $A$ is closed and bounded.
+
+Conversely if $A$ is closed and bounded, suppose $\rho(x, y) \leq N$ for all $x, y \in A.$ Fix $a \in A$; let $\rho(a, \mathbf{0}) = \varepsilon.$ Then for any $x \in A,$
+$$\rho(x, \mathbf{0}) \leq \rho(x, a) + \rho(a, \mathbf{0}) \leq N + \varepsilon.$$
+Hence $A \subseteq [-N-\varepsilon, N+\varepsilon]^n.$ As a closed subspace of a compact space, $A$ is compact. $\Box$
+
+For example:
+\begin{itemize}
+    \item the unit sphere $S^{n-1}$ and the closed unit ball $B^n$ are compact in $\reals^n$ since they are closed and bounded.
+    \item $A = \{x \times \frac1x: 0 < x \leq 1\}$ is closed but unbounded, hence not compact in $\reals^2.$
+    \item $S = \{x \times \sin \left(\frac1x\right): 0 < x \leq 1\}$ is bounded but not closed, hence not compact in $\reals^2.$
+\end{itemize}
+\begin{theorem}\label{3.37}
+    (Extreme value theorem). Let $f: X \rightarrow Y$ be continuous where $Y$ is in the order topology. If $X$ is compact then there exist $c, d \in X$ such that $f(c) \leq f(x) \leq f(d)$ for all $x \in X.$
+\end{theorem}
+{\it Proof.} Since $f$ is continuous and $X$ compact, $f(X)$ is compact. Suppose $f(X)$ has no largest element. Then $\{(-\infty, a): a \in f(X)\}$ constitutes an open covering of $f(X).$ By compactness, it has a finite subcover $\{(-\infty, a_1), \cdots, (-\infty, a_n)\}$; then $a = \max_{1 \leq i \leq n} \{a_i\}$ does not belong to $\bigcup_{i=1}^n (-\infty, a_i)$; a contradiction. Thus $f(X)$ has a largest element $M$, and symmetrically, $f(X)$ has a smallest element $m$. In particular, there must exist $c, d \in X$ such that $f(c) = m, f(d) = M.$ $\Box$
+
+\begin{definition}\label{3.38}
+    Let $(X, d)$ be a metric space and $A$ a nonempty subset of $X.$ For each $x \in X,$ we define the {\it distance from $x$ to $A$} by
+    $$d(x, A) = \inf_{a \in A} \{d(x, a)\}.$$
+
+    If $A$ is moreover bounded, we define its {\it diameter} by
+    $$\sup \{d(a_1, a_2): a_1, a_2 \in A\}.$$
+\end{definition}
+For fixed $A,$ the function $d_A: X \rightarrow \reals$ defined by $x \mapsto d(x, A)$ is continuous. Given $x, y \in X,$ we have
+$$d(x, A) \leq d(x, a) \leq d(x, y) + d(y, a)$$
+for each $a,$ hence
+$$d(x, A) - d(x, y) \leq d(y, A),$$
+and thus
+$$d(x, A) - d(y, A) \leq d(x, y).$$
+Given $\varepsilon > 0,$ $d(x, y) < \varepsilon$ implies $d(d_A(x), d_A(y)) < \varepsilon$. It follows by \hyperref[2.64]{2.64} that $d_A$ is continuous.
+
+\begin{lemma}\label{3.39}
+    (Lebesgue number lemma). Let $\mathcal{A}$ be an open covering of the metric space $(X, d).$ If $X$ is compact, there is a $\delta > 0$ such that for each subset of $X$ having diameter less than $\delta,$ there exists an element of $\mathcal{A}$ containing it. $\delta$ is called a {\it Lebesgue number} for $\mathcal{A}.$
+\end{lemma}
+{\it Proof.} Let $\mathcal{A}$ be an open covering of $X.$ If $X \in \mathcal{A}$ then any positive number is a Lebesgue number for $\mathcal{A};$ assume $X \notin \mathcal{A}.$
+
+Let $\{A_1, \cdots, A_n\}$ be a finite subcover of $\mathcal{A}$. Define $f: X \rightarrow \reals$ by
+$$f(x) = \frac1n \sum_{i=1}^n d(x, X-A_i).$$
+Given $x \in X,$ let $i$ be such that $x \in A_i.$ Let $\varepsilon > 0$ be such that $B_d(x, \varepsilon) \subseteq A_i.$ Then $d(x, X-A_i) \geq \varepsilon,$ meaning $f(x) \geq \frac{\varepsilon}{n} > 0$ for all $x.$
+
+By continuity of $f,$ it takes on a minimum value $\min_{x \in X}f(x) = \delta$. We will show that $\delta$ is in fact a Lebesgue number. Suppose $B \subseteq X$ has diameter less than $\delta$. If $x_0 \in B,$ then $B \subseteq B_d(x_0, \delta).$ Then
+$$\delta \leq f(x_0) \leq \max_{1 \leq i \leq n} d(x_0, X-A_i),$$
+so if $d(x_0, X-A_i)$ is maximized by $A_m$, then $B \subseteq B_d(x_0, \delta) \subseteq A_m.$ $\Box$
+
+\begin{definition}\label{3.40}
+    A function $f: X \rightarrow Y$ between metric spaces is {\it uniformly continuous} if given $\varepsilon > 0,$ there exists $\delta > 0$ such that for every $x_0, x_1 \in X,$
+    $$d_X(x_0, x_1) < \delta \implies d_Y(f(x_0, f(x_1)) < \varepsilon.$$
+\end{definition}
+\begin{theorem}\label{3.41}
+    (Uniform continuity theorem). Suppose $f: X \rightarrow Y$ is a continuous map between metric spaces, and $X$ is compact. Then $f$ is uniformly continuous.
+\end{theorem}
+{\it Proof.} Given $\varepsilon > 0,$ the collection $\{B_{d_Y}(y, \tfrac12 \varepsilon)\}_{y \in Y}$ is an open covering of $Y.$ By continuity of $f,$ the collection
+$$\mathcal{A} = \{f^{-1}(B_{d_Y}(y, \tfrac12\varepsilon))\}_{y \in Y}$$
+is an open covering of $X.$ Let $\delta$ be a Lebesgue number for $\mathcal{A}.$ Then given $x_0, x_1 \in X$ such that $d_X(x_0, x_1) < \delta,$ the two-point set $\{x_0, x_1\}$ is contained in $f^{-1}(B_{d_Y}(y, \tfrac12 \varepsilon))$ for some $y \in Y.$ Hence 
+$$\{f(x_0), f(x_1)\} = f(\{x_0, x_1\}) \subseteq B_{d_Y}(y, \tfrac12 \varepsilon),$$
+and
+$$d_Y(f(x_0), f(x_1)) \leq d_Y(f(x_0), y) + d_Y(y, f(x_1)) < \varepsilon,$$
+as desired. $\Box$
+We will now prove that every closed interval in $\reals$ is uncountable, implying $\reals$ itself is uncountable!
+\begin{definition}\label{3.42}
+    A point $x \in X$ is an {\it isolated point} of $X$ if $\{x\}$ is open in $X.$
+\end{definition}
+\begin{theorem}\label{3.43}
+    Let $X$ be a nonempty compact Hausdorff space. If $X$ has no isolated points, then $X$ is uncountable.
+\end{theorem}
+{\it Proof.} Firstly, we will show that for any nonempty open set $U$ of $X,$ and any point $x \in X,$ there exists a nonempty open set $V \subseteq U$ such that $x \notin \overline{V}.$
+
+Since $X$ has no isolated points, $U$ must contain some point other than possibly $x$, so there exists $y \in U$ distinct from $x.$ By the Hausdorff condition, we have disjoint neighbourhoods $W_1, W_2$ of $x, y.$ Then $V = W_2 \cap U \subseteq U$ is nonempty as $y \in V.$ Moreover
+$$V \subseteq U \subseteq X-W_1,$$
+which is closed, hence $\overline{V} \subseteq X-W_1,$ showing that $x \notin \overline{V}.$
+
+Now, we will show that no mapping $f: \ints^+ \rightarrow X$ is surjective. $X$ is a nonempty open set; by the first part, there exists a nonempty open set $V_1 \subseteq X$ such that $f(1) \notin \overline{V_1}.$ Then given the nonempty open set $V_{n-1},$ there exists a nonempty open set $V_n$ such that $V_n \subseteq V_{n-1}$ and $f(n) \notin \overline{V_n}$. We obtain a nested sequence
+$$\overline{V_1} \supseteq \overline{V_2} \supseteq \cdots$$
+of nonempty closed sets of $X$; by compactness of $X$ and \hyperref[3.32]{3.32}, there exists $x \in \bigcap_{n \in \ints^+} \overline{V_n}$. In particular, for any $n$, $x \in \overline{V_n}$ while $f(n) \notin \overline{V_n},$ so $f$ is not surjective. $\Box$
+
+\begin{corollary}\label{3.44}
+    Every closed interval in $\reals$ is uncountable.
+\end{corollary}
+\subsection{Limit Point Compactness}
+The following criterion is weaker than compactness, but equivalent on metrizable spaces.
+\begin{definition}\label{3.45}
+    $X$ is {\it limit point compact} if every infinite subset of $X$ has a limit point.
+\end{definition}
+
+\begin{theorem}\label{3.46}
+    Compactness implies limit point compactness.
+\end{theorem}
+{\it Proof.} Let $X$ be compact. We will show that if $A \subseteq X$ has no limit point, then $A$ is finite.
+
+$A$ trivially contains all its limit points, so it is closed. Moreover for any $a \in A$ there exists a neighbourhood $U_a$ of $a$ such that $U_a \cap A = \{a\}.$ $X$ may be covered by the open sets $X-A$ and the $U_\alpha$; by compactness there is a finite subcover. Since $U-A$ does not intersect $A,$ and each $U_a$ contains only one point of $A,$ $A$ must be finite. $\Box$
+
+The following examples show that the converse is generally false.:
+\begin{itemize}
+    \item Let $Y$ be a two-point set in the indiscrete topology. Then $\ints^+ \times Y$ is limit point compact, since every nonempty subset of $\ints^+ \times Y$ has a limit point. However $\ints^+ \times Y$ is not compact as the open covering $\{U_n\}_{n \in \ints^+}$ defined by $U_n = \{n\} \times Y$ has no finite subcovering.
+
+    \item The minimal uncountable well-ordered set $S_\Omega$ in the order topology is not compact, since it has no largest element. However, given any infinite subset $A$ of $S_\Omega,$ $A$ has a countably infinite subset $B.$ Now $B$ has an upper bound $b \in S_\Omega,$ so $B \subseteq [a_0, b]$ where $a_0$ is the smallest element in $S_\Omega.$ By the least upper bound property, $[a_0, b]$ is compact. Now $B$ is an infinite subset of a compact space so it has a limit point, which is also a limit point of $A$; $S_\Omega$ is thereby limit point compact.
+\end{itemize}
+In order to show that limit point compactness implies compactness for metrizable spaces, we will introduce another notion of almost-compactness.
+\begin{definition}\label{3.47}
+    $X$ is {\it sequentially compact} if every sequence of points in $X$ has a convergent subsequence.
+\end{definition}
+\begin{theorem}\label{3.48}
+    If $X$ is metrizable, then the following are equivalent:
+    \begin{enumerate}
+        \item[(1)] $X$ is compact.
+        \item[(2)] $X$ is limit point compact.
+        \item[(3)] $X$ is sequentially compact.
+    \end{enumerate}
+\end{theorem}
+{\it Proof.} $(1) \implies (2)$ was shown in \hyperref[3.46]{3.46}.
+
+$(2) \implies (3).$ Suppose $X$ is limit point compact. Given a sequence $(x_n)$ of points in $X,$ consider $A = \{x_n : n \in \ints^+\}.$ If $A$ is finite, then there exists $x$ such that $x_n$ for infinitely many values of $n.$ Then $(x_n)$ has a constant subsequence, which trivially converges. Otherwise if $A$ is infinite, then it has a limit point $x.$ In particular, any ball $B(x, \frac1n)$ intersects infinitely many points in $A.$ We define a subsequence of $(x_n)$ converging to $x$ by letting $n_1$ be such that $x_{n_1} \in B(x, 1),$ and then given $n_{i-1},$ letting $n_i > n_{i-1}$ be such that $x_{n_i} \in B(x, \frac1i).$
+
+$(3) \implies (1).$ We first show that the Lebesgue number lemma holds for any sequentially compact space $X.$
+
+Let $\mathcal{A}$ be an open covering of $X;$ suppose there is no $\delta > 0$ such that every set of diameter less than $\delta$ is contained in some element of $\mathcal{A}.$ In particular, for every $n \in \ints^+,$ there exists a set of diameter less than $\frac1n$ that is not contained in any element of $\mathcal{A}$; let us call this set $C_n$. If $(x_n)$ is a sequence of points in $X$ such that $x_n \in C_n$ for all $n,$ then by sequential compactness some subsequence $(x_{n_i})$ converges to some point $a.$ Let $A \in \mathcal{A}$ contain $a$ and let $\varepsilon > 0$ be such that $B(a, \varepsilon) \subseteq A.$ Now if $I$ is sufficiently large that $\frac1{n_I} < \frac12 \varepsilon$ and $x_{n_I} \in B(a, \frac12 \varepsilon)$ then $C_{n_I} \subseteq B(x_{n_I}, \frac12 \varepsilon) \subseteq B(a, \varepsilon) \subseteq A$; a contradiction.
+
+Next, we will show that if $X$ is sequentially compact then given $\varepsilon> 0$, there exists a finite covering of $X$ by open $\varepsilon$-balls. Suppose otherwise; there exists $\varepsilon > 0$ such that $X$ cannot be covered by finitely many $\varepsilon$-balls. Define a sequence $(x_n)$ of points in $X$ by $x_1 \in X$, then 
+$$x_n \in X - (\bigcup_{i=1}^{n-1} B(x_i, \varepsilon).$$
+At no point may $\bigcup_{i=1}^{n-1} B(x_i, \varepsilon)$ be equal to all of $X$; otherwise this would be a finite covering of $X$ by $\varepsilon$-balls. By construction, $d(x_{n+1}, x_i) \geq \varepsilon$ for all $i\leq n$; so $(x_n)$ must not have a convergent subsequence because any ball of radius $\frac12 \varepsilon$ contains at most one point $x_n.$
+
+Now, suppose $\mathcal{A}$ is an open covering of $X.$ By sequential compactness of $X,$ $\mathcal{A}$ has Lebesgue number $\delta.$ Let $\varepsilon = \frac13 \delta$; by sequential compactness of $X$ there exists a finite covering
+$$\{B(x_1, \varepsilon), \cdots, B(x_n, \varepsilon)\}$$
+of $X$ by open $\varepsilon$-balls. In particular, for any $i,$ the diameter of any $B(x_i, \varepsilon)$ is at most $\frac23 \delta < \delta$, so by the Lebesgue number $B(x_i, \varepsilon) \subseteq A_i$ for some $A_i \in \mathcal{A}$. Then, $\{A_1, \cdots, A_n\}$ is a finite covering of $\mathcal{A}.$ $\Box$
+
+\subsection{Local Compactness}
+\begin{definition}\label{3.49}
+    $X$ is {\it locally compact at} $x$ if there exists a compact subspace $C$ of $X$ that contains a neighbourhood of $x.$ If $X$ is locally compact at each $x \in X,$ then $X$ is locally compact.
+\end{definition}
+A compact space is locally compact because the closure of any neighbourhood of $x$ is compact.
+
+\begin{itemize}
+    \item $\reals$ is locally compact; if $(a, b)$ is a neighbourhood of $x,$ then $[a, b]$ is a compact space that contains it.
+    \item $\rats$ is not locally compact, as closed intervals are not compact in $\rats.$
+    \item $\reals^n$ is locally compact; if $(a_1, b_1) \times \cdots \times (a_n, b_n)$ is a neighbourhood of $x$, then $[a_1, b_1] \times \cdots \times [a_n, b_n]$ is a compact space that contains it.
+    \item $\reals^\omega$ is not locally compact because none of its basis elements are contained in compact spaces. Suppose for the sake of contradiction that 
+    $$(a_1, b_1) \times \cdots \times (a_n, b_n) \times \reals \times \cdots$$
+    were contained in a compact space; then its closure
+    $$[a_1, b_1] \times \cdots \times [a_n, b_n] \times \reals \times \cdots$$
+    would be compact, which is false.
+    \item Every simply ordered set having the supremum property is locally compact, because any basis element is contained in a closed interval, which is compact by \hyperref[3.34]{3.34}.
+\end{itemize}
+\begin{theorem}\label{3.50}
+    $X$ is locally compact Hausdorff if and only if there exists a space $Y$ such that:
+    \begin{enumerate}
+        \item[(1)] $X$ is a subspace of $Y.$
+        \item[(2)] $Y - X$ is a single-point set.
+        \item[(3)] $Y$ is compact Hausdorff.
+    \end{enumerate}
+    If $Y, Y'$ are two such spaces, then there is a homeomorphism between $Y, Y'$ that restricts to the identity map on $X.$
+\end{theorem}
+{\it Proof.} We will first show uniqueness. If $Y, Y'$ are two such spaces and $Y-X = \{p\}, Y' -X = \{q\}$, define $h: Y \rightarrow Y'$ by $h(p) = q,$ and $h(x) = x$ for all $x \in X.$
+
+If $U$ is open in $Y$ and does not contain $p,$ then $h(U) = U.$ Then $U \cap X = U$ is open in $X$. Since $Y'-X$ is a single-point set, it is closed in $Y'$ by the Hausdorff condition, so $X$ is open in $Y'$. $U$ is thus open in $Y'.$ Otherwise if $U$ is open in $Y$ and contains $p,$ then $C = Y-U$ is closed in $Y$, hence compact. Then $C$ is a compact subspace of $X,$ and naturally of $Y'.$ By the Hausdorff condition, $C$ is closed in $Y',$ so $h(U) = Y'-C$ is open in $Y'.$ By symmetry, $h$ is homeomorphic.
+
+Now suppose $X$ is locally compact Hausdorff; we will construct such a space $Y.$ Let $\infty$ be some point not in $X$; and define $Y = X \cup \{\infty\}$. The open sets of $Y$ are defined to be all open sets in $X,$ and all sets in the form $Y-C,$ where $C$ is compact in $X.$ Indeed, this defines a topology on $Y$; $\varnothing$ is open in $X,$ an $Y$ itself is in the form $Y-C$ for the compact space $\varnothing$. Intersections of two open sets may take any of the three forms:
+\begin{align*}
+    U_1 \cap U_2, &\text{ which is open in } X, \\
+    (Y-C_1) \cap (Y-C_2) = Y-(C_1\cup C_2), &\text{ where } C_1\cup C_2 \text{ is compact in } X, \\
+    U \cap (Y - C) = U_1 \cap (X-C) &\text{ where } C \text{ is closed in } X.
+\end{align*}
+Similarly, arbitrary unions may take the following forms:
+\begin{align*}
+    \bigcup U_\alpha, &\text{ which is open in } X, \\
+    \bigcup (Y-C_\beta) = Y- (\bigcap C_\beta), &\text{ where } \bigcap C_\beta \text{ is compact in } X, \\
+    (\bigcup U_\alpha) \cup (\bigcup (Y-C_\beta)) = Y - (\bigcap C_\beta - \bigcup U_\alpha), &\text{ where } \bigcap C_\beta - \bigcup U_\alpha \text{ is closed in } C, \text{ or compact in } X.
+\end{align*}
+Moreover, $X$ is a subspace of $Y.$ If $U$ is open in $Y$ then it is open in $X$, and if $Y - C$ is open in $Y$ then $(Y-C) \cap X = X-C$ is open in $X.$ Conversely, any open set in $X$ is open in $Y$ by the first part of the definition.
+
+To see that $Y$ is compact, let $\mathcal{A}$ be an open covering of $Y.$ $\mathcal{A}$ must contain an open set in the form $Y-C$ because the open sets in $X$ do not contain $\infty.$ Now if $A \in \mathcal{A} - \{Y-C\}$ then $A \cap X$ is open in $X$ and must cover $C.$ By compactness, there must be a finite subcover $\{A_1, \cdots, A_n\}$; adjoining $Y-C$ to this subcover forms a finite subcover of $Y.$
+
+To see that $Y$ is Hausdorff, let $x, y$ be distinct points in $Y.$ If $x, y \in X$ then they have disjoint neighbourhoods $U, V$ since $X$ is Hausdorff. If $x \in X, y = \infty,$ without loss of generality, then by local compactness of $X$ there is a compact subspace $C$ of $X$ containing some neighbourhood $U$ of $x$; $V = Y-C$ is a neighbourhood of $\infty$ disjoint from $U$.
+
+Lastly, to prove the converse, if there exists such a $Y$ then $X$ is a subspace of the Hausdorff space $Y,$ and thus is Hausdorff. Given $x \in X,$ let $U, V$ be disjoint open sets in $Y$ containing $x, \infty,$ respectively. Then $C=Y-V$ is closed in $Y,$ hence compact in $Y,$ and thus in $X$. Moreover as $U, V$ are disjoint, $C$ must contain $U.$ $\Box$
+
+In the case that $X$ is in fact compact, then $Y$ is obtained by adjoining a single isolated point to $X.$ Otherwise if $X$ is not compact, then $\overline{X} = Y$; that is, $\infty$ is a limit point of $X.$
+
+\begin{definition}\label{3.51}
+    If $Y$ is a compact Hausdorff space and $X$ a proper subspace of $Y$ whose closure equals $Y,$ then $Y$ is a {\it compactification} of $X.$ If $Y-X$ is a single-point set, then $Y$ is the {\it one-point compactification} of $X.$
+\end{definition}
+
+The above theorem states that $X$ has a one-point compactification if and only if it is a locally compact Hausdorff space that is not compact. The one-point compactification may be considered unique because all the choices of $\infty$ are in homeomorphism.
+
+The one-point compactification of $\reals$ is homeomorphic with the circle, or $S^1$. Similarly, the one-point compactification of $\reals^2$ is homeomorphic to the sphere, $S^2$. If $\reals^2$ is identified with $\comp,$ then $\comp \cup\{\infty\}$ is called the Riemann sphere.
+
+\begin{theorem}\label{3.52}
+    A Hausdorff space $X$ is locally compact if and only if for every $x \in X$ and any neighbourhood $U$ of $x,$ there is a neighbourhood $V$ of $x$ such that $\overline{V}$ is compact and $\overline{V} \subseteq U.$
+\end{theorem}
+{\it Proof.} $(\impliedby)$. $\overline{V}$ is a compact space containing a neighbourhood $V$ of $x,$ so $X$ is locally compact.
+
+$(\implies)$. Suppose $X$ is locally compact; let $x \in X$ and let $U$ be a neighbourhood of $x.$ Let $Y$ be the one-point compactification of $X$; $Y-U$ is closed in $Y,$ hence compact. By \hyperref[3.25]{3.25}, there exist disjoint open sets $V, W$ containing $x, C.$ Then $\overline{V}$ is closed and thus compact in $Y$ and disjoint from $C,$ meaning $\overline{V} \subseteq U.$ $\Box$
+
+\begin{corollary}\label{3.53}
+    Let $X$ be locally compact Hausdorff and $A$ a subspace of $X.$ If $A$ is closed in $X$ or open in $X$, then $A$ is locally compact.
+\end{corollary}
+{\it Proof.} Suppose $A$ is closed in $X.$ Given $x\in A,$ let $C$ be a compact subspace of $X$ containing a neighbourhood $U$ of $x.$ Then $C \cap A$ is closed in $C,$ and thus compact, and contains the neighbourhood $U \cap A$ of $x$ in $A.$
+
+If $A$ is open, then given $x \in A$, \hyperref[3.52]{3.52} states that there exists a neighbourhood $V$ o $x$ in $X$ such that $\overline{V}$ is compact in $X$ and contained in $A.$ Then $\overline{V}$ is compact in $A$ and contains the neighbourhood $V$ of $x$ in $A.$ $\Box$
+
+\begin{corollary}\label{3.54}
+    $X$ is homeomorphic to an open subspace of a compact Hausdorff space if and only if $X$ is locally compact Hausdorff.
+\end{corollary}
+{\it Proof.} If $X$ is locally compact Hausdorff then it is an open subspace of its one-point compactification, which is compact Hausdorff.
+
+Conversely if $X$ is homeomorphic to an open subspace of a compact Hausdorff space, then the one-point compactification of $X$ is (locally) compact Hausdorff and has an open subspace $X$, which is locally compact by \hyperref[3.53]{3.53}. $\Box$
