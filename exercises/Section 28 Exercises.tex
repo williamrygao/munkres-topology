@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 28 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Give $[0, 1]^\omega$ the uniform topology. Find an infinite subset that has no limit point.
+
+    {\bf SOLUTION.} Consider the infinite subset $Y = \{0, 1\}^\omega$ of $[0,1]^\omega.$ Let $\mathbf{x} \in [0, 1]^\omega - Y.$ By definition, there must exist $i \in \ints^+$ such that $x_i \notin \{0, 1\}.$ Let $\delta = \min\{1-x_i, x_i\}.$ Then $B_{\overline{\rho}}(\mathbf{x}, \delta)$ is a neighbourhood of $\mathbf{x}$ that does not intersect $Y.$
+
+    Otherwise if $\mathbf{x}, \mathbf{y}$ are distinct points in $Y$ then there must exist $i \in \ints^+$ such that $|x_i-y_i| = 1.$ Thus $B_{\overline{\rho}}(\mathbf{x}, 1)$ is a neighbourhood of $\mathbf{x}$ that does not contain $\mathbf{y},$ and thus does not intersect $Y$ at any point other than $\mathbf{x}.$ Therefore $Y$ has no limit point. $\Box$
+
+    \item Show that $[0, 1]$ is not limit point compact in $\reals_\ell.$
+
+    {\bf SOLUTION.} Consider the infinite subset $A = \{1 - \frac1n: n \in \ints^+\}$ of $[0, 1]$. If $x \in [0, 1)$ then $x \in [1-\frac1{n-1}, 1-\frac1n)$ for some $n \in \ints^+.$ Now $[x, 1-\frac1n)$ is a neighbourhood of $x$ that does not intersect $A.$ Moreover, $\{1\} = [1, 2) \cap [0, 1]$ is a neighbourhood of $1$ that does not intersect $A.$ Thus $A$ has no limit point. $\Box$
+
+    \item Let $X$ be limit point compact.
+    \begin{enumerate}
+        \item If $f: X \rightarrow Y$ is continuous, does it follow that $f(X)$ is limit point compact?
+
+        {\bf SOLUTION.} Consider $X = \ints^+ \cup \{0, 1\},$ where $\{0, 1\}$ is given the indiscrete topology. We know that $X$ is limit point compact and $\pi_1: X \rightarrow \ints^+$ is continuous, but $\pi_1(X) = \ints^+$ is not limit point compact. $\Box$
+
+        \item If $A$ is closed in $X,$ does it follow that $A$ is limit point compact?
+
+        {\bf SOLUTION.} If $B$ is an infinite subset of $A,$ then by limit point compactness of $X$, $B$ has a limit point $x \in X.$ Every neighbourhood of $x$ intersects, $B\subseteq A,$ so $x$ is also a limit point of $A.$ By closure of $A,$ $x \in A.$ Therefore any infinite subset $B$ of $A$ has a limit point in $A.$ $\Box$
+
+        \item If $X$ is a subspace of a Hausdorff space $Z,$ does it follow that $X$ is closed in $Z?$
+
+        {\bf SOLUTION.} Consider $\overline{S_\Omega}$ in the order topology, which we know is Hausdorff. We also know that $S_\Omega$ is a limit point compact subspace of $\overline{S_\Omega},$ but it is not closed because $\Omega \notin S_\Omega.$ $\Box$
+    \end{enumerate}
+
+    \item $X$ is {\it countably compact} if every countable open covering of $X$ has a finite subcover. Show that if $X$ is $T_1$ then limit point compactness is equivalent to countable compactness.
+
+    {\bf SOLUTION.} Suppose $X$ is countably compact, $A$ is an infinite subset of $X$, and $B$ is a countably infinite subset of $A.$ If $B$ has no limit point in $X,$ then $B$ trivially contains all its limit points, and thus is closed in $X.$
+    
+    If $\{U_n\}_{n \in \ints^+}$ is a countable open covering of $B,$ then by adjoining the open set $X-B$ we obtain a countable open cover of $X.$ By countable compactness, it has a finite subcover, and by removing $X-Y$ from this finite subcover we obtain a finite subcover of $\{U_n\}_{n \in \ints^+}.$ Hence $B$ is countably compact. 
+    
+    Thus for every $b \in B,$ $b$ is not a limit point of $B$ so there must exist a neighbourhood $U_b$ of $b$ that intersects $B$ uniquely at $b$. Now $\{U_b\}_{b \in B}$ is a countable open covering of $B,$ but it cannot have a finite subcovering because $B$ is infinite; a contradiction. Therefore $B$ must have a limit point in $X$, and this limit point must also be a limit point of $A.$ Thus any infinite subset of $X$ has a limit point
+
+    Conversely, suppose $X$ is $T_1$ and limit point compact. Suppose, for the sake of contradiction, that there exists a countable open covering $\{U_n\}_{n \in \ints^+}$ with no finite subcovering. For every $n,$ define $x_n \in X - \bigcup_{i=1}^n U_i.$ Then $\{x_n: n \in \ints^+\}$ is an infinite subset of $X,$ so by limit point compactness it must have a limit point $x.$ Since $\{U_n\}_{n \in \ints^+}$ was a covering of $X$, there exists $N$ such that $x \in U_N,$ and thus $x \in \bigcup_{i=1}^N U_i.$ By the $T_1$ axiom, there exists a neighbourhood $V_i$ of $x$ for each $1 \leq i \leq N$ that does not contain $x_i.$ Thus
+    $$\left( \bigcap_{i=1}^N V_i \right) \cap \left( \bigcup_{i=1}^N U_i\right)$$
+    is a neighbourhood of $x$ that does not contain any $x_i$, as $1\leq i \leq N$ implies $x_i \notin V_i$ while $i > N$ implies $x_i \notin \bigcup_{i=1}^N U_i$. This contradicts the fact that $x$ is a limit point of $\{x_n: n \in \ints^+\}.$ Therefore every countable open covering of $X$ has a finite subcovering. $\Box$
+
+    \item Show that $X$ is countably compact if and only if every nested sequence $C_1 \supseteq C_2 \supseteq \cdots$ of closed, nonempty sets of $X$ has a nonempty intersection.
+
+    {\bf SOLUTION.} Suppose $X$ is countably compact and $C_1 \supseteq C_2 \supseteq \cdots$ is a nested sequence of closed, nonempty sets of $X.$ Define $\mathcal{A} = \{X-C_n\}_{n \in \ints^+}$ as the collection of their complements, which are open. If $\mathcal{A}$ covers $X,$ then by countable compactness it has a finite subcovering $\{X-C_1, \cdots, X-C_n\}.$ Since
+    $$\bigcup_{i=1}^n (X-C_i) = X- \bigcap_{i=1}^n C_i,$$
+    this means $\bigcap_{i=1}^n C_i$ is empty, and thus so is $\bigcap_{i=1}^\infty C_i$; a contradiction. Therefore $\mathcal{A}$ does not cover $X,$ meaning 
+    $$\bigcap_{i=1}^\infty C_i = X-\bigcup_{i=1}^\infty (X-C_i)$$
+    is nonempty.
+
+    Suppose every such sequence has a nonempty intersection. Given a countable open covering $\mathcal{A} = \{A_n\}_{n \in \ints^+}$ of $X,$ define $B_n = \bigcup_{i=1}^n A_i$ and $C_n = X-B_n$ for each $n.$ If no finite subcollection of $\mathcal{A}$ covers $X,$ then $B_i \neq X$ for all $i,$ and thus $C_1 \supseteq C_2 \supseteq \cdots$ is a nested sequence of closed, nonempty sets; so its intersection is nonempty. Let $x\in \bigcap_{n \in \ints^+} C_n$; so $x \notin B_n$ for all $n,$ and $x \notin A_n$ for all $n.$ This contradicts the fact that $\mathcal{A}$ is a covering of $X.$ Therefore some finite subcollection of $\mathcal{A}$ must cover $X,$ so $X$ is countably compact. $\Box$
+
+    \item Let $(X, d)$ be a metric space. If $f: X \rightarrow X$ is such that
+    $$d(f(x), f(y)) = d(x, y)$$
+    for all $x, y \in X$ then $f$ is an {\it isometry} of $X.$ Show that if $f$ is an isometry of a compact space, then $f$ is bijective (hence a homeomorphism).
+
+    {\bf SOLUTION.} We know that $f$ is an imbedding. We will show that $f$ is moreover surjective, and thus a homeomorphism. Suppose $f$ is not surjective and $x \in X- f(X).$ By compactness and continuity of $f: X \rightarrow f(X),$ $f(X)$ is compact. Since $X$ is a metric space it is Hausdorff, so $f(X)$ is closed in $X.$ Thus there exists $\varepsilon > 0$ such that $B(x, \varepsilon) \subseteq X-f(X).$ Let $x_1 = x,$ and inductively define $x_{n+1} = f(x_n).$ Then $d(x_1, x_n) \geq \varepsilon$ for all $n > 1,$ and for $n > m > 1,$
+    $$d(x_n, x_m) = d(f(x_{n-1}, f(x_{m-1})) = d(x_{n-1}, x_{m-1} = \cdots = d(x_{n-m+1}, x_1) \geq \varepsilon.$$
+    Therefore $(x_n)_n$ is a sequence of points in $X$ with no convergent subsequence, because a $\frac12 \varepsilon$-ball about any point contains at most one point $x_n.$ Thus $X$ is not sequentially compact; contradicting the fact that $X$ is a compact metric space. Therefore $f$ is a homeomorphism. $\Box$
+
+    \item Let $(X, d)$ be a metric space. If $f: X \rightarrow X$ is such that
+    $$d(f(x), f(y)) < d(x, y)$$
+    for all $x, y \in X$ with $x \neq y$, then $f$ is a {\it shrinking map.} If there exists $\alpha < 1$ such that 
+    $$d(f(x), f(y)) \leq \alpha d(x, y)$$
+    for all $x, y \in X$ then $f$ is a {\it contraction.}
+    \begin{enumerate}
+        \item If $f$ is a contraction of a compact space, show that $f$ has a unique fixed point.
+
+        {\bf SOLUTION.} To show that a fixed point exists, define $A_n = f^n(X)$ for $n \geq 0$. Since $X$ is compact and $f$ is continuous by the $\varepsilon$-$\delta$ criterion, each $A_n$ is compact, and thus closed. Moreover, $A_{n+1} = f(A_n) \subseteq A_n$ for each $n,$ and each $A_n$ is nonempty. Therefore $A = \bigcap_{n \in \ints^+} A_n$ is closed, compact, and nonempty.
+        
+        Let $y \in f(A)$ and let $x \in A$ be such that $f(x) = y.$ Then $x \in A_n$ for every $n \geq 0,$ so $y \in f(A_n) = A_{n+1}$ for every $n \geq 0.$ Clearly $y \in X = A_0$, so $y \in A$, showing that $f(A) \subseteq A.$
+        
+        Now let $x \in A.$ Since $x \in A_n$ for all $n \geq 0,$ $f(x) \in f(A_n) = A_{n+1}$ for all $n \geq 0.$ This shows that $f(A) = A.$
+
+        Now suppose $A$ contains more than one point. We know the metric $d: A \times A \rightarrow \reals$ is continuous, and $A \times A$ is compact, so by the extreme value theorem there exist distinct points $x,y \in A$ such that
+        $$d(a, b) \leq d(x, y)$$
+        for all $a, b \in A.$ In particular, let $a, b$ be such that $f(a) = x, f(b) = y.$ Since $x, y$ are distinct, so are $a, b.$ Then 
+        $$d(x, y) = d(f(a), f(b)) \leq \alpha d(a, b) < d(a, b);$$
+        a contradiction. This means $A$ must contain a unique point $a$ and $A = f(A)$ implies that $f(a) = a.$
+        
+        Suppose $f$ has distinct fixed points $x, y.$ Let $\alpha<1$ be such that $d(f(x), f(y)) \leq \alpha d(x, y) < d(x, y).$ Then
+        $$d(x, y) = d(f(x), f(y)) < d(x, y),$$
+        where the equality holds by the definition of fixed points and the inequality holds by the definition of a contraction. This is a contradiction. $\Box$
+        
+        \item Show that if $f$ is a shrinking map on a compact space, then $f$ has a unique fixed point.
+
+        {\bf SOLUTION.} As in part (a), $A = f(A).$
+
+        Now suppose $A$ contains more than one point. We know the metric $d: A \times A \rightarrow \reals$ is continuous, and $A \times A$ is compact, so by the extreme value theorem there exists distinct points $x,y \in A$ such that
+        $$d(a, b) \leq d(x, y)$$
+        for all $a, b \in A.$ In particular, let $a, b$ be such that $f(a) = x, f(b) = y.$ Since $x, y$ are distinct, so are $a, b.$ Then 
+        $$d(x, y) = d(f(a), f(b)) < d(a, b);$$
+        a contradiction. This means $A$ must contain a unique point $a$ and $A = f(A)$ implies that $f(a) = a.$
+        
+        Suppose $f$ has distinct fixed points $x, y.$ Then
+        $$d(x, y) = d(f(x), f(y)) < d(x, y);$$
+        a contradiction. $\Box$
+
+        \item Let $X = [0, 1]$. Show that $f(x) = x - \frac12 x^2$ is a shrinking map but not a contraction of $X.$
+
+        {\bf SOLUTION.} We have, for any distinct points $x, y \in X,$
+        $$|f(x)-f(y)| = |x-\frac12 x^2 - y + \frac12 y^2| = |x-y||1-\frac12 (x+y)| < |x-y|,$$
+        as $|1-\frac12(x+y)| < 1$ for all $x, y.$ However, suppose there exists $\alpha < 1$ such that
+        $$|f(x)-f(y)| \leq \alpha |x-y|$$
+        for all $x, y \in X.$ Since
+        $$|f(x)-f(0)| = x(1-\frac12 x),$$
+        we may take $0 < x < 2(1-\alpha)$ to ensure that $|f(x)-f(0)| > \alpha |x-0|.$ Thus $f$ is a shrinking but not a contraction. $\Box$
+
+        \item (a) holds if $X$ is a complete metric space, such as $\reals$, while (b) does not. Show that $f: \reals \rightarrow \reals$ defined by $f(x) = \frac12 \left(x + \sqrt{x^2+1}\right)$ is a shrinking map but not a contraction, and has no fixed point.
+
+        {\bf SOLUTION.} We have, for any distinct points $x, y \in X,$
+        \begin{align*}
+            |f(x)-f(y)| &= \frac12 \left| x + \sqrt{x^2+1} - y - \sqrt{y^2+1} \right|, \\
+            &= \frac12 |x-y|\left| 1 + \frac{\sqrt{x^2+1} - \sqrt{y^2+1}}{x-y} \right|, \\
+            &= \frac12 |x-y|\left| 1 + \frac{\sqrt{x^2+1} - \sqrt{y^2+1}}{x-y}\frac{\sqrt{x^2+1} + \sqrt{y^2+1}}{\sqrt{x^2+1} + \sqrt{y^2+1}} \right|, \\
+            &= \frac12 |x-y|\left| 1 + \frac{x^2+1 - y^2-1}{(x-y)(\sqrt{x^2+1} + \sqrt{y^2+1})}\right|, \\
+            &= \frac12 |x-y|\left| 1 + \frac{x+y}{\sqrt{x^2+1} + \sqrt{y^2+1}}\right|, \\
+            &< |x-y|,
+        \end{align*}
+        since $\frac{x+y}{\sqrt{x^2+1} + \sqrt{y^2+1}}<1$ for all $x, y \in \reals$.
+        
+        Since $f(0) = \frac12,$ we have for $x > 0,$
+        $$|f(x)-f(0)| = \frac12 x\left| 1 + \frac{x}{\sqrt{x^2+1} + 1}\right| = \frac12 x\left| 1 + \frac{1}{\sqrt{1+\frac{1}{x^2}} + \frac{1}{x}}\right|.$$
+        Since $\frac12 \left| 1 + \frac{1}{\sqrt{1+\frac{1}{x^2}} + \frac{1}{x}}\right|$ goes to $1$ as $x \rightarrow \infty,$ there is no $\alpha < 1$ such that
+        $$|f(x)-f(0)| \leq \alpha |x|.$$
+        Moreover, $f$ has no fixed points as
+        $$f(x) = \frac{x+\sqrt{x^2+1}}{2} > \frac{x+|x|}{2} > x$$
+        for all $x \in \reals.$ $\Box$
+    \end{enumerate}
+\end{enumerate}
+\end{document}
