@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{h}
+
+\title{Topology by James Munkres -- Section 29 Exercises}
+\author{William Gao}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Show that $\rats$ is not locally compact.
+
+    {\bf SOLUTION.} Consider a closed interval $\rats \cap [a, b]$ in $\rats,$ with $a, b$ irrational. This interval is countable; let $\rats \cap [a, b] = \{q_1, q_2, \cdots\}.$ Define an open covering of $\rats \cap [a, b]$ $\{U_n\}_{n \in \ints^+}$ by $U_n = \rats \cap [a, q_n).$ $\{U_n\}_{n \in \ints^+}$ has no finite subcovering.
+    
+    Consider $x \in \rats$; suppose $\rats$ is locally compact at $x.$ Then there exists a compact set $C$ containing a neighbourhood $U$ of $x;$ $U$ must contain some interval $\rats \cap [a, b]$ where $a, b$ are irrational. Since $\rats \cap [a, b]$ is a closed subspace of a compact space $C,$ it must be compact; which it is not. $\Box$
+
+    \item Let $\{X_\alpha\}$ be an indexed family of nonempty spaces.
+    \begin{enumerate}
+        \item Show that if $\prod X_\alpha$ is locally compact then each $X_\alpha$ is locally compact and $X_\alpha$ is compact for all but finitely many $\alpha.$
+
+        {\bf SOLUTION.} We know that $\pi_\beta: \prod X_\alpha \rightarrow X_\beta$ is continuous and open for every $\beta.$ If $\prod X_\alpha$ is locally compact, and $\mathbf{x} \in \prod X_\alpha,$ then there exists a compact subspace $C$ of $\prod X_\alpha$ containing a basis neighbourhood $\prod U_\alpha$ of $\mathbf{x}.$ By continuity of $\pi_\beta,$ $\pi_\beta(C)$ is compact, and by openness of $\pi_\beta,$ $\pi_\beta(\prod U_\alpha)$ is open. Clearly, $\pi_\beta(\prod U_\alpha)$ contains $x_\beta$ and is contained in $\pi_\beta(C).$ Hence each $X_\beta$ is locally compact.
+
+        Additionally, $U_\alpha = X_\alpha$ for all indices but $\alpha_1, \cdots, \alpha_n.$ If $\beta$ is not among this finite list, then $\pi_\beta(C)$ is compact and contains $\pi_\beta(U) = X_\beta,$ showing that $\pi_\beta(C) = X_\beta$ is compact for all but finitely many values for $\beta$. $\Box$
+
+        \item Prove the converse, assuming the Tychonoff Theorem.
+
+        {\bf SOLUTION.} Suppose that each $X_\alpha$ is locally compact, and $X_\alpha$ is compact for all but finitely many indices $\alpha.$ Given $\mathbf{x} \in \prod X_\alpha$, there exists, for every $\alpha,$ a compact subspace $C_\alpha$ of $X_\alpha$ containing some neighbourhood $U_\alpha$ of $x_\alpha.$ By the Tychonoff Theorem, $\prod C_\alpha$ is compact, and it clearly contains the neighbourhood $\prod U_\alpha$ of $\mathbf{x}.$ $\Box$
+    \end{enumerate}
+    \item Let $X$ be locally compact. If $f: X \rightarrow Y$ is continuous, is $f(X)$ necessarily locally compact? What if $f$ is moreover open?
+
+    {\bf SOLUTION.} As a counterexample in the first scenario, let $X=\rats_d,$ the rationals in the discrete topology, and $Y = \rats,$ in the usual topology. $\rats_d$ is locally compact because for every $q \in \rats_d$, $\{q\}$ is open and compact. We know the identity function $i: \rats_d \rightarrow \rats$ is continuous, but $i(\rats_d) = \rats$ is not locally compact.
+
+    If $f$ is moreover open, let $y \in f(X)$ and let $x$ be such that $f(x) = y.$ By local compactness of $X,$ there is a compact subspace $C$ of $X$ containing a neighbourhood $U$ of $x.$ Since $f$ is continuous, $f(C)$ is compact, and since $f$ is open, $f(U)$ is open. Thus $f(C)$ is a compact subspace of $Y$ containing the neighbourhood $f(U)$ of $y,$ and $f(X)$ is thereby locally compact. $\Box$
+
+    \item Show that $[0,1]^\omega$ is not locally compact in the uniform topology.
+
+    {\bf SOLUTION.} Suppose $[0, 1]^\omega$ is locally compact at $\mathbf{0}.$ Then there is a compact subspace $C$ of $[0, 1]^\omega$ containing a ball $B_\rho(\mathbf{0}, \varepsilon).$ In particular, $\overline{B} = [0, \varepsilon]^\omega,$ which is closed in the compact space $C,$ and thus compact. However the $\varepsilon$-cube $[0, \varepsilon]^\omega$ is homeomorphic with the unit cube $[0, 1]^\omega,$ which we know is not compact. $\Box$
+
+    \item If $f: X_1 \rightarrow X_2$ is a homeomorphism of locally compact Hausdorff spaces, show $f$ extends to a homeomorphism of their one-point compactifications.
+
+    {\bf SOLUTION.} Let $Y_1 = X_1 \cup \{\infty_1\}, Y_2 = X_2 \cup \{\infty_2\}$ be the one-point compactifications of $X_1, X_2.$ Define $g: Y_1 \rightarrow Y_2$ by
+    $$g(x) = \begin{cases}
+        f(x) &\text{if } x \in X_1, \\
+        \infty_2 &\text{if } x = \infty_1.
+    \end{cases}$$
+    $g$ is obviously bijective. Let $U$ be open in $Y_1.$ If $U$ is open in $X_1$ then $g(U) = f(U)$ is open in $X_2,$ and thus $Y_2,$ since $f$ is homeomorphic. Otherwise if $U$ is in the form $X_1-C$ where $C$ is compact in $X_1,$ then $g(U) = g(Y_1) - g(C) = Y_2 - g(C)$ is open in $Y_2$ because $g(C) = f(C)$ is compact in $X_2.$ We have shown that $g$ is an open map; by symmetry it is a homeomorphism. $\Box$
+    
+    \item Show that the one-point compactification of $\reals$ is homeomorphic with the circle $S^1.$
+
+    {\bf SOLUTION.} Define $f: \reals \rightarrow (0, 1)$ by $f(x) = \frac{1}{1+2^{-x}}.$ By $\varepsilon$-$\delta$ arguments, $f$ is homeomorphic and similarly so is $g: (0, 1) \rightarrow S^1 - \{1 \times 0\},$ defined by
+    $$g(x) = \cos (2\pi x) \times \sin(2\pi x).$$
+    Therefore $g \circ f$ is a homeomorphism between $\reals$ and $S^1 - \{1 \times 0\},$ which we know are locally compact Hausdorff. By the previous exercise, the one-point compactification of $\reals$ is homeomorphic with $S^1.$ $\Box$
+
+    \item Show that the one-point compactification of $S_\Omega$ is homeomorphic with $\overline{S_\Omega}.$
+
+    {\bf SOLUTION.} Since $S_\Omega \subseteq \overline{S_\Omega}$ and $\overline{S_\Omega} - S_\Omega = \{\Omega\},$ it suffices to show that $\overline{S_\Omega}$ is compact Hausdorff to conclude that it is homeomorphic to the one-point compactification of $S_\Omega.$ Since $\overline{S_\Omega}$ is in the order topology, it is naturally Hausdorff. Suppose $\mathcal{A}$ is an open covering of $\overline{S_\Omega}.$ Then let $\Omega \in A,$ meaning $A$ contains an interval $(a, \infty).$ By well-ordering of $S_\Omega,$ $[a_0, a]$ is compact. Thus finitely many elements of $\mathcal{A}$ may cover $[a_0, a],$ and adjoining $A$ to these elements will cover $[a_0, a] \cup (a, \infty) = \overline{S_\Omega}$. Therefore $\overline{S_\Omega}$ is compact Hausdorff, as desired. $\Box$
+
+    \item Show that the one-point compactification of $\ints^+$ is homeomorphic with $\{0\} \cup K.$
+
+    {\bf SOLUTION.} $f: \ints^+ \rightarrow K$ defined by $f(n) = \frac1n$ is clearly homeomorphic. $\{0\} \cup K$ is a closed and bounded subspace of $\reals$, hence compact Hausdorff. Therefore, it is homeomorphic with the one-point compactification of $\ints^+.$ $\Box$
+
+    \item Show that if $G$ is a locally compact topological group with subgroup $H,$ then $G/H$ is locally compact.
+
+    {\bf SOLUTION.} Let $p: G \rightarrow G/H$ be the quotient map. We know $p$ is open, so by Exercise 3, $p(G) = G/H$ is locally compact. $\Box$
+
+    \item Show that if $X$ is Hausdorff and locally compact at $x,$ then for each neighbourhood $U$ of $x$, there is a neighbourhood $V$ of $x$ such that $\overline{V}$ is compact and $\overline{V} \subseteq U.$
+
+    {\bf SOLUTION.} Given a neighbourhood $U$ of $x,$ there exists a compact subspace $C$ of $X$ containing a neighbourhood $W$ of $x.$ In particular, it contains the neighbourhood $U \cap W$ of $x$. $C-(U \cap W)$ is closed in $C,$ and thus compact. By the Hausdorff condition, there exist disjoint open sets $V_1, V_2$ in $X$ containing $x, C-(U \cap W).$ Then $V = V_1 \cap U \cap W$ is a neighbourhood of $x.$ Additionally, $\overline{V}$ is closed in $C$ and thus compact, and $\overline{V} \subseteq \overline{V_1}$ does not intersect $V_2 \subseteq C-(U \cap W),$ so $\overline{V} \subseteq U.$ $\Box$
+
+    \item \begin{enumerate}
+        \item Lemma. If $p: X \rightarrow Y$ is a quotient map and $Z$ is locally compact Hausdorff, then $\pi = p \times i_Z: X \times Z \rightarrow Y \times Z$ is a quotient map.
+
+        {\bf SOLUTION.} We know that $p, i_Z$ are continuous and surjective, so $\pi$ is a continuous surjection. To show that $\pi$ is furthermore a quotient map, we must show that $A$ is open in $Y \times Z$ if $\pi^{-1}(A)$ is open in $X \times Z.$
+
+        If $y \times z \in A$ and $x \times z \in \pi^{-1}(A)$ is such that $\pi(x \times z) = y \times z,$ then there is a basis elements $U_1 \times W$ in $X \times Z$ such that
+        $$x \times z \in U_1 \times W \subseteq \pi^{-1}(A).$$
+        In particular $W$ is a neighbourhood of $y,$ so by Exercise 10 there is a neighbourhood $V$ of $y$ such that $\overline{V}$ is compact and contained in $W.$ This means
+        $$x \times z \in U_1 \times \overline{V} \subseteq \pi^{-1}(A).$$
+        Now 
+        $$\pi(U_1 \times \overline{V}) = p(U_1) \times \overline{V} \subseteq A,$$
+        so
+        $$p^{-1}(p(U_1)) \times \overline{V} \subseteq \pi^{-1}(A).$$
+        Given $u \in p^{-1}(p(U_1)),$ there exists, by the Tube Lemma, a neighbourhood $W_u$ of $u$ such that $W_u \times \overline{V} \subseteq p^{-1}(p(U_1)) \times \overline{V}.$ Let $U_2 = \bigcup_{u \in p^{-1}(p(U_1))} W_u.$ Clearly $p^{-1}(p(U_1)) \subseteq U_2,$ and $U_2 \times \overline{V} \subseteq \pi^{-1}(A).$
+
+        Continuing this pattern, we may inductively define $U_{i+1}$ such that $p^{-1}(p(U_i)) \subseteq U_{i+1}$ and $U_{i+1} \times \overline{V} \subseteq \pi^{-1}(A).$ Let $U = \bigcup_{i \in \ints^+} U_i.$ We naturally have $U \subseteq p^{-1}(p(U)),$ and if $x \in p^{-1}(p(U))$ then $p(x) = p(w)$ for some $w \in U;$ let $i$ be such that $w \in U_i$. Then $x \in p^{-1}(p(U_i)),$ so $x \in U_{i+1} \subseteq U.$ This shows that $U = \pi^{-1}(p(U)),$ so $U$ is saturated. Since $p$ is a quotient map, $p(U)$ is open in $Y.$ Since
+        $$x \times z \in U \times V \subseteq \pi^{-1}(A),$$
+        $\pi(U \times V) = p(U) \times V$ is a neighbourhood of $y \times z$ in $X \times Z$ that is contained in $\pi(\pi^{-1}(A) \subseteq A,$ and thus $A$ is open in $Y \times Z.$ Since $A$ was arbitrary, $\pi$ is a quotient map. $\Box$
+
+        \item Theorem. Let $p: A \rightarrow B, q: C \rightarrow D$ be quotient maps. If $B, C$ are locally compact Hausdorff, then $p \times q: A \times C \rightarrow B \times D$ is a quotient map.
+
+        {\bf SOLUTION.} $p \times q = (i_B \times q) \circ (p \times i_C)$ is a composition of quotient maps, by the lemma, and thereby it is a quotient map. $\Box$
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
